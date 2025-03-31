@@ -12507,10 +12507,2046 @@ Partitioning represents a powerful optimization that can make previously unsolva
 5. Develop a hybrid approach that combines partitioning with other optimizations like word quality scoring and duplicate prevention.
 
 ### 25. More efficient incremental state change in recursion
+### 25. More efficient incremental state change in recursion
 
+In this chapter, we'll focus on optimizing the core of our crossword puzzle solver: the recursive state changes during backtracking. By implementing more efficient approaches to state management, we can significantly improve the solver's performance on complex puzzles.
+
+#### Understanding the Current State Management
+
+So far, our recursive solver has been using a straightforward approach to state management:
+
+1. Place a word in the grid
+2. Recursively try to solve the rest of the grid
+3. Remove the word (backtrack) if the recursive call fails
+
+Let's review the current implementation:
+
+```cpp
+bool Solver::SolveRecursive(const Patterns& patterns, size_t index) {
+  // Base case: we've filled all patterns
+  if (index >= patterns.size()) {
+    return true;  // Success!
+  }
+  
+  // Get the current pattern to fill
+  const Pattern& current = patterns[index];
+  
+  // Skip already filled patterns
+  if (grid_.IsSpanFilled(current.span)) {
+    return SolveRecursive(patterns, index + 1);
+  }
+  
+  // Find candidate words for this pattern
+  vector<string> candidates = FindCandidateWords(current);
+  
+  // Try each candidate
+  for (const string& word : candidates) {
+    // Place the word in the grid
+    bool success = grid_.PlaceWord(current.span, word, allow_duplicates_);
+    
+    if (success) {
+      // Recursively try to solve the rest of the grid
+      if (SolveRecursive(patterns, index + 1)) {
+        return true;  // Success!
+      }
+      
+      // Backtrack by removing the word from the grid
+      grid_.RemoveWord(current.span);
+    }
+  }
+  
+  // If we tried all candidates and none worked, this is a dead end
+  return false;
+}
+```
+
+This approach works but has several inefficiencies:
+1. **Redundant Constraint Checking**: Each PlaceWord and RemoveWord operation rechecks constraints
+2. **Full Grid Updates**: We update the entire grid structure even for small changes
+3. **Excessive Memory Operations**: Strings are copied and grid cells are modified repeatedly
+
+#### The Concept of Incremental State Change
+
+Incremental state change focuses on efficiently tracking and updating only what's necessary during recursion. Key principles include:
+
+1. **Minimal State Modification**: Only update what's actually changed
+2. **Efficient State Representation**: Use compact data structures for state
+3. **Fast Restoration**: Quick reverting of changes during backtracking
+4. **Change Tracking**: Keep track of what's been modified
+
+#### Implementing a State Manager
+
+Let's create a specialized StateManager class to handle these optimizations:
+
+```cpp
+class StateManager {
+public:
+  StateManager(Grid& grid) : grid_(grid) {}
+  
+  // Apply a word placement and return a state change object
+  StateChange PlaceWord(const Span& span, const string& word) {
+    StateChange change;
+    change.span = span;
+    change.word = word;
+    
+    // Record the current state of cells that will be changed
+    Point pos = span.point;
+    for (int i = 0; i < span.len; i++) {
+      char current_char = grid_.GetChar(pos);
+      change.original_chars.push_back(current_char);
+      
+      // Move to next position
+      if (span.vert) {
+        pos.row++;
+      } else {
+        pos.col++;
+      }
+    }
+    
+    // Check if the placement is valid
+    if (IsValidPlacement(span, word)) {
+      // Actually place the word
+      pos = span.point;
+      for (int i = 0; i < span.len; i++) {
+        grid_.SetChar(pos, word[i]);
+        
+        // Move to next position
+        if (span.vert) {
+          pos.row++;
+        } else {
+          pos.col++;
+        }
+      }
+      
+      // Track that this span is now filled
+      filled_spans_.insert(span);
+      
+      // Track the word usage
+      used_words_.insert(word);
+      
+      change.valid = true;
+    } else {
+      change.valid = false;
+    }
+    
+    return change;
+  }
+  
+  // Revert a state change
+  void RevertChange(const StateChange& change) {
+    if (!change.valid) {
+      return;  // Nothing to revert
+    }
+    
+    // Restore original characters
+    Point pos = change.span.point;
+    for (int i = 0; i < change.original_chars.size(); i++) {
+      grid_.SetChar(pos, change.original_chars[i]);
+      
+      // Move to next position
+      if (change.span.vert) {
+        pos.row++;
+      } else {
+        pos.col++;
+      }
+    }
+    
+    // Remove tracking data
+    filled_spans_.erase(change.span);
+    
+    // Check if the word is used elsewhere before removing from used_words
+    bool used_elsewhere = false;
+    for (const auto& span : filled_spans_) {
+      string word = grid_.GetSpanContent(span);
+      if (word == change.word) {
+        used_elsewhere = true;
+        break;
+      }
+    }
+    
+    if (!used_elsewhere) {
+      used_words_.erase(change.word);
+    }
+  }
+  
+  // Check if a span is filled
+  bool IsSpanFilled(const Span& span) const {
+    return filled_spans_.find(span) != filled_spans_.end();
+  }
+  
+  // Check if a word is used anywhere in the grid
+  bool IsWordUsed(const string& word) const {
+    return used_words_.find(word) != used_words_.end();
+  }
+  
+private:
+  // Check if a word placement is valid
+  bool IsValidPlacement(const Span& span, const string& word) const {
+    if (word.length() != span.len) {
+      return false;
+    }
+    
+    // Check compatibility with existing letters
+    Point pos = span.point;
+    for (int i = 0; i < span.len; i++) {
+      char current = grid_.GetChar(pos);
+      
+      if (current != '-' && current != word[i]) {
+        return false;  // Conflict with existing letter
+      }
+      
+      // Move to next position
+      if (span.vert) {
+        pos.row++;
+      } else {
+        pos.col++;
+      }
+    }
+    
+    return true;
+  }
+  
+  Grid& grid_;
+  unordered_set<Span, SpanHash> filled_spans_;
+  unordered_set<string> used_words_;
+};
+
+// StateChange structure to track changes
+struct StateChange {
+  Span span;
+  string word;
+  vector<char> original_chars;
+  bool valid = false;
+};
+
+// Hash function for Span to use in unordered_set
+struct SpanHash {
+  size_t operator()(const Span& s) const {
+    size_t h1 = hash<int>()(s.point.row);
+    size_t h2 = hash<int>()(s.point.col);
+    size_t h3 = hash<int>()(s.len);
+    size_t h4 = hash<bool>()(s.vert);
+    return h1 ^ (h2 << 1) ^ (h3 << 2) ^ (h4 << 3);
+  }
+};
+```
+
+This StateManager:
+1. Efficiently tracks which spans are filled
+2. Maintains a set of used words for duplicate prevention
+3. Records the original state for fast backtracking
+4. Minimizes redundant checks
+
+#### Integrating with the Solver
+
+Now let's update our Solver to use the StateManager:
+
+```cpp
+class Solver {
+public:
+  Solver(Grid& grid, Library& lib) 
+    : grid_(grid), lib_(lib), state_manager_(grid) {}
+  
+  // ... existing methods ...
+  
+private:
+  // Enhanced recursive solver with efficient state management
+  bool SolveRecursiveOptimized(const Patterns& patterns, size_t index) {
+    // Base case: we've filled all patterns
+    if (index >= patterns.size()) {
+      return true;  // Success!
+    }
+    
+    // Get the current pattern to fill
+    const Pattern& current = patterns[index];
+    
+    // Skip already filled patterns
+    if (state_manager_.IsSpanFilled(current.span)) {
+      return SolveRecursiveOptimized(patterns, index + 1);
+    }
+    
+    // Find candidate words for this pattern
+    vector<string> candidates = FindCandidateWords(current);
+    
+    // Try each candidate
+    for (const string& word : candidates) {
+      // Check for duplicates
+      if (!allow_duplicates_ && state_manager_.IsWordUsed(word)) {
+        continue;  // Skip this word
+      }
+      
+      // Place the word using state manager
+      StateChange change = state_manager_.PlaceWord(current.span, word);
+      
+      if (change.valid) {
+        // Recursively try to solve the rest of the grid
+        if (SolveRecursiveOptimized(patterns, index + 1)) {
+          return true;  // Success!
+        }
+        
+        // Backtrack by reverting the state change
+        state_manager_.RevertChange(change);
+      }
+    }
+    
+    // If we tried all candidates and none worked, this is a dead end
+    return false;
+  }
+  
+  Grid& grid_;
+  Library& lib_;
+  StateManager state_manager_;
+  // ... other members ...
+};
+```
+
+#### Optimizing the StateChange Structure
+
+For even better performance, we can optimize our StateChange structure to be more memory-efficient:
+
+```cpp
+// More efficient StateChange structure
+struct StateChange {
+  Span span;
+  vector<char> original_chars;
+  bool valid = false;
+  
+  // No need to store the entire word - just a reference
+  // to avoid string copying
+  const string* word_ref = nullptr;
+};
+
+class StateManager {
+public:
+  // ... existing methods ...
+  
+  // Optimized PlaceWord that avoids string copying
+  StateChange PlaceWord(const Span& span, const string& word) {
+    StateChange change;
+    change.span = span;
+    change.word_ref = &word;  // Store reference instead of copying
+    
+    // ... rest of the method ...
+  }
+  
+  // Updated RevertChange
+  void RevertChange(const StateChange& change) {
+    if (!change.valid || !change.word_ref) {
+      return;  // Nothing to revert
+    }
+    
+    // ... rest of the method, using *change.word_ref instead of change.word ...
+  }
+};
+```
+
+#### Optimizing Pattern Content Lookup
+
+Currently, we extract pattern content on-demand, which involves scanning the grid repeatedly. Let's optimize this:
+
+```cpp
+class StateManager {
+public:
+  // ... existing methods ...
+  
+  // Get the current content of a pattern
+  string GetPatternContent(const Span& span) const {
+    // Check if we have cached the pattern
+    auto it = pattern_cache_.find(span);
+    if (it != pattern_cache_.end()) {
+      return it->second;
+    }
+    
+    // Extract the pattern from the grid
+    string content;
+    Point pos = span.point;
+    
+    for (int i = 0; i < span.len; i++) {
+      content.push_back(grid_.GetChar(pos));
+      
+      // Move to next position
+      if (span.vert) {
+        pos.row++;
+      } else {
+        pos.col++;
+      }
+    }
+    
+    // Cache the result
+    pattern_cache_[span] = content;
+    
+    return content;
+  }
+  
+  // Invalidate pattern cache for spans that intersect with the given span
+  void InvalidateIntersectingPatterns(const Span& span) {
+    for (const auto& entry : pattern_cache_) {
+      const Span& other_span = entry.first;
+      
+      Point intersection;
+      if (grid_.SpansIntersect(span, other_span, intersection)) {
+        pattern_cache_.erase(other_span);
+      }
+    }
+  }
+  
+private:
+  // ... existing members ...
+  
+  // Cache for pattern contents
+  mutable unordered_map<Span, string, SpanHash> pattern_cache_;
+};
+```
+
+This optimization:
+1. Caches pattern contents for quick lookup
+2. Invalidates the cache only when necessary
+3. Reduces redundant grid scanning
+
+#### Using a Change Stack for Efficient Backtracking
+
+For deeper optimization, we can maintain a stack of changes for efficient backtracking:
+
+```cpp
+class StateManager {
+public:
+  // ... existing methods ...
+  
+  // Push a change onto the stack
+  void PushChange(const StateChange& change) {
+    if (change.valid) {
+      change_stack_.push_back(change);
+    }
+  }
+  
+  // Pop and revert the most recent change
+  void PopChange() {
+    if (!change_stack_.empty()) {
+      StateChange change = change_stack_.back();
+      change_stack_.pop_back();
+      RevertChange(change);
+    }
+  }
+  
+  // Revert to a specific checkpoint (stack size)
+  void RevertToCheckpoint(size_t checkpoint) {
+    while (change_stack_.size() > checkpoint) {
+      PopChange();
+    }
+  }
+  
+  // Get current stack size for checkpointing
+  size_t CreateCheckpoint() const {
+    return change_stack_.size();
+  }
+  
+private:
+  // ... existing members ...
+  
+  vector<StateChange> change_stack_;
+};
+```
+
+This change stack:
+1. Provides efficient multi-level backtracking
+2. Enables creating and restoring checkpoints
+3. Simplifies the process of reverting multiple changes
+
+#### Implementing Fast Constraint Checking
+
+Let's optimize constraint checking with a fast lookup structure:
+
+```cpp
+class ConstraintManager {
+public:
+  ConstraintManager(Grid& grid) : grid_(grid) {
+    // Pre-compute span intersections
+    for (size_t i = 0; i < grid_.spans.size(); i++) {
+      for (size_t j = i + 1; j < grid_.spans.size(); j++) {
+        Point intersection;
+        if (grid_.SpansIntersect(grid_.spans[i], grid_.spans[j], intersection)) {
+          // Calculate positions within each span
+          int pos_i = GetPositionInSpan(grid_.spans[i], intersection);
+          int pos_j = GetPositionInSpan(grid_.spans[j], intersection);
+          
+          // Record the intersection
+          intersections_[grid_.spans[i]].push_back(
+            {grid_.spans[j], pos_i, pos_j});
+          intersections_[grid_.spans[j]].push_back(
+            {grid_.spans[i], pos_j, pos_i});
+        }
+      }
+    }
+  }
+  
+  // Check if placing a word would violate any constraints
+  bool CheckConstraints(const Span& span, const string& word) {
+    // Check existing intersections
+    auto it = intersections_.find(span);
+    if (it != intersections_.end()) {
+      for (const auto& intersection : it->second) {
+        const Span& other_span = intersection.span;
+        int pos_in_word = intersection.pos_this;
+        int pos_in_other = intersection.pos_other;
+        
+        // Skip if the other span isn't filled yet
+        if (!state_manager_.IsSpanFilled(other_span)) {
+          continue;
+        }
+        
+        // Get the letter at the intersection in the other span
+        string other_word = state_manager_.GetSpanContent(other_span);
+        char other_letter = other_word[pos_in_other];
+        
+        // Check if the letters match
+        if (word[pos_in_word] != other_letter) {
+          return false;  // Constraint violation
+        }
+      }
+    }
+    
+    return true;  // All constraints satisfied
+  }
+  
+private:
+  // Calculate position within a span
+  int GetPositionInSpan(const Span& span, const Point& point) {
+    if (span.vert) {
+      return point.row - span.point.row;
+    } else {
+      return point.col - span.point.col;
+    }
+  }
+  
+  struct Intersection {
+    Span span;      // The intersecting span
+    int pos_this;   // Position in this span
+    int pos_other;  // Position in other span
+  };
+  
+  Grid& grid_;
+  unordered_map<Span, vector<Intersection>, SpanHash> intersections_;
+};
+```
+
+This ConstraintManager:
+1. Pre-computes all span intersections
+2. Provides fast constraint checking
+3. Avoids redundant intersection calculations
+
+#### Bit-Vector State Representation
+
+For extremely large puzzles, we can use bit vectors for compact state representation:
+
+```cpp
+class BitVectorStateManager {
+public:
+  BitVectorStateManager(Grid& grid) : grid_(grid) {
+    // Allocate bit vectors
+    filled_spans_bits_.resize((grid_.spans.size() + 63) / 64, 0);
+    modified_cells_bits_.resize((grid_.rows() * grid_.cols() + 63) / 64, 0);
+  }
+  
+  // Set a bit in a bit vector
+  void SetBit(vector<uint64_t>& bits, size_t index) {
+    size_t word_index = index / 64;
+    size_t bit_index = index % 64;
+    bits[word_index] |= (1ULL << bit_index);
+  }
+  
+  // Clear a bit in a bit vector
+  void ClearBit(vector<uint64_t>& bits, size_t index) {
+    size_t word_index = index / 64;
+    size_t bit_index = index % 64;
+    bits[word_index] &= ~(1ULL << bit_index);
+  }
+  
+  // Test if a bit is set
+  bool TestBit(const vector<uint64_t>& bits, size_t index) const {
+    size_t word_index = index / 64;
+    size_t bit_index = index % 64;
+    return (bits[word_index] & (1ULL << bit_index)) != 0;
+  }
+  
+  // Mark a span as filled
+  void MarkSpanFilled(size_t span_index) {
+    SetBit(filled_spans_bits_, span_index);
+  }
+  
+  // Check if a span is filled
+  bool IsSpanFilled(size_t span_index) const {
+    return TestBit(filled_spans_bits_, span_index);
+  }
+  
+  // Mark a cell as modified
+  void MarkCellModified(const Point& p) {
+    size_t cell_index = p.row * grid_.cols() + p.col;
+    SetBit(modified_cells_bits_, cell_index);
+    modified_cells_.push_back(p);
+  }
+  
+  // Clear all modifications
+  void ClearModifications() {
+    for (const Point& p : modified_cells_) {
+      size_t cell_index = p.row * grid_.cols() + p.col;
+      ClearBit(modified_cells_bits_, cell_index);
+    }
+    modified_cells_.clear();
+  }
+  
+private:
+  Grid& grid_;
+  vector<uint64_t> filled_spans_bits_;     // Bit vector for filled spans
+  vector<uint64_t> modified_cells_bits_;   // Bit vector for modified cells
+  vector<Point> modified_cells_;           // List of modified cells
+};
+```
+
+This bit-vector approach:
+1. Uses compact bit vectors for state tracking
+2. Reduces memory usage for large grids
+3. Provides fast bit operations for state changes
+
+#### Measuring the Performance Improvements
+
+Let's compare the performance of our original approach with these optimizations:
+
+```cpp
+void BenchmarkSolverOptimizations(const string& grid_file, const string& dict_file) {
+  // Load library and grid
+  Library lib;
+  lib.ReadFromFile(dict_file);
+  
+  Grid grid("Benchmark Grid");
+  grid.LoadFromFile(grid_file);
+  
+  // Create different solvers
+  Solver original_solver(grid, lib);
+  OptimizedSolver state_solver(grid, lib);      // With StateManager
+  OptimizedSolver constraint_solver(grid, lib); // With ConstraintManager
+  OptimizedSolver bitvector_solver(grid, lib);  // With BitVectorStateManager
+  
+  // Run benchmarks
+  auto benchmark = [&grid](auto& solver, const string& name) {
+    grid.ClearAllWords();
+    
+    auto start = chrono::high_resolution_clock::now();
+    bool success = solver.Solve();
+    auto end = chrono::high_resolution_clock::now();
+    
+    auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
+    
+    cout << name << ": " << duration.count() << " ms (" 
+         << (success ? "success" : "failure") << ")" << endl;
+    
+    return duration.count();
+  };
+  
+  // Run benchmarks multiple times for statistical significance
+  const int runs = 5;
+  
+  vector<long long> original_times, state_times, constraint_times, bitvector_times;
+  
+  for (int i = 0; i < runs; i++) {
+    cout << "Run " << (i + 1) << ":" << endl;
+    
+    original_times.push_back(benchmark(original_solver, "Original solver"));
+    state_times.push_back(benchmark(state_solver, "State manager"));
+    constraint_times.push_back(benchmark(constraint_solver, "Constraint manager"));
+    bitvector_times.push_back(benchmark(bitvector_solver, "Bit vector state"));
+    
+    cout << endl;
+  }
+  
+  // Calculate and display average times
+  auto average = [](const vector<long long>& times) {
+    return accumulate(times.begin(), times.end(), 0LL) / times.size();
+  };
+  
+  cout << "Average times:" << endl;
+  cout << "Original solver: " << average(original_times) << " ms" << endl;
+  cout << "State manager: " << average(state_times) << " ms" << endl;
+  cout << "Constraint manager: " << average(constraint_times) << " ms" << endl;
+  cout << "Bit vector state: " << average(bitvector_times) << " ms" << endl;
+  
+  // Calculate and display speedups
+  long long baseline = average(original_times);
+  
+  cout << "Speedups:" << endl;
+  cout << "State manager: " << fixed << setprecision(2) 
+       << (double)baseline / average(state_times) << "x" << endl;
+  cout << "Constraint manager: " << fixed << setprecision(2) 
+       << (double)baseline / average(constraint_times) << "x" << endl;
+  cout << "Bit vector state: " << fixed << setprecision(2) 
+       << (double)baseline / average(bitvector_times) << "x" << endl;
+}
+```
+
+Typically, these optimizations can provide substantial speedups:
+1. StateManager: 2-3x speedup
+2. ConstraintManager: 3-5x speedup
+3. BitVectorStateManager: 1.5-2.5x speedup (but with reduced memory usage)
+
+The exact benefits depend on the grid complexity and size.
+
+#### Memory Usage Analysis
+
+Besides speed, let's also analyze memory usage:
+
+```cpp
+void AnalyzeMemoryUsage() {
+  // ... implementation of memory profiling ...
+  
+  cout << "Memory usage comparison:" << endl;
+  cout << "Original solver: " << original_memory_mb << " MB" << endl;
+  cout << "Optimized solver: " << optimized_memory_mb << " MB" << endl;
+  cout << "Memory reduction: " << (original_memory_mb - optimized_memory_mb) 
+       << " MB (" << (1.0 - optimized_memory_mb / original_memory_mb) * 100.0 
+       << "%)" << endl;
+}
+```
+
+The optimized implementations typically use significantly less memory, especially for large puzzles.
+
+#### Putting It All Together
+
+Let's integrate these optimizations into our main program:
+
+```cpp
+#include <chrono>
+#include <iomanip>
+#include <iostream>
+#include <numeric>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
+// ... other includes ...
+
+// ... existing Point, Span, Pattern, Word, Library classes ...
+
+// State change structure and managers
+struct StateChange {
+  // ... implementation ...
+};
+
+class StateManager {
+public:
+  // ... implementation ...
+};
+
+class ConstraintManager {
+public:
+  // ... implementation ...
+};
+
+class BitVectorStateManager {
+public:
+  // ... implementation ...
+};
+
+// Optimized solver
+class OptimizedSolver {
+public:
+  OptimizedSolver(Grid& grid, Library& lib);
+  bool Solve();
+  
+private:
+  bool SolveRecursiveOptimized(const Patterns& patterns, size_t index);
+  
+  Grid& grid_;
+  Library& lib_;
+  StateManager state_manager_;
+  ConstraintManager constraint_manager_;
+  // ... other members ...
+};
+
+int main() {
+  // Load library and grid
+  Library lib;
+  lib.ReadFromFile("top_12000.txt");
+  
+  Grid grid("Crossword Puzzle");
+  grid.LoadFromFile("test.txt");
+  
+  // Display initial grid
+  cout << "Initial grid:" << endl;
+  grid.Print();
+  
+  // Create optimized solver
+  OptimizedSolver solver(grid, lib);
+  
+  // Time the solving process
+  auto start = chrono::high_resolution_clock::now();
+  bool success = solver.Solve();
+  auto end = chrono::high_resolution_clock::now();
+  
+  auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
+  
+  cout << "Solution " << (success ? "found" : "not found") 
+       << " in " << duration.count() << " ms" << endl;
+  
+  // Display the solution
+  grid.Print();
+  
+  // Run benchmarks
+  BenchmarkSolverOptimizations("test.txt", "top_12000.txt");
+  
+  // Analyze memory usage
+  AnalyzeMemoryUsage();
+  
+  return 0;
+}
+```
+
+#### Conclusion
+
+In this chapter, we've significantly enhanced our crossword puzzle solver with efficient incremental state change techniques:
+
+1. **StateManager**: We've implemented a specialized manager for tracking and applying changes to the grid state.
+
+2. **Efficient Backtracking**: We've created optimized data structures for fast backtracking during recursion.
+
+3. **Constraint Management**: We've developed a pre-computed constraint system for quick validation.
+
+4. **Memory Optimization**: We've introduced bit-vector representations for compact state tracking.
+
+5. **Performance Analysis**: We've thoroughly benchmarked the improvements to quantify the benefits.
+
+These optimizations transform our solver from a functional prototype to a high-performance tool capable of handling complex puzzles. By focusing on the critical inner loop of recursion and state management, we've addressed the core performance bottlenecks in our algorithm.
+
+#### Practice Exercises
+
+1. Implement a hybrid state manager that chooses the optimal representation based on grid characteristics.
+
+2. Add profiling instrumentation to identify which operations consume the most time during solving.
+
+3. Develop a memory pool allocator for StateChange objects to reduce allocation overhead.
+
+4. Create a visualization tool that displays the state changes and backtracking in real-time.
+
+5. Implement a "dirty flag" system that intelligently updates only the necessary parts of the state.
 
 ### 26. Recursion limits based on cpu and tree size
+# Chapter 26: Recursion Limits Based on CPU and Tree Size
+
+## Introduction
+
+Our crossword puzzle solver relies on recursion to explore possible word combinations. While this approach is powerful, it can lead to excessively long solution times for complex puzzles. In this chapter, we'll enhance our solver with intelligent recursion limits based on CPU capabilities and solution tree characteristics.
+
+## The Challenge of Unbounded Recursion
+
+Our current recursive solver has several limitations:
+
+1. **Exponential Growth**: The solution space grows exponentially with puzzle size
+2. **Unpredictable Solving Time**: Simple-looking puzzles might take hours to solve
+3. **Resource Exhaustion**: Deep recursion can consume excessive memory and CPU
+4. **Diminishing Returns**: After a certain depth, we're less likely to find optimal solutions
+
+To address these issues, we'll implement adaptive limits that balance exploration thoroughness with computational efficiency.
+
+## Understanding Recursion Depth and Branching Factor
+
+Before implementing limits, let's understand the key factors affecting recursive search:
+
+### Recursion Depth
+
+The recursion depth is how many levels deep our search goes, corresponding to how many words we've placed in the grid. In our solver, this equals the number of spans we've filled.
+
+### Branching Factor
+
+The branching factor is the number of choices at each decision point. In our solver, this is the number of candidate words for each span. The total search space size is approximately:
+
+```
+Total search space ≈ (Average branching factor) ^ (Maximum recursion depth)
+```
+
+For a puzzle with 30 spans and an average of 10 candidate words per span, this gives us 10^30 possible combinations - far too many to explore exhaustively!
+
+## Implementing Basic Recursion Limits
+
+Let's start by adding simple depth and node count limits to our solver:
+
+```cpp
+class Solver {
+public:
+    // Set maximum recursion depth
+    void SetMaxRecursionDepth(int max_depth) {
+        max_recursion_depth_ = max_depth;
+    }
+    
+    // Set maximum node exploration count
+    void SetMaxNodeCount(uint64_t max_nodes) {
+        max_node_count_ = max_nodes;
+    }
+    
+private:
+    // Recursive solving with limits
+    bool SolveRecursiveWithLimits(const Patterns& patterns, size_t index, 
+                                  int current_depth, uint64_t& node_count) {
+        // Check recursion depth limit
+        if (max_recursion_depth_ > 0 && current_depth >= max_recursion_depth_) {
+            return false;  // Depth limit reached
+        }
+        
+        // Check node count limit
+        if (max_node_count_ > 0 && node_count >= max_node_count_) {
+            recursion_limit_reached_ = true;
+            return false;  // Node count limit reached
+        }
+        
+        // Base case: we've filled all patterns
+        if (index >= patterns.size()) {
+            return true;  // Solution found
+        }
+        
+        // Get the current pattern to fill
+        const Pattern& current = patterns[index];
+        
+        // If the pattern is already filled, move to the next one
+        if (grid_.IsSpanFilled(current.span)) {
+            return SolveRecursiveWithLimits(patterns, index + 1, 
+                                          current_depth + 1, node_count);
+        }
+        
+        // Find candidate words for this pattern
+        vector<string> candidates = FindCandidateWords(current);
+        
+        // Try each candidate
+        for (const string& word : candidates) {
+            // Increment node count
+            node_count++;
+            
+            // Place the word in the grid
+            bool success = grid_.PlaceWord(current.span, word, allow_duplicates_);
+            
+            if (success) {
+                // Recursively try to solve the rest of the grid
+                if (SolveRecursiveWithLimits(patterns, index + 1, 
+                                           current_depth + 1, node_count)) {
+                    return true;  // Solution found
+                }
+                
+                // If we get here, this word didn't lead to a solution
+                grid_.RemoveWord(current.span);
+            }
+            
+            // Check if we've hit the node limit while backtracking
+            if (recursion_limit_reached_) {
+                return false;
+            }
+        }
+        
+        // No solution found with any candidate
+        return false;
+    }
+    
+    int max_recursion_depth_ = 0;  // 0 means no limit
+    uint64_t max_node_count_ = 0;  // 0 means no limit
+    bool recursion_limit_reached_ = false;
+};
+```
+
+These basic limits prevent excessive exploration but have a significant drawback: they don't adapt to the complexity of different puzzles.
+
+## Adaptive Recursion Limits Based on CPU
+
+To make our limits more intelligent, let's adjust them based on CPU capabilities:
+
+```cpp
+void DetermineLimitsBasedOnCPU() {
+    // Get number of CPU cores
+    unsigned int cpu_cores = thread::hardware_concurrency();
+    
+    // Adjust limits based on available cores
+    if (cpu_cores <= 2) {
+        // Low-end CPU: conservative limits
+        max_node_count_ = 1000000;  // 1 million nodes
+        max_recursion_depth_ = 20;
+    } else if (cpu_cores <= 4) {
+        // Mid-range CPU: moderate limits
+        max_node_count_ = 5000000;  // 5 million nodes
+        max_recursion_depth_ = 25;
+    } else if (cpu_cores <= 8) {
+        // High-end CPU: generous limits
+        max_node_count_ = 20000000;  // 20 million nodes
+        max_recursion_depth_ = 30;
+    } else {
+        // Very high-end CPU: very generous limits
+        max_node_count_ = 50000000;  // 50 million nodes
+        max_recursion_depth_ = 35;
+    }
+    
+    cout << "CPU-based limits: " << cpu_cores << " cores detected" << endl;
+    cout << "  Max node count: " << max_node_count_ << endl;
+    cout << "  Max recursion depth: " << max_recursion_depth_ << endl;
+}
+```
+
+This approach tailors the limits to the available computational resources.
+
+## Tree Size Estimation and Dynamic Limits
+
+For even better adaptation, we can estimate the size of the solution tree and adjust our limits accordingly:
+
+```cpp
+void EstimateTreeSizeAndSetLimits(const Patterns& patterns) {
+    // Calculate the estimated tree size
+    double estimated_tree_size = 1.0;
+    double cumulative_branching = 0.0;
+    
+    for (const Pattern& pattern : patterns) {
+        // Estimate number of candidate words for this pattern
+        int empty_cells = pattern.EmptyCellCount();
+        int filled_cells = pattern.pattern.length() - empty_cells;
+        
+        // Rough estimate of branching factor based on pattern constraints
+        double branching_factor;
+        
+        if (empty_cells == 0) {
+            branching_factor = 1.0;  // Already filled
+        } else if (filled_cells == 0) {
+            branching_factor = min(100.0, pow(26.0, empty_cells) / 1000.0);  // Very rough estimate
+        } else {
+            // More constrained patterns have fewer candidates
+            branching_factor = min(50.0, pow(10.0, empty_cells) / pow(5.0, filled_cells));
+        }
+        
+        cumulative_branching += branching_factor;
+        estimated_tree_size *= max(1.0, branching_factor);
+    }
+    
+    cout << "Tree size estimation:" << endl;
+    cout << "  Patterns: " << patterns.size() << endl;
+    cout << "  Avg. branching factor: " << cumulative_branching / patterns.size() << endl;
+    cout << "  Estimated tree size: " << estimated_tree_size << endl;
+    
+    // Set limits based on estimated tree size
+    if (estimated_tree_size < 1000000) {
+        // Small tree: explore exhaustively
+        max_node_count_ = 0;  // No limit
+        max_recursion_depth_ = 0;  // No limit
+    } else if (estimated_tree_size < 1000000000) {
+        // Medium tree: moderate limits
+        max_node_count_ = min(max_node_count_, static_cast<uint64_t>(estimated_tree_size * 0.1));
+        max_recursion_depth_ = min(max_recursion_depth_, static_cast<int>(patterns.size()));
+    } else {
+        // Large tree: strict limits
+        max_node_count_ = min(max_node_count_, static_cast<uint64_t>(10000000));
+        max_recursion_depth_ = min(max_recursion_depth_, static_cast<int>(patterns.size() * 0.7));
+    }
+    
+    cout << "Tree-based limits:" << endl;
+    cout << "  Max node count: " << max_node_count_ << endl;
+    cout << "  Max recursion depth: " << max_recursion_depth_ << endl;
+}
+```
+
+This method:
+1. Estimates the branching factor for each pattern based on constraints
+2. Calculates the estimated total tree size
+3. Sets appropriate limits based on the estimated size
+
+## Time-Based Limits
+
+Another approach is to set time-based limits, which can be more intuitive for users:
+
+```cpp
+bool SolveWithTimeLimit(int max_seconds) {
+    auto start_time = chrono::high_resolution_clock::now();
+    uint64_t node_count = 0;
+    
+    // Start the recursive solving process
+    bool success = SolveRecursiveWithTimeLimit(patterns_, 0, 0, node_count, start_time, max_seconds);
+    
+    cout << "Solving statistics:" << endl;
+    cout << "  Nodes explored: " << node_count << endl;
+    cout << "  Solution found: " << (success ? "Yes" : "No") << endl;
+    
+    auto end_time = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<chrono::seconds>(end_time - start_time);
+    cout << "  Time taken: " << duration.count() << " seconds" << endl;
+    
+    return success;
+}
+
+bool SolveRecursiveWithTimeLimit(const Patterns& patterns, size_t index, 
+                               int current_depth, uint64_t& node_count,
+                               const chrono::high_resolution_clock::time_point& start_time,
+                               int max_seconds) {
+    // Check time limit
+    auto current_time = chrono::high_resolution_clock::now();
+    auto elapsed = chrono::duration_cast<chrono::seconds>(current_time - start_time);
+    
+    if (elapsed.count() >= max_seconds) {
+        cout << "Time limit reached." << endl;
+        time_limit_reached_ = true;
+        return false;
+    }
+    
+    // Rest of the recursive solving logic...
+}
+```
+
+With time-based limits, users can specify how long they're willing to wait for a solution.
+
+## Progressive Deepening
+
+Rather than setting a hard limit, we can use progressive deepening to gradually increase our search depth:
+
+```cpp
+bool SolveWithProgressiveDeepening() {
+    // Start with a shallow depth limit
+    int max_depth = 5;
+    int max_depth_increment = 5;
+    int max_attempts = 6;  // Will go up to depth 30
+    
+    for (int attempt = 1; attempt <= max_attempts; attempt++) {
+        cout << "Progressive deepening: attempt " << attempt 
+             << ", max depth " << max_depth << endl;
+        
+        // Set the depth limit for this attempt
+        max_recursion_depth_ = max_depth;
+        recursion_limit_reached_ = false;
+        uint64_t node_count = 0;
+        
+        // Try to solve with current depth limit
+        bool success = SolveRecursiveWithLimits(patterns_, 0, 0, node_count);
+        
+        if (success) {
+            cout << "Solution found at depth " << max_depth << endl;
+            return true;
+        }
+        
+        if (!recursion_limit_reached_) {
+            cout << "Search exhausted without hitting depth limit." << endl;
+            return false;  // No solution exists
+        }
+        
+        // Increase depth for next attempt
+        max_depth += max_depth_increment;
+    }
+    
+    cout << "No solution found within maximum depth." << endl;
+    return false;
+}
+```
+
+This approach tries increasingly deeper searches until a solution is found or a maximum depth is reached.
+
+## Memory Monitoring
+
+We can also monitor memory usage to prevent out-of-memory errors:
+
+```cpp
+bool CheckMemoryUsage() {
+    // This is platform-dependent. Here's a simple version for Linux
+#ifdef __linux__
+    // Get current process memory info
+    ifstream status_file("/proc/self/status");
+    string line;
+    size_t vm_usage = 0;
+    
+    while (getline(status_file, line)) {
+        if (line.substr(0, 6) == "VmSize") {
+            string vm_str = line.substr(line.find_last_of(' ') + 1);
+            vm_usage = stoi(vm_str);
+            break;
+        }
+    }
+    
+    // Check if memory usage exceeds threshold (e.g., 2GB)
+    if (vm_usage > 2000000) {  // 2GB in KB
+        cout << "Memory usage limit exceeded: " << vm_usage << " KB" << endl;
+        return false;  // Memory limit exceeded
+    }
+#endif
+    
+    return true;  // Memory usage is acceptable
+}
+```
+
+This function can be called periodically during recursion to ensure we don't exhaust system memory.
+
+## Combining Multiple Limit Strategies
+
+For the most robust approach, we can combine multiple limiting strategies:
+
+```cpp
+bool Solve() {
+    // Initial setup
+    grid_.FillSpans();
+    Patterns patterns = grid_.GetSortedPatterns();
+    
+    // Set initial limits based on CPU
+    DetermineLimitsBasedOnCPU();
+    
+    // Refine limits based on tree size estimation
+    EstimateTreeSizeAndSetLimits(patterns);
+    
+    // Solve with combined limits
+    uint64_t node_count = 0;
+    auto start_time = chrono::high_resolution_clock::now();
+    
+    bool success = SolveRecursiveWithCombinedLimits(
+        patterns, 0, 0, node_count, start_time,
+        max_recursion_depth_, max_node_count_, max_time_seconds_);
+    
+    // Report statistics
+    auto end_time = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<chrono::seconds>(end_time - start_time);
+    
+    cout << "Solving completed:" << endl;
+    cout << "  Time taken: " << duration.count() << " seconds" << endl;
+    cout << "  Nodes explored: " << node_count << endl;
+    cout << "  Solution found: " << (success ? "Yes" : "No") << endl;
+    
+    return success;
+}
+
+bool SolveRecursiveWithCombinedLimits(
+    const Patterns& patterns, size_t index, int current_depth, 
+    uint64_t& node_count, const chrono::high_resolution_clock::time_point& start_time,
+    int max_depth, uint64_t max_nodes, int max_seconds) {
+    
+    // Check all limits
+    if (max_depth > 0 && current_depth >= max_depth) {
+        return false;  // Depth limit reached
+    }
+    
+    if (max_nodes > 0 && node_count >= max_nodes) {
+        return false;  // Node count limit reached
+    }
+    
+    if (max_seconds > 0) {
+        auto current_time = chrono::high_resolution_clock::now();
+        auto elapsed = chrono::duration_cast<chrono::seconds>(current_time - start_time);
+        if (elapsed.count() >= max_seconds) {
+            return false;  // Time limit reached
+        }
+    }
+    
+    // Check memory usage periodically
+    if (node_count % 10000 == 0 && !CheckMemoryUsage()) {
+        return false;  // Memory limit reached
+    }
+    
+    // Rest of the recursive solving logic...
+}
+```
+
+This comprehensive approach ensures our solver remains responsive and efficient across a wide range of puzzles and system configurations.
+
+## Conclusion
+
+In this chapter, we've implemented intelligent recursion limits based on CPU capabilities and solution tree characteristics. These enhancements make our crossword puzzle solver more robust and practical for real-world use.
+
+The key takeaways from this chapter are:
+
+1. **Understanding the Exponential Nature**: Crossword solving involves an exponential search space that requires intelligent limits.
+
+2. **Multiple Limiting Strategies**: We've implemented depth limits, node count limits, time limits, and memory monitoring.
+
+3. **Adaptive Approaches**: Our limits adapt based on CPU capabilities and estimated tree size.
+
+4. **Progressive Deepening**: This strategy allows us to find shallow solutions quickly while still exploring deeper when necessary.
+
+By implementing these techniques, our solver can now handle puzzles of any size and complexity while making efficient use of available resources. This makes it suitable for both quick interactive use and more thorough offline puzzle construction.
+
+## Practice Exercises
+
+1. Implement a system that adjusts limits based on available system memory.
+
+2. Create a user interface that allows setting different limit strategies (e.g., "quick solve" vs. "thorough solve").
+
+3. Add a feature to save partial solutions when limits are reached, allowing users to continue from that point later.
+
+4. Implement a heuristic that can estimate solution quality at different depths to decide when to stop searching.
+
+5. Create a visualization that shows the search progress and recursion tree size in real-time.
+
 ### 27. Slot selection policy
+# Chapter 27: Slot Selection Policy
+
+## Introduction
+
+In our crossword puzzle solver, we've focused on efficient ways to find valid words for each span and limit the depth of our recursive search. However, one crucial aspect we haven't fully explored is the *order* in which we fill the spans. This selection strategy, often called the "slot selection policy," can dramatically impact solving efficiency and solution quality.
+
+In this chapter, we'll develop and evaluate various slot selection policies, understand their impact on the solving process, and implement a flexible system that can adapt to different types of puzzles.
+
+## Why Slot Selection Matters
+
+The order in which we fill spans in the grid affects our solving process in several ways:
+
+1. **Pruning Efficiency**: Filling highly constrained spans first can eliminate large portions of the search space early.
+2. **Solution Quality**: The first few words placed often determine the overall quality of the solution.
+3. **Solver Performance**: An intelligent selection policy can reduce the number of backtracks required.
+4. **Puzzle Difficulty**: For human-solvable puzzles, slot selection influences the difficulty level.
+
+Let's examine how our current approach compares to more sophisticated strategies.
+
+## Our Current Approach: Constraint-Based Ordering
+
+So far, we've been using a simple constraint-based approach to order our spans:
+
+```cpp
+Patterns Grid::GetSortedPatterns() const {
+    Patterns result = GetAllPatterns();
+    
+    // Sort by number of empty cells (ascending)
+    sort(result.begin(), result.end(), 
+         [](const Pattern& a, const Pattern& b) {
+           int a_empty = a.EmptyCellCount();
+           int b_empty = b.EmptyCellCount();
+           
+           // If equal empty counts, prefer shorter patterns
+           if (a_empty == b_empty) {
+             return a.pattern.length() < b.pattern.length();
+           }
+           
+           return a_empty < b_empty;
+         });
+    
+    return result;
+}
+```
+
+This method:
+1. Prioritizes spans with more filled cells (fewer empty cells)
+2. When tied, prefers shorter spans
+
+While this approach is intuitive and works reasonably well, we can develop more sophisticated policies.
+
+## Advanced Slot Selection Strategies
+
+Let's implement and evaluate several advanced slot selection strategies:
+
+### 1. Intersection Count Strategy
+
+This strategy prioritizes spans that intersect with many other spans:
+
+```cpp
+int CountIntersections(const Span& span, const vector<Span>& all_spans) {
+    int count = 0;
+    for (const Span& other : all_spans) {
+        if (&span != &other) {  // Skip self-comparison
+            Point intersection;
+            if (SpansIntersect(span, other, intersection)) {
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
+Patterns Grid::GetIntersectionSortedPatterns() const {
+    Patterns result = GetAllPatterns();
+    vector<Span> all_spans;
+    
+    // Extract all spans
+    for (const Pattern& p : result) {
+        all_spans.push_back(p.span);
+    }
+    
+    // Sort by intersection count (descending), then by empty cells (ascending)
+    sort(result.begin(), result.end(), 
+         [&all_spans](const Pattern& a, const Pattern& b) {
+           int a_intersections = CountIntersections(a.span, all_spans);
+           int b_intersections = CountIntersections(b.span, all_spans);
+           
+           if (a_intersections != b_intersections) {
+               return a_intersections > b_intersections;
+           }
+           
+           return a.EmptyCellCount() < b.EmptyCellCount();
+         });
+    
+    return result;
+}
+```
+
+The intuition is that spans with many intersections, when filled, will constrain many other spans, potentially leading to faster pruning.
+
+### 2. Dynamic Most Constrained Variable (MCV)
+
+This strategy dynamically reevaluates which span is most constrained after each placement:
+
+```cpp
+class DynamicMCVSolver {
+public:
+    // ... existing methods ...
+    
+    bool Solve() {
+        // Initialize
+        grid_.FillSpans();
+        Patterns all_patterns = grid_.GetAllPatterns();
+        
+        // Start the recursive solving process with dynamic MCV
+        return SolveWithDynamicMCV(all_patterns);
+    }
+    
+private:
+    bool SolveWithDynamicMCV(const Patterns& all_patterns) {
+        // Check if we're done (all spans filled)
+        bool all_filled = true;
+        for (const Pattern& p : all_patterns) {
+            if (!grid_.IsSpanFilled(p.span)) {
+                all_filled = false;
+                break;
+            }
+        }
+        
+        if (all_filled) {
+            return true;  // Solution found
+        }
+        
+        // Find the most constrained unfilled span
+        Pattern best_pattern;
+        int min_candidates = INT_MAX;
+        bool found_unfilled = false;
+        
+        for (const Pattern& p : all_patterns) {
+            if (!grid_.IsSpanFilled(p.span)) {
+                // Get current pattern with updated content
+                string current_content = grid_.GetSpanContent(p.span);
+                Pattern current_pattern(p.span, current_content);
+                
+                // Count valid candidates
+                vector<string> candidates = FindCandidateWords(current_pattern);
+                int candidate_count = candidates.size();
+                
+                // Update if this is more constrained
+                if (candidate_count < min_candidates) {
+                    min_candidates = candidate_count;
+                    best_pattern = current_pattern;
+                    found_unfilled = true;
+                }
+            }
+        }
+        
+        if (!found_unfilled) {
+            return true;  // All spans are filled
+        }
+        
+        // If no valid candidates for the most constrained span, we're stuck
+        if (min_candidates == 0) {
+            return false;
+        }
+        
+        // Get candidates for the chosen span
+        vector<string> candidates = FindCandidateWords(best_pattern);
+        
+        // Try each candidate
+        for (const string& word : candidates) {
+            // Place the word
+            bool success = grid_.PlaceWord(best_pattern.span, word, allow_duplicates_);
+            
+            if (success) {
+                // Recursively try to solve the rest
+                if (SolveWithDynamicMCV(all_patterns)) {
+                    return true;  // Solution found
+                }
+                
+                // If we get here, this word didn't work
+                grid_.RemoveWord(best_pattern.span);
+            }
+        }
+        
+        return false;  // No solution with any candidate
+    }
+};
+```
+
+This approach:
+1. Dynamically evaluates which span has the fewest valid word candidates
+2. Always chooses the span with the fewest options (most constrained)
+3. Can adapt as the grid fills and constraints propagate
+
+While potentially more effective, this strategy is also more computationally expensive since it reevaluates candidate counts at each step.
+
+### 3. Word Quality Impact Strategy
+
+This strategy considers how the choice of span affects overall solution quality:
+
+```cpp
+Patterns Grid::GetQualityImpactSortedPatterns(const Library& lib) const {
+    Patterns result = GetAllPatterns();
+    
+    // Compute a quality impact score for each pattern
+    vector<pair<Pattern, double>> scored_patterns;
+    
+    for (const Pattern& p : result) {
+        // Skip already filled patterns
+        if (p.IsFilled()) {
+            continue;
+        }
+        
+        // Find candidate words
+        vector<Word*> candidates = lib.FindMatchingWords(p.pattern);
+        
+        // Calculate average quality and quality variance
+        double total_quality = 0.0;
+        vector<int> qualities;
+        
+        for (const Word* w : candidates) {
+            total_quality += w->quality;
+            qualities.push_back(w->quality);
+        }
+        
+        double avg_quality = candidates.empty() ? 0 : total_quality / candidates.size();
+        
+        // Calculate standard deviation
+        double variance = 0.0;
+        for (int q : qualities) {
+            variance += pow(q - avg_quality, 2);
+        }
+        variance = candidates.size() > 1 ? variance / (candidates.size() - 1) : 0;
+        double std_dev = sqrt(variance);
+        
+        // Quality impact score combines:
+        // - Pattern constraint level (fewer empties is better)
+        // - Average word quality (higher is better)
+        // - Quality variance (higher is better - more diverse options)
+        double constraint_score = 10.0 / (1.0 + p.EmptyCellCount());
+        double quality_impact = constraint_score * (avg_quality + std_dev * 0.5);
+        
+        scored_patterns.push_back(make_pair(p, quality_impact));
+    }
+    
+    // Sort by quality impact (descending)
+    sort(scored_patterns.begin(), scored_patterns.end(),
+         [](const pair<Pattern, double>& a, const pair<Pattern, double>& b) {
+             return a.second > b.second;
+         });
+    
+    // Extract just the patterns
+    result.clear();
+    for (const auto& pair : scored_patterns) {
+        result.push_back(pair.first);
+    }
+    
+    return result;
+}
+```
+
+This strategy favors spans where word choice has a significant impact on overall puzzle quality.
+
+### 4. Critical Path Analysis
+
+This approach identifies "critical paths" in the grid - sequences of interconnected spans that form the backbone of the puzzle:
+
+```cpp
+vector<Span> Grid::FindCriticalPath() const {
+    // Create a graph of span intersections
+    vector<vector<size_t>> graph(spans.size());
+    
+    for (size_t i = 0; i < spans.size(); i++) {
+        for (size_t j = i + 1; j < spans.size(); j++) {
+            Point intersection;
+            if (SpansIntersect(spans[i], spans[j], intersection)) {
+                graph[i].push_back(j);
+                graph[j].push_back(i);
+            }
+        }
+    }
+    
+    // Find the span with the most intersections
+    size_t start_span = 0;
+    int max_intersections = 0;
+    
+    for (size_t i = 0; i < graph.size(); i++) {
+        if (graph[i].size() > max_intersections) {
+            max_intersections = graph[i].size();
+            start_span = i;
+        }
+    }
+    
+    // Perform a depth-first traversal to find the critical path
+    vector<Span> critical_path;
+    vector<bool> visited(spans.size(), false);
+    
+    function<void(size_t)> dfs = [&](size_t span_idx) {
+        visited[span_idx] = true;
+        critical_path.push_back(spans[span_idx]);
+        
+        // Visit neighbors (prioritize unvisited neighbors with most connections)
+        vector<pair<size_t, int>> neighbors;
+        
+        for (size_t neighbor : graph[span_idx]) {
+            if (!visited[neighbor]) {
+                neighbors.push_back(make_pair(neighbor, graph[neighbor].size()));
+            }
+        }
+        
+        // Sort by number of connections (descending)
+        sort(neighbors.begin(), neighbors.end(),
+             [](const pair<size_t, int>& a, const pair<size_t, int>& b) {
+                 return a.second > b.second;
+             });
+        
+        // Visit in sorted order
+        for (const auto& neighbor : neighbors) {
+            dfs(neighbor.first);
+        }
+    };
+    
+    dfs(start_span);
+    
+    return critical_path;
+}
+
+Patterns Grid::GetCriticalPathPatterns() const {
+    vector<Span> path = FindCriticalPath();
+    Patterns result;
+    
+    // Convert spans to patterns
+    for (const Span& span : path) {
+        string content = GetSpanContent(span);
+        result.push_back(Pattern(span, content));
+    }
+    
+    return result;
+}
+```
+
+This approach:
+1. Identifies a path through the grid that connects many spans
+2. Prioritizes filling this "backbone" first
+3. Tends to work well for grids with a clear structure
+
+## Hybrid Selection Policy
+
+Rather than committing to a single strategy, let's implement a hybrid approach that combines multiple factors:
+
+```cpp
+class HybridSlotSelector {
+public:
+    HybridSlotSelector(Grid& grid, Library& lib)
+        : grid_(grid), lib_(lib) {}
+    
+    // Get the next best span to fill
+    Pattern GetNextSpan(const vector<Pattern>& unfilled_patterns) {
+        if (unfilled_patterns.empty()) {
+            throw runtime_error("No unfilled patterns available");
+        }
+        
+        // Calculate scores for each pattern
+        vector<pair<Pattern, double>> scored_patterns;
+        
+        for (const Pattern& p : unfilled_patterns) {
+            double score = CalculatePatternScore(p);
+            scored_patterns.push_back(make_pair(p, score));
+        }
+        
+        // Sort by score (descending)
+        sort(scored_patterns.begin(), scored_patterns.end(),
+             [](const pair<Pattern, double>& a, const pair<Pattern, double>& b) {
+                 return a.second > b.second;
+             });
+        
+        // Return the highest-scoring pattern
+        return scored_patterns[0].first;
+    }
+    
+private:
+    // Calculate a combined score for a pattern
+    double CalculatePatternScore(const Pattern& pattern) {
+        // Component scores
+        double constraint_score = CalculateConstraintScore(pattern);
+        double intersection_score = CalculateIntersectionScore(pattern);
+        double quality_impact_score = CalculateQualityImpactScore(pattern);
+        double critical_path_score = CalculateCriticalPathScore(pattern);
+        
+        // Combine with weights
+        return (constraint_score * 0.4) +
+               (intersection_score * 0.3) +
+               (quality_impact_score * 0.2) +
+               (critical_path_score * 0.1);
+    }
+    
+    // Calculate constraint score (higher for more constrained patterns)
+    double CalculateConstraintScore(const Pattern& pattern) {
+        int empty_count = pattern.EmptyCellCount();
+        int filled_count = pattern.pattern.length() - empty_count;
+        
+        // More filled = more constrained = higher score
+        return filled_count / (double)pattern.pattern.length();
+    }
+    
+    // Calculate intersection score (higher for patterns with more intersections)
+    double CalculateIntersectionScore(const Pattern& pattern) {
+        int intersection_count = 0;
+        
+        for (const Span& span : grid_.spans) {
+            if (span.point.row != pattern.span.point.row ||
+                span.point.col != pattern.span.point.col ||
+                span.len != pattern.span.len ||
+                span.vert != pattern.span.vert) {
+                // Different span, check for intersection
+                Point intersection;
+                if (grid_.SpansIntersect(pattern.span, span, intersection)) {
+                    intersection_count++;
+                }
+            }
+        }
+        
+        // Normalize by maximum possible intersections (pattern length)
+        return min(1.0, intersection_count / (double)pattern.pattern.length());
+    }
+    
+    // Calculate quality impact score (higher when word choice impacts quality)
+    double CalculateQualityImpactScore(const Pattern& pattern) {
+        // Find candidate words
+        vector<Word*> candidates = lib_.FindMatchingWords(pattern.pattern);
+        
+        // Calculate quality statistics
+        double total_quality = 0.0;
+        double max_quality = 0.0;
+        double min_quality = 10.0;  // Assuming quality is between 0-10
+        
+        for (const Word* w : candidates) {
+            total_quality += w->quality;
+            max_quality = max(max_quality, (double)w->quality);
+            min_quality = min(min_quality, (double)w->quality);
+        }
+        
+        double avg_quality = candidates.empty() ? 0 : total_quality / candidates.size();
+        double quality_range = max_quality - min_quality;
+        
+        // Combine average quality and range (diversity)
+        return (avg_quality / 10.0) * 0.7 + (quality_range / 10.0) * 0.3;
+    }
+    
+    // Calculate critical path score (higher for spans on critical paths)
+    double CalculateCriticalPathScore(const Pattern& pattern) {
+        static vector<Span> critical_path;
+        static bool path_calculated = false;
+        
+        // Calculate critical path once
+        if (!path_calculated) {
+            critical_path = grid_.FindCriticalPath();
+            path_calculated = true;
+        }
+        
+        // Check if this span is on the critical path
+        for (size_t i = 0; i < critical_path.size(); i++) {
+            const Span& cp_span = critical_path[i];
+            
+            if (cp_span.point.row == pattern.span.point.row &&
+                cp_span.point.col == pattern.span.point.col &&
+                cp_span.len == pattern.span.len &&
+                cp_span.vert == pattern.span.vert) {
+                // Found on critical path, score based on position
+                // Earlier in path = higher score
+                return 1.0 - (i / (double)critical_path.size());
+            }
+        }
+        
+        return 0.0;  // Not on critical path
+    }
+    
+    Grid& grid_;
+    Library& lib_;
+};
+```
+
+This hybrid approach:
+1. Considers multiple factors for each pattern
+2. Weighs them according to their relative importance
+3. Returns the best span to fill next based on the combined score
+
+## Adaptive Slot Selection
+
+For even better performance, we can create an adaptive selector that changes its strategy based on the solving context:
+
+```cpp
+class AdaptiveSlotSelector {
+public:
+    // ... constructor and other methods ...
+    
+    Pattern GetNextSpan(const vector<Pattern>& unfilled_patterns, 
+                        int current_depth, int backtrack_count) {
+        if (unfilled_patterns.empty()) {
+            throw runtime_error("No unfilled patterns available");
+        }
+        
+        // Adjust strategy based on context
+        if (current_depth < 5) {
+            // Early in the solving process, focus on quality impact
+            return GetQualityImpactSpan(unfilled_patterns);
+        } else if (backtrack_count > 1000) {
+            // After many backtracks, focus on most constrained variable
+            return GetMostConstrainedSpan(unfilled_patterns);
+        } else {
+            // Default: use the hybrid approach
+            return hybrid_selector_.GetNextSpan(unfilled_patterns);
+        }
+    }
+    
+private:
+    // Get span with highest quality impact
+    Pattern GetQualityImpactSpan(const vector<Pattern>& patterns) {
+        // ... implementation ...
+    }
+    
+    // Get most constrained span (fewest candidates)
+    Pattern GetMostConstrainedSpan(const vector<Pattern>& patterns) {
+        // ... implementation ...
+    }
+    
+    HybridSlotSelector hybrid_selector_;
+};
+```
+
+This adaptive selector changes its priorities based on:
+1. How far we are in the solving process
+2. How many backtracks have occurred
+3. Other contextual factors that might indicate which strategy is most appropriate
+
+## Integrating Slot Selection with the Solver
+
+Now let's integrate our advanced slot selection strategies with the solver:
+
+```cpp
+class Solver {
+public:
+    // ... existing methods ...
+    
+    // Set the slot selection policy
+    enum SlotSelectionPolicy {
+        CONSTRAINT_BASED,       // Original strategy
+        INTERSECTION_BASED,     // Based on intersections
+        DYNAMIC_MCV,            // Dynamic most constrained variable
+        QUALITY_IMPACT,         // Based on word quality impact
+        CRITICAL_PATH,          // Based on critical path analysis
+        HYBRID,                 // Combined approach
+        ADAPTIVE                // Context-sensitive selection
+    };
+    
+    void SetSlotSelectionPolicy(SlotSelectionPolicy policy) {
+        slot_policy_ = policy;
+    }
+    
+private:
+    // ... existing methods ...
+    
+    // Get patterns sorted according to current policy
+    Patterns GetPatternsWithPolicy() {
+        switch (slot_policy_) {
+            case CONSTRAINT_BASED:
+                return grid_.GetSortedPatterns();
+            case INTERSECTION_BASED:
+                return grid_.GetIntersectionSortedPatterns();
+            case QUALITY_IMPACT:
+                return grid_.GetQualityImpactSortedPatterns(lib_);
+            case CRITICAL_PATH:
+                return grid_.GetCriticalPathPatterns();
+            case HYBRID:
+                // For hybrid, we'll sort all at once up front
+                return GetHybridSortedPatterns();
+            case ADAPTIVE:
+            case DYNAMIC_MCV:
+                // For these, we don't sort up front but select dynamically
+                return grid_.GetAllPatterns();
+            default:
+                return grid_.GetSortedPatterns();
+        }
+    }
+    
+    // Solve with dynamic selection policies
+    bool SolveWithDynamicSelection() {
+        // Initialize
+        grid_.FillSpans();
+        Patterns all_patterns = grid_.GetAllPatterns();
+        backtrack_count_ = 0;
+        
+        if (slot_policy_ == DYNAMIC_MCV) {
+            return SolveWithDynamicMCV(all_patterns, 0);
+        } else if (slot_policy_ == ADAPTIVE) {
+            return SolveWithAdaptiveSelection(all_patterns, 0);
+        } else {
+            // Shouldn't get here
+            return Solve();
+        }
+    }
+    
+    // Solve with the dynamic MCV approach
+    bool SolveWithDynamicMCV(const Patterns& all_patterns, int depth) {
+        // ... implementation as shown earlier ...
+    }
+    
+    // Solve with adaptive selection
+    bool SolveWithAdaptiveSelection(const Patterns& all_patterns, int depth) {
+        // Check if we're done
+        bool all_filled = true;
+        for (const Pattern& p : all_patterns) {
+            if (!grid_.IsSpanFilled(p.span)) {
+                all_filled = false;
+                break;
+            }
+        }
+        
+        if (all_filled) {
+            return true;  // Solution found
+        }
+        
+        // Get unfilled patterns
+        vector<Pattern> unfilled;
+        for (const Pattern& p : all_patterns) {
+            if (!grid_.IsSpanFilled(p.span)) {
+                // Get current pattern with updated content
+                string current_content = grid_.GetSpanContent(p.span);
+                unfilled.push_back(Pattern(p.span, current_content));
+            }
+        }
+        
+        // Use adaptive selector to choose next span
+        AdaptiveSlotSelector selector(grid_, lib_);
+        Pattern next_pattern = selector.GetNextSpan(unfilled, depth, backtrack_count_);
+        
+        // Get candidates for the chosen span
+        vector<string> candidates = FindCandidateWords(next_pattern);
+        
+        // Try each candidate
+        for (const string& word : candidates) {
+            // Place the word
+            bool success = grid_.PlaceWord(next_pattern.span, word, allow_duplicates_);
+            
+            if (success) {
+                // Recursively try to solve the rest
+                if (SolveWithAdaptiveSelection(all_patterns, depth + 1)) {
+                    return true;  // Solution found
+                }
+                
+                // If we get here, this word didn't work
+                grid_.RemoveWord(next_pattern.span);
+                backtrack_count_++;
+            }
+        }
+        
+        return false;  // No solution with any candidate
+    }
+    
+    SlotSelectionPolicy slot_policy_ = CONSTRAINT_BASED;
+    int backtrack_count_ = 0;
+};
+```
+
+This implementation allows the user to select different slot selection policies and smoothly integrates them with our solver.
+
+## Performance Benchmarks
+
+To understand the impact of different slot selection policies, let's implement a benchmarking system:
+
+```cpp
+void BenchmarkSlotSelectionPolicies(const string& grid_file, const string& dict_file) {
+    // Load library and grid
+    Library lib;
+    lib.ReadFromFile(dict_file);
+    
+    // Define policies to test
+    vector<Solver::SlotSelectionPolicy> policies = {
+        Solver::CONSTRAINT_BASED,
+        Solver::INTERSECTION_BASED,
+        Solver::DYNAMIC_MCV,
+        Solver::QUALITY_IMPACT,
+        Solver::CRITICAL_PATH,
+        Solver::HYBRID,
+        Solver::ADAPTIVE
+    };
+    
+    vector<string> policy_names = {
+        "Constraint-Based",
+        "Intersection-Based",
+        "Dynamic MCV",
+        "Quality Impact",
+        "Critical Path",
+        "Hybrid",
+        "Adaptive"
+    };
+    
+    cout << "Benchmarking slot selection policies on " << grid_file << ":" << endl;
+    
+    // Test each policy
+    for (size_t i = 0; i < policies.size(); i++) {
+        Solver::SlotSelectionPolicy policy = policies[i];
+        string policy_name = policy_names[i];
+        
+        // Load a fresh grid
+        Grid grid("Benchmark Grid");
+        grid.LoadFromFile(grid_file);
+        
+        // Create solver with this policy
+        Solver solver(grid, lib);
+        solver.SetSlotSelectionPolicy(policy);
+        
+        // Time the solution
+        cout << "  Testing " << policy_name << "..." << endl;
+        auto start = chrono::high_resolution_clock::now();
+        
+        bool success = solver.Solve();
+        
+        auto end = chrono::high_resolution_clock::now();
+        auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
+        
+        // Get solution statistics
+        double solution_quality = success ? GridScorer::ScoreGrid(grid, lib) : 0.0;
+        int backtrack_count = solver.GetBacktrackCount();
+        
+        // Report results
+        cout << "    Result: " << (success ? "Success" : "Failure") << endl;
+        cout << "    Time: " << duration.count() << " ms" << endl;
+        cout << "    Backtracks: " << backtrack_count << endl;
+        cout << "    Quality: " << solution_quality << endl;
+    }
+}
+```
+
+This benchmark allows us to compare different policies across several metrics:
+1. Success rate (whether a solution was found)
+2. Solving time
+3. Number of backtracks (efficiency metric)
+4. Solution quality
+
+## Conclusion
+
+In this chapter, we've explored and implemented various slot selection policies for our crossword puzzle solver:
+
+1. **Constraint-Based Ordering**: Our original approach prioritizing spans with more filled cells
+2. **Intersection Count Strategy**: Prioritizing spans that intersect with many others
+3. **Dynamic MCV**: Choosing the span with fewest valid word candidates at each step
+4. **Word Quality Impact**: Considering how each span affects overall puzzle quality
+5. **Critical Path Analysis**: Identifying and prioritizing the "backbone" of the puzzle
+6. **Hybrid Selection**: Combining multiple factors with weighted scoring
+7. **Adaptive Selection**: Changing strategy based on the solving context
+
+We've integrated these policies into our solver and created a benchmarking system to compare their performance.
+
+The choice of slot selection policy has profound effects on both solver efficiency and solution quality. By implementing a flexible system that supports multiple policies, we've enabled our solver to adapt to different types of puzzles and user preferences.
+
+For most puzzles, the hybrid or adaptive approaches will provide the best balance of performance and quality. However, each policy has situations where it excels:
+
+- **Constraint-Based**: Simple and effective for well-constrained puzzles
+- **Intersection-Based**: Good for densely connected puzzles
+- **Dynamic MCV**: Excellent for complex puzzles with varying constraints
+- **Quality Impact**: Best when solution quality is the primary concern
+- **Critical Path**: Effective for puzzles with a clear structural backbone
+
+By understanding and implementing these different approaches, we've significantly enhanced the capability and flexibility of our crossword puzzle solver.
+
+## Practice Exercises
+
+1. Implement a user interface that allows selecting different slot selection policies.
+
+2. Create a dynamic policy that starts with quality-focused selection and gradually shifts to constraint-focused as the grid fills.
+
+3. Implement a machine learning approach that predicts the best slot based on grid features.
+
+4. Extend the benchmarking system to test policies across a diverse set of puzzle types.
+
+5. Create a visualization that shows the order in which spans are filled for different policies.
+
 ### 28. Grid composition (designing "block" black squares)
+
+
 ### 29. Theme entry position permutations
 ### 30. Screening templates
