@@ -5,7 +5,7 @@ Website : [https://codingforcrosswords.com/](https://codingforcrosswords.com/)
 
 Youtube : [https://www.youtube.com/channel/UCzGKCXSeHjDRSmpX9SmQ1fw](https://www.youtube.com/channel/UCzGKCXSeHjDRSmpX9SmQ1fw)
 
-C++ Reference: 
+C++ Reference:
 - [https://www.w3schools.com/cpp/](https://www.w3schools.com/cpp/)
 - [https://cplusplus.com/reference/](https://cplusplus.com/reference/)
 
@@ -327,16 +327,16 @@ Let's enhance our program to add any two numbers provided by the user:
 
 int main() {
     int a, b;
-    
+
     std::cout << "Enter the first number: ";
     std::cin >> a;
-    
+
     std::cout << "Enter the second number: ";
     std::cin >> b;
-    
+
     int sum = a + b;
     std::cout << a << " + " << b << " = " << sum << std::endl;
-    
+
     return 0;
 }
 ```
@@ -360,16 +360,16 @@ using namespace std;
 
 int main() {
     int a, b;
-    
+
     cout << "Enter the first number: ";
     cin >> a;
-    
+
     cout << "Enter the second number: ";
     cin >> b;
-    
+
     int sum = a + b;
     cout << a << " + " << b << " = " << sum << endl;
-    
+
     return 0;
 }
 ```
@@ -397,17 +397,17 @@ int main() {
     int a = 5, b = 7;
     int sum = a + b;
     cout << "Integer: " << a << " + " << b << " = " << sum << endl;
-    
+
     // Floating-point addition
     double x = 3.14, y = 2.71;
     double result = x + y;
     cout << "Double: " << x << " + " << y << " = " << result << endl;
-    
+
     // String concatenation
     string first = "cross", second = "word";
     string combined = first + second;
     cout << "String: " << first << " + " << second << " = " << combined << endl;
-    
+
     return 0;
 }
 ```
@@ -422,13 +422,13 @@ using namespace std;
 
 int main() {
     int a, b;
-    
+
     cout << "Enter two numbers: ";
     cin >> a >> b;
-    
+
     int sum = a + b;
     cout << a << " + " << b << " = " << sum << endl;
-    
+
     if (sum > 10) {
         cout << "The sum is greater than 10!" << endl;
     } else if (sum == 10) {
@@ -436,7 +436,7 @@ int main() {
     } else {
         cout << "The sum is less than 10!" << endl;
     }
-    
+
     return 0;
 }
 ```
@@ -456,14 +456,14 @@ int add(int x, int y) {
 
 int main() {
     int a, b;
-    
+
     cout << "Enter two numbers: ";
     cin >> a >> b;
-    
+
     // Call the add function
     int sum = add(a, b);
     cout << a << " + " << b << " = " << sum << endl;
-    
+
     return 0;
 }
 ```
@@ -518,10 +518,10 @@ using namespace std;
 int main() {
     // Declare a vector of strings
     vector<string> grid;
-    
+
     // Print information about our (empty) vector
     cout << "Grid size: " << grid.size() << endl;
-    
+
     return 0;
 }
 ```
@@ -547,7 +547,7 @@ using namespace std;
 int main() {
     // Declare a vector of strings
     vector<string> grid;
-    
+
     // Add rows to our grid
     grid.push_back("DOG....");
     grid.push_back("---....");
@@ -556,10 +556,10 @@ int main() {
     grid.push_back("...----");
     grid.push_back("....---");
     grid.push_back("...CATS");
-    
+
     // Print grid size
     cout << "Grid size: " << grid.size() << endl;
-    
+
     return 0;
 }
 ```
@@ -585,7 +585,7 @@ using namespace std;
 int main() {
     // Declare a vector of strings
     vector<string> grid;
-    
+
     // Add rows to our grid
     grid.push_back("DOG....");
     grid.push_back("---....");
@@ -594,15 +594,15 @@ int main() {
     grid.push_back("...----");
     grid.push_back("....---");
     grid.push_back("...CATS");
-    
+
     // Print grid size
     cout << "Grid size: " << grid.size() << endl;
-    
+
     // Display the grid
     for (string row : grid) {
         cout << row << endl;
     }
-    
+
     return 0;
 }
 ```
@@ -633,7 +633,7 @@ using namespace std;
 int main() {
     // Declare a vector of strings
     vector<string> grid;
-    
+
     // Add rows to our grid
     grid.push_back("DOG....");
     grid.push_back("---....");
@@ -642,24 +642,24 @@ int main() {
     grid.push_back("...----");
     grid.push_back("....---");
     grid.push_back("...CATS");
-    
+
     // Calculate dimensions
     int rows = grid.size();
     int columns = 0;
-    
+
     for (string row : grid) {
         // Find the maximum length of any row
         columns = max(columns, int(row.length()));
     }
-    
+
     // Display grid and dimensions
     for (string row : grid) {
         cout << row << endl;
     }
-    
+
     cout << "Rows: " << rows << endl;
     cout << "Columns: " << columns << endl;
-    
+
     return 0;
 }
 ```
@@ -711,7 +711,7 @@ using namespace std;
 int main() {
     // Declare a vector of strings
     vector<string> grid;
-    
+
     // Add rows to our grid
     grid.push_back("DOG....");
     grid.push_back("---....");
@@ -720,25 +720,25 @@ int main() {
     grid.push_back("...----");
     grid.push_back("....---");
     grid.push_back("...CATS");
-    
+
     // Calculate dimensions
     int rows = grid.size();
     int cols = grid[0].size();  // Length of the first row
-    
+
     // Validate grid
     for (string s : grid) {
         // All rows should have the same length
         assert(s.size() == cols);
     }
-    
+
     // Display grid and dimensions
     for (string row : grid) {
         cout << row << endl;
     }
-    
+
     cout << "Rows: " << rows << endl;
     cout << "Columns: " << cols << endl;
-    
+
     return 0;
 }
 ```
@@ -761,7 +761,7 @@ using namespace std;
 int main() {
     // Declare a vector of strings
     vector<string> grid;
-    
+
     // Add rows to our grid
     grid.push_back("DOG....");
     grid.push_back("---....");
@@ -770,31 +770,31 @@ int main() {
     grid.push_back("...----");
     grid.push_back("....---");
     grid.push_back("...CATS");
-    
+
     // Calculate dimensions
     int rows = grid.size();
-    
+
     // Find the maximum row length using std::max_element
-    auto longest_row = max_element(grid.begin(), grid.end(), 
+    auto longest_row = max_element(grid.begin(), grid.end(),
         [](const string& a, const string& b) {
             return a.length() < b.length();
         });
-    
+
     int cols = longest_row->length();
-    
+
     // Validate grid
     for (string s : grid) {
         assert(s.size() == cols);
     }
-    
+
     // Display grid and dimensions
     for (string row : grid) {
         cout << row << endl;
     }
-    
+
     cout << "Rows: " << rows << endl;
     cout << "Columns: " << cols << endl;
-    
+
     return 0;
 }
 ```
@@ -818,7 +818,7 @@ We now have a basic structure for representing our crossword grid. In the next c
 2. Add a function that counts how many cells are empty (-) and how many are blocks (.).
 3. Create a function that checks if a grid is symmetrical (a common requirement for crossword puzzles).
 4. Modify the program to accept a grid of different dimensions (e.g., 5×5, 10×10).
-   
+
 ### 5. Load a Grid (part 2)
 [https://youtu.be/aMBiDC-Az-c](https://youtu.be/aMBiDC-Az-c)
 ### 5. Load a Grid (part 2)
@@ -883,18 +883,18 @@ int main()
     // Characters are represented by their ASCII values
     int aa = 'A';
     cout << "The ASCII value of 'A' is: " << aa << endl;  // Outputs: 65
-    
+
     // We can check character types
     char c = 'D';
     if (c >= 'A' && c <= 'Z') {
         cout << c << " is an uppercase letter" << endl;
     }
-    
+
     c = '-';
     if (c == '-') {
         cout << c << " represents an empty cell" << endl;
     }
-    
+
     c = '.';
     if (c == '.') {
         cout << c << " represents a black square" << endl;
@@ -920,18 +920,18 @@ int main()
     grid.push_back("...----");
     grid.push_back("....---");
     grid.push_back("...CATS");
-    
+
     // Access a specific cell (row 0, column 0)
     char topLeftCell = grid[0][0];
     cout << "Top left cell contains: " << topLeftCell << endl;
-    
+
     // Access a specific cell (row 3, column 3)
     char middleCell = grid[3][3];
     cout << "Middle cell contains: " << middleCell << endl;
-    
+
     // Modify a cell
     grid[1][0] = 'X';
-    
+
     // Display the modified grid
     for (string row : grid) {
         cout << row << endl;
@@ -996,7 +996,7 @@ int main()
     grid.push_back("...----");
     grid.push_back("....---");
     grid.push_back("...CATS");
-    
+
     // Analyze the grid
     cout << "Empty cells: " << countEmptyCells(grid) << endl;
     cout << "Black squares: " << countBlackSquares(grid) << endl;
@@ -1019,7 +1019,7 @@ void printGridWithCoordinates(const vector<string>& grid) {
         cout << col;
     }
     cout << endl;
-    
+
     // Print rows with row numbers
     for (int row = 0; row < grid.size(); row++) {
         cout << row << " " << grid[row] << endl;
@@ -1030,16 +1030,16 @@ void printGridWithCoordinates(const vector<string>& grid) {
 bool hasRotationalSymmetry(const vector<string>& grid) {
     int rows = grid.size();
     int cols = grid[0].size();
-    
+
     for (int r = 0; r < rows; r++) {
         for (int c = 0; c < cols; c++) {
             // Check if a cell and its opposite have the same block/non-block status
             char cell = grid[r][c];
             char oppositeCell = grid[rows - 1 - r][cols - 1 - c];
-            
+
             bool isBlock = (cell == '.');
             bool isOppositeBlock = (oppositeCell == '.');
-            
+
             if (isBlock != isOppositeBlock) {
                 return false;
             }
@@ -1059,9 +1059,9 @@ int main()
     grid.push_back("...----");
     grid.push_back("....---");
     grid.push_back("...CATS");
-    
+
     printGridWithCoordinates(grid);
-    
+
     if (hasRotationalSymmetry(grid)) {
         cout << "The grid has rotational symmetry." << endl;
     } else {
@@ -1080,23 +1080,23 @@ In our previous code, we used assertions to validate the grid. Let's expand on t
 void validateGrid(const vector<string>& grid) {
     // Check that the grid is not empty
     assert(!grid.empty() && "Grid cannot be empty");
-    
+
     int rows = grid.size();
     int cols = grid[0].size();
-    
+
     // Check that all rows have the same length
     for (const string& row : grid) {
         assert(row.size() == cols && "All rows must have the same length");
     }
-    
+
     // Check that all characters are valid
     for (const string& row : grid) {
         for (char cell : row) {
-            assert((cell == '.' || cell == '-' || (cell >= 'A' && cell <= 'Z')) && 
+            assert((cell == '.' || cell == '-' || (cell >= 'A' && cell <= 'Z')) &&
                    "Grid cells must contain only '.', '-', or uppercase letters A-Z");
         }
     }
-    
+
     cout << "Grid validation passed!" << endl;
 }
 
@@ -1111,7 +1111,7 @@ int main()
     grid.push_back("...----");
     grid.push_back("....---");
     grid.push_back("...CATS");
-    
+
     validateGrid(grid);
 }
 ```
@@ -1134,19 +1134,19 @@ using namespace std;
 void validateGrid(const vector<string>& grid) {
     // Check that the grid is not empty
     assert(!grid.empty() && "Grid cannot be empty");
-    
+
     int rows = grid.size();
     int cols = grid[0].size();
-    
+
     // Check that all rows have the same length
     for (const string& row : grid) {
         assert(row.size() == cols && "All rows must have the same length");
     }
-    
+
     // Check that all characters are valid
     for (const string& row : grid) {
         for (char cell : row) {
-            assert((cell == '.' || cell == '-' || (cell >= 'A' && cell <= 'Z')) && 
+            assert((cell == '.' || cell == '-' || (cell >= 'A' && cell <= 'Z')) &&
                    "Grid cells must contain only '.', '-', or uppercase letters A-Z");
         }
     }
@@ -1191,15 +1191,15 @@ int countLetterCells(const vector<string>& grid) {
 bool hasRotationalSymmetry(const vector<string>& grid) {
     int rows = grid.size();
     int cols = grid[0].size();
-    
+
     for (int r = 0; r < rows; r++) {
         for (int c = 0; c < cols; c++) {
             char cell = grid[r][c];
             char oppositeCell = grid[rows - 1 - r][cols - 1 - c];
-            
+
             bool isBlock = (cell == '.');
             bool isOppositeBlock = (oppositeCell == '.');
-            
+
             if (isBlock != isOppositeBlock) {
                 return false;
             }
@@ -1211,12 +1211,12 @@ bool hasRotationalSymmetry(const vector<string>& grid) {
 void printGridInfo(const vector<string>& grid) {
     int rows = grid.size();
     int cols = grid[0].size();
-    
+
     cout << "Grid dimensions: " << rows << " rows × " << cols << " columns" << endl;
     cout << "Empty cells: " << countEmptyCells(grid) << endl;
     cout << "Black squares: " << countBlackSquares(grid) << endl;
     cout << "Letter cells: " << countLetterCells(grid) << endl;
-    
+
     if (hasRotationalSymmetry(grid)) {
         cout << "The grid has rotational symmetry." << endl;
     } else {
@@ -1235,20 +1235,20 @@ int main()
     grid.push_back("...----");
     grid.push_back("....---");
     grid.push_back("...CATS");
-    
+
     // Validate the grid
     validateGrid(grid);
-    
+
     // Display the grid
     cout << "Crossword Grid:" << endl;
     for (const string& row : grid) {
         cout << row << endl;
     }
     cout << endl;
-    
+
     // Print grid analysis
     printGridInfo(grid);
-    
+
     return 0;
 }
 ```
@@ -1305,7 +1305,7 @@ struct Grid {
     // Data members
     vector<string> lines;
     string name;
-    
+
     // Function members will go here
 };
 
@@ -1313,10 +1313,10 @@ int main() {
     Grid grid;
     grid.name = "My First Grid";
     grid.lines.push_back("DOG....");
-    
+
     cout << "Grid name: " << grid.name << endl;
     cout << "First line: " << grid.lines[0] << endl;
-    
+
     return 0;
 }
 ```
@@ -1331,7 +1331,7 @@ struct Grid {
     Grid(string n) {
         name = n;
     }
-    
+
     // Data members
     vector<string> lines;
     string name;
@@ -1340,10 +1340,10 @@ struct Grid {
 int main() {
     Grid grid("My First Grid");
     grid.lines.push_back("DOG....");
-    
+
     cout << "Grid name: " << grid.name << endl;
     cout << "First line: " << grid.lines[0] << endl;
-    
+
     return 0;
 }
 ```
@@ -1358,20 +1358,20 @@ struct Grid {
     Grid(string n) {
         name = n;
     }
-    
+
     // Member functions
-    int rows() const { 
-        return lines.size(); 
+    int rows() const {
+        return lines.size();
     }
-    
+
     int cols() const {
         if (lines.empty()) {
             return 0;
         } else {
-            return lines[0].size(); 
+            return lines[0].size();
         }
     }
-    
+
     // Data members
     vector<string> lines;
     string name;
@@ -1381,11 +1381,11 @@ int main() {
     Grid grid("My First Grid");
     grid.lines.push_back("DOG....");
     grid.lines.push_back("---....");
-    
+
     cout << "Grid name: " << grid.name << endl;
     cout << "Rows: " << grid.rows() << endl;
     cout << "Columns: " << grid.cols() << endl;
-    
+
     return 0;
 }
 ```
@@ -1402,18 +1402,18 @@ struct Grid {
         name = n;
     }
 
-    int rows() const { 
-        return lines.size(); 
+    int rows() const {
+        return lines.size();
     }
 
     int cols() const {
         if (lines.empty()) {
             return 0;
         } else {
-            return lines[0].size(); 
+            return lines[0].size();
         }
     }
-    
+
     void Load() {
         lines.push_back("DOG....");
         lines.push_back("---....");
@@ -1430,21 +1430,21 @@ struct Grid {
         }
         return 0;
     }
-    
+
     vector<string> lines;
     string name;
 };
 
 int main() {
     Grid grid("Hello Grid");
-    
+
     grid.Load();
     grid.Check();
-    
+
     cout << "Grid loaded and checked successfully." << endl;
     cout << "Rows: " << grid.rows() << endl;
     cout << "Columns: " << grid.cols() << endl;
-    
+
     return 0;
 }
 ```
@@ -1459,18 +1459,18 @@ struct Grid {
         name = n;
     }
 
-    int rows() const { 
-        return lines.size(); 
+    int rows() const {
+        return lines.size();
     }
 
     int cols() const {
         if (lines.empty()) {
             return 0;
         } else {
-            return lines[0].size(); 
+            return lines[0].size();
         }
     }
-    
+
     void Load() {
         lines.push_back("DOG....");
         lines.push_back("---....");
@@ -1487,31 +1487,31 @@ struct Grid {
         }
         return 0;
     }
-    
+
     int Print() const {
         cout << "Grid : " << name << endl << endl;
-        
+
         for (string s : lines) {
             cout << s << endl;
         }
-        
+
         cout << endl << "Rows : " << rows() << endl;
         cout << "Columns : " << cols() << endl;
-        
+
         return 0;
     }
-    
+
     vector<string> lines;
     string name;
 };
 
 int main() {
     Grid grid("Hello Grid");
-    
+
     grid.Load();
     grid.Check();
     grid.Print();
-    
+
     return 0;
 }
 ```
@@ -1537,12 +1537,12 @@ struct Grid {
     int rows() const { return lines.size(); }
 
     int cols() const {
-        
+
         if (lines.empty()) {
             return 0;
         }
         else {
-            return lines[0].size(); 
+            return lines[0].size();
         }
     }
 
@@ -1562,7 +1562,7 @@ struct Grid {
         }
         return 0;
     }
-    
+
     int Print() const {
         cout << "Grid : " << name << endl << endl;
 
@@ -1587,7 +1587,7 @@ int main()
     grid.Load();
     grid.Check();
     grid.Print();
-    
+
     return 0;
 };
 ```
@@ -1613,30 +1613,30 @@ Let's enhance our Grid object with functions to access and check individual cell
 ```cpp
 struct Grid {
     // ... previous code ...
-    
+
     // Returns character value of the box at row r, column c
     char box(int r, int c) const {
         assert(r >= 0 && r < rows());
         assert(c >= 0 && c < cols());
         return lines[r][c];
     }
-    
+
     // Returns true if the cell is a block ('.')
     bool is_block(int r, int c) const {
         return box(r, c) == '.';
     }
-    
+
     // Returns true if the cell is empty ('-')
     bool is_empty(int r, int c) const {
         return box(r, c) == '-';
     }
-    
+
     // Returns true if the cell contains a letter
     bool is_letter(int r, int c) const {
         char ch = box(r, c);
         return ch >= 'A' && ch <= 'Z';
     }
-    
+
     // ... remaining code ...
 };
 ```
@@ -1650,14 +1650,14 @@ We can also add functions to modify grid cells:
 ```cpp
 struct Grid {
     // ... previous code ...
-    
+
     // Set a cell to a specific character
     void set_box(int r, int c, char ch) {
         assert(r >= 0 && r < rows());
         assert(c >= 0 && c < cols());
         lines[r][c] = ch;
     }
-    
+
     // Fill an empty cell with a letter
     bool fill_cell(int r, int c, char letter) {
         if (is_empty(r, c)) {
@@ -1666,7 +1666,7 @@ struct Grid {
         }
         return false;
     }
-    
+
     // Clear a letter cell, making it empty
     bool clear_cell(int r, int c) {
         if (is_letter(r, c)) {
@@ -1675,7 +1675,7 @@ struct Grid {
         }
         return false;
     }
-    
+
     // ... remaining code ...
 };
 ```
@@ -1744,17 +1744,17 @@ using namespace std;
 int main() {
     ifstream inFile;
     inFile.open("test.txt");
-    
+
     if (!inFile) {
         cerr << "Unable to open file test.txt";
         return 1;
     }
-    
+
     string line;
     while (getline(inFile, line)) {
         cout << line << endl;
     }
-    
+
     inFile.close();
     return 0;
 }
@@ -1823,29 +1823,29 @@ struct Grid {
             return 0;
         }
         else {
-            return lines[0].size(); 
+            return lines[0].size();
         }
     }
 
     void LoadFromFile(string filename) {
         ifstream f;
         f.open(filename);
-        
+
         if (!f) {
             cerr << "Unable to open file " << filename << endl;
             return;
         }
-        
+
         while (!f.eof()) {
             string line;
             getline(f, line);
-            
+
             // Skip empty lines and comments
             if (!line.empty() && line[0] != '#') {
                 lines.push_back(line);
             }
         }
-        
+
         f.close();
     }
 
@@ -1855,7 +1855,7 @@ struct Grid {
         }
         return 0;
     }
-    
+
     int Print() const {
         cout << "Grid : " << name << endl << endl;
 
@@ -1879,7 +1879,7 @@ int main() {
     grid.LoadFromFile("test.txt");
     grid.Check();
     grid.Print();
-    
+
     return 0;
 }
 ```
@@ -1899,27 +1899,27 @@ In some cases, we might need to explicitly handle carriage return characters, es
 void LoadFromFile(string filename) {
     ifstream f;
     f.open(filename);
-    
+
     if (!f) {
         cerr << "Unable to open file " << filename << endl;
         return;
     }
-    
+
     while (!f.eof()) {
         string line;
         getline(f, line);
-        
+
         // Remove carriage return if present (for Windows files read on Unix)
         if (!line.empty() && line[line.length() - 1] == '\r') {
             line = line.substr(0, line.length() - 1);
         }
-        
+
         // Skip empty lines and comments
         if (!line.empty() && line[0] != '#') {
             lines.push_back(line);
         }
     }
-    
+
     f.close();
 }
 ```
@@ -1933,14 +1933,14 @@ int main() {
     // Characters are represented by their ASCII values
     int aa = 'A';
     cout << "The ASCII value of 'A' is: " << aa << endl;  // Outputs: 65
-    
+
     // We can test this with our grid data
     string s = "DOG";
     for (char c : s) {
         int val = c;
         cout << "Character '" << c << "' has ASCII value " << val << endl;
     }
-    
+
     return 0;
 }
 ```
@@ -1955,31 +1955,31 @@ In a robust application, we should provide proper error handling for file operat
 void LoadFromFile(string filename) {
     ifstream f;
     f.open(filename);
-    
+
     if (!f.is_open()) {
         cerr << "Error: Unable to open file '" << filename << "'" << endl;
         return;
     }
-    
+
     lines.clear();  // Clear any existing data
-    
+
     while (!f.eof()) {
         string line;
         getline(f, line);
-        
+
         // Remove carriage return if present
         if (!line.empty() && line[line.length() - 1] == '\r') {
             line = line.substr(0, line.length() - 1);
         }
-        
+
         // Skip empty lines and comments
         if (!line.empty() && line[0] != '#') {
             lines.push_back(line);
         }
     }
-    
+
     f.close();
-    
+
     if (lines.empty()) {
         cerr << "Warning: No valid grid data found in file '" << filename << "'" << endl;
     }
@@ -2017,38 +2017,38 @@ struct Grid {
             return 0;
         }
         else {
-            return lines[0].size(); 
+            return lines[0].size();
         }
     }
 
     void LoadFromFile(string filename) {
         ifstream f;
         f.open(filename);
-        
+
         if (!f.is_open()) {
             cerr << "Error: Unable to open file '" << filename << "'" << endl;
             return;
         }
-        
+
         lines.clear();  // Clear any existing data
-        
+
         while (!f.eof()) {
             string line;
             getline(f, line);
-            
+
             // Remove carriage return if present
             if (!line.empty() && line[line.length() - 1] == '\r') {
                 line = line.substr(0, line.length() - 1);
             }
-            
+
             // Skip empty lines and comments
             if (!line.empty() && line[0] != '#') {
                 lines.push_back(line);
             }
         }
-        
+
         f.close();
-        
+
         if (lines.empty()) {
             cerr << "Warning: No valid grid data found in file '" << filename << "'" << endl;
         }
@@ -2060,7 +2060,7 @@ struct Grid {
         }
         return 0;
     }
-    
+
     int Print() const {
         cout << "Grid : " << name << endl << endl;
 
@@ -2084,7 +2084,7 @@ int main() {
     grid.LoadFromFile("test.txt");
     grid.Check();
     grid.Print();
-    
+
     return 0;
 }
 ```
@@ -2153,7 +2153,7 @@ Using a class helps us enforce better encapsulation, as we'll need to explicitly
 class Library {
 public:
     // Public methods go here
-    
+
 private:
     // Private data members go here
 };
@@ -2178,7 +2178,7 @@ public:
     string GetWord(int i) const;
     void ComputeStats();
     void PrintStats() const;
-    
+
 private:
     vector<string> words;
     vector<int> counts;
@@ -2198,34 +2198,34 @@ Now, let's implement the `ReadFromFile` method:
 void Library::ReadFromFile(string filename) {
     ifstream f;
     f.open(filename);
-    
+
     if (!f.is_open()) {
         cerr << "Error: Unable to open file '" << filename << "'" << endl;
         return;
     }
-    
+
     while (!f.eof()) {
         string line;
         getline(f, line);
-        
+
         if (!line.empty()) {
             // Convert to uppercase for consistency
             for (char& c : line) {
                 c = toupper(c);
             }
-            
+
             // Remove carriage return if present
             int len = line.length();
             if (len > 0 && line[len - 1] == '\r') {
                 line = line.substr(0, len - 1);
             }
-            
+
             words.push_back(line);
         }
     }
-    
+
     f.close();
-    
+
     cout << "Read " << words.size() << " words from file '" << filename << "'" << endl;
 }
 ```
@@ -2280,7 +2280,7 @@ void Library::ComputeStats() {
     // Resize vector that won't grow in time
     // Vector initialized to 0
     counts.resize(18);  // Assuming no words longer than 17 characters
-    
+
     for (string s : words) {
         int len = s.length();
         if (len < 18) {
@@ -2319,7 +2319,7 @@ public:
     string GetWord(int i) const;
     void ComputeStats();
     void PrintStats() const;
-    
+
 private:
     vector<Word> words;
     vector<int> counts;
@@ -2340,7 +2340,7 @@ string Library::GetWord(int i) const {
 void Library::ComputeStats() {
     assert(counts.empty());
     counts.resize(18);
-    
+
     for (Word w : words) {
         int len = w.word.length();
         if (len < 18) {
@@ -2357,18 +2357,18 @@ When working with word lists, it's important to understand character encodings:
 ```cpp
 void Library::ReadFromFile(string filename) {
     // ... existing code ...
-    
+
     // Debugging: Examine the first word's characters
     if (!words.empty()) {
         cout << words[0].word << endl;
         cout << words[0].word.length() << endl;
-        
+
         for (char c : words[0].word) {
             int x = c;
             cout << c << " " << x << endl;
         }
     }
-    
+
     // ... rest of the method ...
 }
 ```
@@ -2432,16 +2432,16 @@ public:
     void ReadFromFile(string filename) {
         ifstream f;
         f.open(filename);
-        
+
         if (!f.is_open()) {
             cerr << "Error: Unable to open file '" << filename << "'" << endl;
             return;
         }
-        
+
         while (!f.eof()) {
             string line;
             getline(f, line);
-            
+
             if (!line.empty()) {
                 line = ToUpper(line);
                 int len = line.length();
@@ -2479,12 +2479,12 @@ struct Grid {
 int main() {
     Library lib;
     lib.ReadFromFile("top_12000.txt");
-    
+
     cout << lib.GetWord(876) << endl;  // Display a random word
-    
+
     lib.ComputeStats();
     lib.PrintStats();
-    
+
     return 0;
 }
 ```
@@ -2571,24 +2571,24 @@ The simplest way to find matching words is to scan through the entire library an
 ```cpp
 vector<string> FindMatches(const vector<string>& words, const string& pattern) {
     vector<string> matches;
-    
+
     for (const string& word : words) {
         if (word.length() == pattern.length()) {
             bool isMatch = true;
-            
+
             for (int i = 0; i < pattern.length(); i++) {
                 if (pattern[i] != '-' && pattern[i] != word[i]) {
                     isMatch = false;
                     break;
                 }
             }
-            
+
             if (isMatch) {
                 matches.push_back(word);
             }
         }
     }
-    
+
     return matches;
 }
 ```
@@ -2802,24 +2802,24 @@ Currently, our `IsWord` method only checks if an exact word exists in the librar
 ```cpp
 Words Library::FindPatternMatches(const string& pattern) const {
     Words matches;
-    
+
     for (const Word& w : words) {
         if (w.word.length() == pattern.length()) {
             bool isMatch = true;
-            
+
             for (int i = 0; i < pattern.length(); i++) {
                 if (pattern[i] != '-' && pattern[i] != w.word[i]) {
                     isMatch = false;
                     break;
                 }
             }
-            
+
             if (isMatch) {
                 matches.push_back(w);
             }
         }
     }
-    
+
     return matches;
 }
 ```
@@ -2885,27 +2885,27 @@ public:
         }
         return false;
     }
-    
+
     Words FindPatternMatches(const string& pattern) const {
         Words matches;
-        
+
         for (const Word& w : words) {
             if (w.word.length() == pattern.length()) {
                 bool isMatch = true;
-                
+
                 for (int i = 0; i < pattern.length(); i++) {
                     if (pattern[i] != '-' && pattern[i] != w.word[i]) {
                         isMatch = false;
                         break;
                     }
                 }
-                
+
                 if (isMatch) {
                     matches.push_back(w);
                 }
             }
         }
-        
+
         return matches;
     }
 
@@ -2982,7 +2982,7 @@ int main() {
     cout << "GOD: " << lib.IsWord("GOD") << endl;
     cout << "ASDFEW: " << lib.IsWord("ASDFEW") << endl;
     cout << "THANKS: " << lib.IsWord("THANKS") << endl;
-    
+
     cout << "\nTesting pattern matches:" << endl;
     string pattern = "D-G";
     Words matches = lib.FindPatternMatches(pattern);
@@ -2990,7 +2990,7 @@ int main() {
     for (const Word& w : matches) {
         cout << "  " << w.word << endl;
     }
-    
+
     lib.DebugBuckets();
 
     return 0;
@@ -3212,7 +3212,7 @@ Let's examine some key aspects of this implementation:
    // Method 1
    auto it = word_map_.find(s);
    return it != word_map_.end();
-   
+
    // Method 2
    return word_map_.count(s) > 0;
    ```
@@ -3235,11 +3235,11 @@ We can observe these characteristics by adding instrumentation:
 ```cpp
 void ReadFromFile(string filename) {
     // ... existing code ...
-    
+
     word_map_[line] = Word(line);
-    cout << "DEBUG: bucket_count=" << word_map_.bucket_count() 
+    cout << "DEBUG: bucket_count=" << word_map_.bucket_count()
          << " load_factor=" << word_map_.load_factor() << endl;
-    
+
     // ... rest of the method ...
 }
 ```
@@ -3258,7 +3258,7 @@ int main() {
 
     // Measure search time for multiple words
     cout << "\nTesting search performance:\n";
-    
+
     clock_t start = clock();
     for (int i = 0; i < 1000; i++) {
         lib.IsWord("DOG");
@@ -3267,10 +3267,10 @@ int main() {
         lib.IsWord("XYZZYX");  // A word that doesn't exist
     }
     clock_t end = clock();
-    
+
     double time_taken = double(end - start) / CLOCKS_PER_SEC * 1000.0;  // in milliseconds
     cout << "Time taken for 4000 searches: " << time_taken << " ms\n";
-    
+
     return 0;
 }
 ```
@@ -3382,21 +3382,21 @@ public:
     void BenchmarkSearch() const {
         const int iterations = 1000;
         const vector<string> testWords = {"DOG", "CAT", "HOUSE", "XYZZYX"};
-        
+
         clock_t start = clock();
-        
+
         for (int i = 0; i < iterations; i++) {
             for (const string& word : testWords) {
                 IsWord(word);
             }
         }
-        
+
         clock_t end = clock();
         double time_taken = double(end - start) / CLOCKS_PER_SEC * 1000.0;  // in ms
-        
-        cout << "Time taken for " << iterations * testWords.size() << " searches: " 
+
+        cout << "Time taken for " << iterations * testWords.size() << " searches: "
              << time_taken << " ms" << endl;
-        cout << "Average time per search: " << time_taken / (iterations * testWords.size()) 
+        cout << "Average time per search: " << time_taken / (iterations * testWords.size())
              << " ms" << endl;
     }
 
@@ -3419,10 +3419,10 @@ int main() {
     cout << lib.IsWord("GOD") << endl;
     cout << lib.IsWord("ASDFEW") << endl;
     cout << lib.IsWord("THANKS") << endl;
-    
+
     // Performance test
     lib.BenchmarkSearch();
-    
+
     // Display some information about the hash distribution
     cout << "\nHash distribution information:\n";
     // We'll just display a few buckets for brevity
@@ -3430,7 +3430,7 @@ int main() {
         cout << "Bucket " << i << ": ";
         // Display bucket details
     }
-    
+
     return 0;
 }
 ```
@@ -3494,11 +3494,11 @@ void ExampleFunction() {
     // Stack allocation
     int stackVar = 42;           // Allocated on the stack
     char stackArray[100];        // Also on the stack
-    
+
     // Heap allocation
     int* heapVar = new int(42);  // Allocated on the heap
     char* heapArray = new char[100]; // Also on the heap
-    
+
     // Must free heap memory to avoid leaks
     delete heapVar;
     delete[] heapArray;
@@ -3528,28 +3528,28 @@ using namespace std;
 int main() {
     char c = 'A';
     int i = 10;
-    
+
     // Pointers
     void* p0 = &c;  // Address of c
     void* p1 = &i;  // Address of i
-    
+
     cout << "Address of c: " << p0 << endl;
     cout << "Address of i: " << p1 << endl;
     cout << "Size of char: " << sizeof(c) << " bytes" << endl;
     cout << "Size of int: " << sizeof(i) << " bytes" << endl;
-    
+
     // Using typed pointers
     char* cp = &c;
     int* ip = &i;
-    
+
     cout << "Value of c: " << c << endl;
     *cp = 'B';  // Modify through pointer
     cout << "New value of c: " << c << endl;
-    
+
     cout << "Value of i: " << i << endl;
     *ip = 2000;  // Modify through pointer
     cout << "New value of i: " << i << endl;
-    
+
     return 0;
 }
 ```
@@ -3583,11 +3583,11 @@ void Foo(int x, int& y, int* z) {
     cout << "FOO x = " << x << endl;
     cout << "FOO y = " << y << endl;
     cout << "FOO z = " << *z << endl;
-    
+
     x += 1;   // Modifies the copy
     y += 2;   // Modifies the original through reference
     *z += 3;  // Modifies the original through pointer
-    
+
     cout << "MODIFIED x = " << x << endl;
     cout << "MODIFIED y = " << y << endl;
     cout << "MODIFIED z = " << *z << endl;
@@ -3597,17 +3597,17 @@ int main() {
     int i = 10;
     int j = 20;
     int k = 30;
-    
+
     cout << "ORIGINAL i = " << i << endl;
     cout << "ORIGINAL j = " << j << endl;
     cout << "ORIGINAL k = " << k << endl;
-    
+
     Foo(i, j, &k);
-    
+
     cout << "AFTER i = " << i << endl;  // Unchanged (pass by value)
     cout << "AFTER j = " << j << endl;  // Changed (pass by reference)
     cout << "AFTER k = " << k << endl;  // Changed (pass by pointer)
-    
+
     return 0;
 }
 ```
@@ -3624,32 +3624,32 @@ int main() {
     // Allocate a single integer
     int* p = new int(8);
     cout << *p << endl;  // 8
-    
+
     // Use the allocated memory
     int x = *p;
     cout << x << endl;  // 8
-    
+
     // Free the memory when done
     delete p;
-    
+
     // Allocate an array of integers
     int size = 5;
     int* arr = new int[size];
-    
+
     // Initialize the array
     for (int i = 0; i < size; i++) {
         arr[i] = i * 10;
     }
-    
+
     // Use the array
     for (int i = 0; i < size; i++) {
         cout << arr[i] << " ";  // 0 10 20 30 40
     }
     cout << endl;
-    
+
     // Free the array
     delete[] arr;
-    
+
     return 0;
 }
 ```
@@ -3688,24 +3688,24 @@ int main() {
     // Using unique_ptr
     unique_ptr<int> up(new int(8));
     cout << *up << endl;  // 8
-    
+
     // Memory is automatically freed when up goes out of scope
-    
+
     // Using shared_ptr
     shared_ptr<int> sp1 = make_shared<int>(42);
     cout << *sp1 << endl;  // 42
-    
+
     {
         shared_ptr<int> sp2 = sp1;  // Both point to the same object
         cout << "sp1 use count: " << sp1.use_count() << endl;  // 2
         cout << *sp2 << endl;  // 42
-        
+
         *sp2 = 100;  // Modifies the shared object
     }  // sp2 is destroyed here, but the object survives
-    
+
     cout << "sp1 use count: " << sp1.use_count() << endl;  // 1
     cout << *sp1 << endl;  // 100
-    
+
     return 0;
 }  // sp1 is destroyed here, and the object is deleted
 ```
@@ -3732,14 +3732,14 @@ public:
         data_ = new char[size_ + 1];
         strcpy(data_, s);
     }
-    
+
     ~String() {
         delete[] data_;
     }
-    
+
     int size() const { return size_; }
     const char* data() const { return data_; }
-    
+
 private:
     int size_;
     char* data_;  // Points to dynamically allocated memory
@@ -3752,14 +3752,14 @@ int main() {
     cout << "Address of p: " << &p << endl;
     cout << "Address of p.x: " << &p.x << endl;
     cout << "Address of p.y: " << &p.y << endl;
-    
+
     // Object with dynamic memory
     String s("Hello");
     cout << "Size of String: " << sizeof(s) << " bytes" << endl;
     cout << "String content size: " << s.size() << " bytes" << endl;
     cout << "Address of s: " << &s << endl;
     cout << "Address of string data: " << static_cast<const void*>(s.data()) << endl;
-    
+
     return 0;
 }
 ```
@@ -3791,18 +3791,18 @@ public:
         words_.push_back(w);
         word_map_[word] = w;
     }
-    
+
     // Return by const reference to avoid copying
     const vector<Word>& GetAllWords() const {
         return words_;
     }
-    
+
     // Use const for methods that don't modify the object
     bool IsWord(const string& s) const {
         auto it = word_map_.find(s);
         return it != word_map_.end();
     }
-    
+
     // ...rest of the class...
 };
 ```
@@ -3884,7 +3884,7 @@ public:
       delete w;
     }
   }
-  
+
   // ... rest of the class
 };
 ```
@@ -3916,7 +3916,7 @@ Let's implement the pattern hash functionality in our Library class:
 void CreatePatternHash(Word* w) {
   int len = w->len();
   int num_patterns = 1 << len;  // 2^len possible patterns
-  
+
   for (int i = 0; i < num_patterns; i++) {
     string temp = w->word;
     for (int j = 0; j < len; j++) {
@@ -3964,7 +3964,7 @@ Let's add a length limit:
 void CreatePatternHash(Word* w) {
   int len = w->len();
   if (len > 7) return;  // Skip words longer than 7 characters
-  
+
   int num_patterns = 1 << len;
   // ... rest of the function
 }
@@ -3983,7 +3983,7 @@ void ReadFromFile(string filename) {
   while (f.is_open() && !f.eof()) {
     string line;
     getline(f, line);
-    
+
     if (!line.empty()) {
       line = ToUpper(line);
       int len = line.length();
@@ -3995,9 +3995,9 @@ void ReadFromFile(string filename) {
       CreatePatternHash(w);
     }
   }
-  
+
   f.close();
-  
+
   cout << "Read " << words_.size() << " words from file '" << filename << "'"
        << endl;
 }
@@ -4954,7 +4954,7 @@ struct Grid {
         Next(p, vert);
       }
       if (!in_bounds(p)) return;
-      
+
       // Found the start of a potential span
       Point startp = p;
 
@@ -4964,7 +4964,7 @@ struct Grid {
         Next(p, vert);
         len++;
       } while (in_bounds(p) && !is_block(p));
-      
+
       // Only add spans that are at least 2 cells long (typical crossword constraint)
       if (len >= 2) {
         spans.push_back(Span(startp, len, vert));
@@ -5021,35 +5021,35 @@ Let's add some methods to analyze and work with spans:
 ```cpp
 struct Grid {
   // ... existing methods ...
-  
+
   // Get the current content of a span as a string
   string GetSpanContent(const Span& s) const {
     string content;
     Point p = s.point;
-    
+
     for (int i = 0; i < s.len; i++) {
       content.push_back(box(p));
-      
+
       if (s.vert) {
         p.row++;
       } else {
         p.col++;
       }
     }
-    
+
     return content;
   }
-  
+
   // Count spans by length
   void AnalyzeSpans() const {
     int maxlen = 0;
     for (const Span& s : spans) {
       maxlen = max(maxlen, s.len);
     }
-    
+
     vector<int> hcount(maxlen + 1, 0);
     vector<int> vcount(maxlen + 1, 0);
-    
+
     for (const Span& s : spans) {
       if (s.vert) {
         vcount[s.len]++;
@@ -5057,10 +5057,10 @@ struct Grid {
         hcount[s.len]++;
       }
     }
-    
+
     cout << "Span analysis:" << endl;
     for (int i = 2; i <= maxlen; i++) {
-      cout << "  Length " << i << ": " << hcount[i] << " horizontal, " 
+      cout << "  Length " << i << ": " << hcount[i] << " horizontal, "
            << vcount[i] << " vertical" << endl;
     }
   }
@@ -5078,40 +5078,40 @@ An important aspect of crossword puzzles is that words intersect. Let's add a me
 ```cpp
 struct Grid {
   // ... existing methods ...
-  
+
   // Check if two spans intersect
   bool SpansIntersect(const Span& s1, const Span& s2, Point& intersection) const {
     // Spans must be in different directions to intersect
     if (s1.vert == s2.vert) return false;
-    
+
     const Span& hspan = s1.vert ? s2 : s1;
     const Span& vspan = s1.vert ? s1 : s2;
-    
+
     // Check if horizontal span's row is within vertical span's row range
-    if (hspan.point.row < vspan.point.row || 
+    if (hspan.point.row < vspan.point.row ||
         hspan.point.row >= vspan.point.row + vspan.len) {
       return false;
     }
-    
+
     // Check if vertical span's column is within horizontal span's column range
-    if (vspan.point.col < hspan.point.col || 
+    if (vspan.point.col < hspan.point.col ||
         vspan.point.col >= hspan.point.col + hspan.len) {
       return false;
     }
-    
+
     // Calculate the intersection point
     intersection.row = hspan.point.row;
     intersection.col = vspan.point.col;
     return true;
   }
-  
+
   // Build a map of intersections between spans
   void FindIntersections() {
     for (size_t i = 0; i < spans.size(); i++) {
       for (size_t j = i + 1; j < spans.size(); j++) {
         Point intersection;
         if (SpansIntersect(spans[i], spans[j], intersection)) {
-          cout << "Spans " << i << " and " << j << " intersect at " 
+          cout << "Spans " << i << " and " << j << " intersect at "
                << intersection << endl;
         }
       }
@@ -5264,7 +5264,7 @@ struct Grid {
         Next(p, vert);
         len++;
       } while (in_bounds(p) && !is_block(p));
-      
+
       if (len >= 2) {  // Only add spans of length 2 or more
         spans.push_back(Span(startp, len, vert));
       }
@@ -5277,66 +5277,66 @@ struct Grid {
     FillSpans(false);  // horiz
     FillSpans(true);   // vert
   }
-  
+
   string GetSpanContent(const Span& s) const {
     string content;
     Point p = s.point;
-    
+
     for (int i = 0; i < s.len; i++) {
       content.push_back(box(p));
-      
+
       if (s.vert) {
         p.row++;
       } else {
         p.col++;
       }
     }
-    
+
     return content;
   }
-  
+
   bool SpansIntersect(const Span& s1, const Span& s2, Point& intersection) const {
     if (s1.vert == s2.vert) return false;
-    
+
     const Span& hspan = s1.vert ? s2 : s1;
     const Span& vspan = s1.vert ? s1 : s2;
-    
-    if (hspan.point.row < vspan.point.row || 
+
+    if (hspan.point.row < vspan.point.row ||
         hspan.point.row >= vspan.point.row + vspan.len) {
       return false;
     }
-    
-    if (vspan.point.col < hspan.point.col || 
+
+    if (vspan.point.col < hspan.point.col ||
         vspan.point.col >= hspan.point.col + hspan.len) {
       return false;
     }
-    
+
     intersection.row = hspan.point.row;
     intersection.col = vspan.point.col;
     return true;
   }
-  
+
   void FindIntersections() {
     for (size_t i = 0; i < spans.size(); i++) {
       for (size_t j = i + 1; j < spans.size(); j++) {
         Point intersection;
         if (SpansIntersect(spans[i], spans[j], intersection)) {
-          cout << "Spans " << i << " and " << j << " intersect at " 
+          cout << "Spans " << i << " and " << j << " intersect at "
                << intersection << endl;
         }
       }
     }
   }
-  
+
   void AnalyzeSpans() const {
     int maxlen = 0;
     for (const Span& s : spans) {
       maxlen = max(maxlen, s.len);
     }
-    
+
     vector<int> hcount(maxlen + 1, 0);
     vector<int> vcount(maxlen + 1, 0);
-    
+
     for (const Span& s : spans) {
       if (s.vert) {
         vcount[s.len]++;
@@ -5344,10 +5344,10 @@ struct Grid {
         hcount[s.len]++;
       }
     }
-    
+
     cout << "Span analysis:" << endl;
     for (int i = 2; i <= maxlen; i++) {
-      cout << "  Length " << i << ": " << hcount[i] << " horizontal, " 
+      cout << "  Length " << i << ": " << hcount[i] << " horizontal, "
            << vcount[i] << " vertical" << endl;
     }
   }
@@ -5488,17 +5488,17 @@ In Chapter 14, we introduced a basic `GetSpanContent` method to extract the cont
 string GetSpanContent(const Span& s) const {
   string content;
   Point p = s.point;
-  
+
   for (int i = 0; i < s.len; i++) {
     content.push_back(box(p));
-    
+
     if (s.vert) {
       p.row++;
     } else {
       p.col++;
     }
   }
-  
+
   return content;
 }
 ```
@@ -5516,10 +5516,10 @@ To better organize our code, let's create a dedicated structure for patterns:
 ```cpp
 struct Pattern {
   Pattern(Span s, string p) : span(s), pattern(p) {}
-  
+
   Span span;
   string pattern;
-  
+
   friend ostream& operator<<(ostream& os, const Pattern& pat);
 };
 
@@ -5540,15 +5540,15 @@ typedef vector<Pattern> Patterns;
 
 struct Grid {
   // ... existing methods ...
-  
+
   Patterns GetAllPatterns() const {
     Patterns result;
-    
+
     for (const Span& s : spans) {
       string content = GetSpanContent(s);
       result.push_back(Pattern(s, content));
     }
-    
+
     return result;
   }
 };
@@ -5563,7 +5563,7 @@ Different patterns have different levels of constraint. Let's add methods to ana
 ```cpp
 struct Pattern {
   // ... existing code ...
-  
+
   // Count how many empty cells are in the pattern
   int EmptyCellCount() const {
     int count = 0;
@@ -5572,7 +5572,7 @@ struct Pattern {
     }
     return count;
   }
-  
+
   // Check if the pattern is completely empty
   bool IsEmpty() const {
     for (char c : pattern) {
@@ -5580,7 +5580,7 @@ struct Pattern {
     }
     return true;
   }
-  
+
   // Check if the pattern is completely filled (no empty cells)
   bool IsFilled() const {
     return EmptyCellCount() == 0;
@@ -5597,24 +5597,24 @@ A common strategy in crossword solving is to start with the most constrained pat
 ```cpp
 struct Grid {
   // ... existing methods ...
-  
+
   Patterns GetSortedPatterns() const {
     Patterns result = GetAllPatterns();
-    
+
     // Sort by number of empty cells (ascending)
-    sort(result.begin(), result.end(), 
+    sort(result.begin(), result.end(),
          [](const Pattern& a, const Pattern& b) {
            int a_empty = a.EmptyCellCount();
            int b_empty = b.EmptyCellCount();
-           
+
            // If equal empty counts, prefer shorter patterns
            if (a_empty == b_empty) {
              return a.pattern.length() < b.pattern.length();
            }
-           
+
            return a_empty < b_empty;
          });
-    
+
     return result;
   }
 };
@@ -5633,20 +5633,20 @@ Patterns intersect at specific positions, creating additional constraints. Let's
 ```cpp
 struct Grid {
   // ... existing methods ...
-  
+
   // Find where a specific pattern intersects with other patterns
   vector<pair<Pattern, int>> FindIntersectingPatterns(const Pattern& pat) const {
     vector<pair<Pattern, int>> result;
-    
+
     for (const Span& s : spans) {
       // Skip the span corresponding to our pattern
-      if (s.point.row == pat.span.point.row && 
-          s.point.col == pat.span.point.col && 
-          s.len == pat.span.len && 
+      if (s.point.row == pat.span.point.row &&
+          s.point.col == pat.span.point.col &&
+          s.len == pat.span.len &&
           s.vert == pat.span.vert) {
         continue;
       }
-      
+
       Point intersection;
       if (SpansIntersect(pat.span, s, intersection)) {
         // Calculate position within each pattern
@@ -5656,12 +5656,12 @@ struct Grid {
         } else {
           pos_in_pat = intersection.col - pat.span.point.col;
         }
-        
+
         string other_content = GetSpanContent(s);
         result.push_back(make_pair(Pattern(s, other_content), pos_in_pat));
       }
     }
-    
+
     return result;
   }
 };
@@ -5682,19 +5682,19 @@ Now let's implement a method to check if a word can legally be placed in a span:
 ```cpp
 struct Grid {
   // ... existing methods ...
-  
+
   // Check if a word can be placed in a span
   bool CanPlaceWord(const Span& s, const string& word) const {
     if (word.length() != s.len) return false;
-    
+
     string current = GetSpanContent(s);
-    
+
     for (size_t i = 0; i < current.length(); i++) {
       if (current[i] != '-' && current[i] != word[i]) {
         return false;
       }
     }
-    
+
     return true;
   }
 };
@@ -5711,11 +5711,11 @@ Once we've verified that a word can be placed, we need a method to actually upda
 ```cpp
 struct Grid {
   // ... existing methods ...
-  
+
   // Place a word in the grid at the specified span
   void PlaceWord(const Span& s, const string& word) {
     assert(word.length() == s.len);
-    
+
     Point p = s.point;
     for (size_t i = 0; i < word.length(); i++) {
       // Only update empty cells or cells that already match
@@ -5725,7 +5725,7 @@ struct Grid {
       } else {
         assert(box(p) == word[i]); // Ensure consistency
       }
-      
+
       // Move to next position
       if (s.vert) {
         p.row++;
@@ -5762,10 +5762,10 @@ using namespace std;
 
 struct Pattern {
   Pattern(Span s, string p) : span(s), pattern(p) {}
-  
+
   Span span;
   string pattern;
-  
+
   // Count how many empty cells are in the pattern
   int EmptyCellCount() const {
     int count = 0;
@@ -5774,7 +5774,7 @@ struct Pattern {
     }
     return count;
   }
-  
+
   // Check if the pattern is completely empty
   bool IsEmpty() const {
     for (char c : pattern) {
@@ -5782,12 +5782,12 @@ struct Pattern {
     }
     return true;
   }
-  
+
   // Check if the pattern is completely filled (no empty cells)
   bool IsFilled() const {
     return EmptyCellCount() == 0;
   }
-  
+
   friend ostream& operator<<(ostream& os, const Pattern& pat);
 };
 
@@ -5800,67 +5800,67 @@ typedef vector<Pattern> Patterns;
 
 struct Grid {
   // ... existing methods from previous chapters ...
-  
+
   string GetSpanContent(const Span& s) const {
     string content;
     Point p = s.point;
-    
+
     for (int i = 0; i < s.len; i++) {
       content.push_back(box(p));
-      
+
       if (s.vert) {
         p.row++;
       } else {
         p.col++;
       }
     }
-    
+
     return content;
   }
-  
+
   Patterns GetAllPatterns() const {
     Patterns result;
-    
+
     for (const Span& s : spans) {
       string content = GetSpanContent(s);
       result.push_back(Pattern(s, content));
     }
-    
+
     return result;
   }
-  
+
   Patterns GetSortedPatterns() const {
     Patterns result = GetAllPatterns();
-    
+
     // Sort by number of empty cells (ascending)
-    sort(result.begin(), result.end(), 
+    sort(result.begin(), result.end(),
          [](const Pattern& a, const Pattern& b) {
            int a_empty = a.EmptyCellCount();
            int b_empty = b.EmptyCellCount();
-           
+
            // If equal empty counts, prefer shorter patterns
            if (a_empty == b_empty) {
              return a.pattern.length() < b.pattern.length();
            }
-           
+
            return a_empty < b_empty;
          });
-    
+
     return result;
   }
-  
+
   vector<pair<Pattern, int>> FindIntersectingPatterns(const Pattern& pat) const {
     vector<pair<Pattern, int>> result;
-    
+
     for (const Span& s : spans) {
       // Skip the span corresponding to our pattern
-      if (s.point.row == pat.span.point.row && 
-          s.point.col == pat.span.point.col && 
-          s.len == pat.span.len && 
+      if (s.point.row == pat.span.point.row &&
+          s.point.col == pat.span.point.col &&
+          s.len == pat.span.len &&
           s.vert == pat.span.vert) {
         continue;
       }
-      
+
       Point intersection;
       if (SpansIntersect(pat.span, s, intersection)) {
         // Calculate position within each pattern
@@ -5870,32 +5870,32 @@ struct Grid {
         } else {
           pos_in_pat = intersection.col - pat.span.point.col;
         }
-        
+
         string other_content = GetSpanContent(s);
         result.push_back(make_pair(Pattern(s, other_content), pos_in_pat));
       }
     }
-    
+
     return result;
   }
-  
+
   bool CanPlaceWord(const Span& s, const string& word) const {
     if (word.length() != s.len) return false;
-    
+
     string current = GetSpanContent(s);
-    
+
     for (size_t i = 0; i < current.length(); i++) {
       if (current[i] != '-' && current[i] != word[i]) {
         return false;
       }
     }
-    
+
     return true;
   }
-  
+
   void PlaceWord(const Span& s, const string& word) {
     assert(word.length() == s.len);
-    
+
     Point p = s.point;
     for (size_t i = 0; i < word.length(); i++) {
       // Only update empty cells or cells that already match
@@ -5905,7 +5905,7 @@ struct Grid {
       } else {
         assert(box(p) == word[i]); // Ensure consistency
       }
-      
+
       // Move to next position
       if (s.vert) {
         p.row++;
@@ -5914,7 +5914,7 @@ struct Grid {
       }
     }
   }
-  
+
   void PrintPatterns() const {
     Patterns patterns = GetAllPatterns();
     cout << "Patterns:" << endl;
@@ -5923,7 +5923,7 @@ struct Grid {
       cout << "  " << i << ": " << pat << " (empty: " << pat.EmptyCellCount() << ")" << endl;
     }
   }
-  
+
   void PrintSortedPatterns() const {
     Patterns patterns = GetSortedPatterns();
     cout << "Sorted Patterns (by constraint):" << endl;
@@ -5940,24 +5940,24 @@ int main() {
   grid.Check();
   grid.Print();
   grid.FillSpans();
-  
+
   cout << "\nAll patterns:" << endl;
   grid.PrintPatterns();
-  
+
   cout << "\nSorted patterns:" << endl;
   grid.PrintSortedPatterns();
-  
+
   // Test pattern intersections
   Patterns patterns = grid.GetAllPatterns();
   if (!patterns.empty()) {
     Pattern& first_pattern = patterns[0];
     cout << "\nIntersections for pattern " << first_pattern << ":" << endl;
-    
+
     auto intersections = grid.FindIntersectingPatterns(first_pattern);
     for (const auto& pair : intersections) {
       cout << "  Intersects with " << pair.first << " at position " << pair.second << endl;
     }
-    
+
     // Test word placement if we have a partially filled pattern
     if (!first_pattern.IsEmpty() && !first_pattern.IsFilled()) {
       string test_word = first_pattern.pattern;
@@ -5965,24 +5965,24 @@ int main() {
       for (char& c : test_word) {
         if (c == '-') c = 'X';
       }
-      
+
       cout << "\nTesting word placement:" << endl;
       cout << "  Can place '" << test_word << "' in " << first_pattern.span << "? ";
       bool can_place = grid.CanPlaceWord(first_pattern.span, test_word);
       cout << (can_place ? "Yes" : "No") << endl;
-      
+
       if (can_place) {
         cout << "  Placing word and updating grid:" << endl;
         grid.PlaceWord(first_pattern.span, test_word);
         grid.Print();
-        
+
         // Show updated patterns
         cout << "\nUpdated patterns:" << endl;
         grid.PrintPatterns();
       }
     }
   }
-  
+
   return 0;
 }
 ```
@@ -6073,13 +6073,13 @@ Let's start by defining the structure of our Solver class:
 class Solver {
 public:
   Solver(Grid& g, Library& l) : grid_(g), lib_(l) {}
-  
+
   bool Solve();
-  
+
 private:
   bool SolveRecursive(const Patterns& patterns, size_t index);
   vector<string> FindCandidateWords(const Pattern& pattern);
-  
+
   Grid& grid_;
   Library& lib_;
 };
@@ -6097,10 +6097,10 @@ bool Solver::Solve() {
   if (grid_.spans.empty()) {
     grid_.FillSpans();
   }
-  
+
   // Get patterns sorted by constraint
   Patterns patterns = grid_.GetSortedPatterns();
-  
+
   // Start the recursive solving process
   return SolveRecursive(patterns, 0);
 }
@@ -6118,17 +6118,17 @@ Before we implement the recursive solver, let's create a method to find candidat
 ```cpp
 vector<string> Solver::FindCandidateWords(const Pattern& pattern) {
   vector<string> candidates;
-  
+
   // Find all words in the library that match this pattern
   auto matches = lib_.FindMatchingWords(pattern.pattern);
-  
+
   for (const Word* word : matches) {
     // Verify that the word fits the pattern
     if (grid_.CanPlaceWord(pattern.span, word->word)) {
       candidates.push_back(word->word);
     }
   }
-  
+
   return candidates;
 }
 ```
@@ -6148,34 +6148,34 @@ bool Solver::SolveRecursive(const Patterns& patterns, size_t index) {
   if (index >= patterns.size()) {
     return true;  // Success!
   }
-  
+
   // Get the current pattern to fill
   const Pattern& current = patterns[index];
-  
+
   // If the pattern is already filled, move to the next one
   if (current.IsFilled()) {
     return SolveRecursive(patterns, index + 1);
   }
-  
+
   // Find candidate words for this pattern
   vector<string> candidates = FindCandidateWords(current);
-  
+
   // Try each candidate
   for (const string& word : candidates) {
     // Place the word in the grid
     grid_.PlaceWord(current.span, word);
-    
+
     // Recursively try to solve the rest of the grid
     if (SolveRecursive(patterns, index + 1)) {
       return true;  // Success!
     }
-    
+
     // If we get here, this word didn't lead to a solution.
     // Backtrack by removing the word from the grid.
     // We'll implement a RemoveWord method for the Grid class.
     grid_.RemoveWord(current.span);
   }
-  
+
   // If we tried all candidates and none worked, this is a dead end
   return false;
 }
@@ -6200,11 +6200,11 @@ To support backtracking, we need to add a `RemoveWord` method to our Grid class:
 ```cpp
 void Grid::RemoveWord(const Span& s) {
   Point p = s.point;
-  
+
   for (int i = 0; i < s.len; i++) {
     // Check if this position is at an intersection
     bool is_intersection = false;
-    
+
     // Scan all spans to find intersections
     for (const Span& other : spans) {
       if (&other != &s) {  // Skip the current span
@@ -6218,12 +6218,12 @@ void Grid::RemoveWord(const Span& s) {
         }
       }
     }
-    
+
     // Only remove non-intersection cells
     if (!is_intersection) {
       lines[p.row][p.col] = '-';  // Reset to empty
     }
-    
+
     // Move to next position
     if (s.vert) {
       p.row++;
@@ -6246,22 +6246,22 @@ To help understand the solving process, let's add some debug output:
 ```cpp
 bool Solver::SolveRecursive(const Patterns& patterns, size_t index) {
   // ... existing code ...
-  
+
   cout << "Solving pattern " << index << ": " << current.pattern << endl;
-  
+
   // ... find candidates ...
-  
+
   cout << "Found " << candidates.size() << " candidates" << endl;
-  
+
   for (const string& word : candidates) {
     cout << "Trying word: " << word << endl;
-    
+
     // ... place word and continue solving ...
-    
+
     cout << "Backtracking from word: " << word << endl;
     grid_.RemoveWord(current.span);
   }
-  
+
   cout << "No solution found for pattern " << index << endl;
   return false;
 }
@@ -6289,11 +6289,11 @@ using namespace std;
 // Add RemoveWord method to Grid class
 void Grid::RemoveWord(const Span& s) {
   Point p = s.point;
-  
+
   for (int i = 0; i < s.len; i++) {
     // Check if this position is at an intersection
     bool is_intersection = false;
-    
+
     // Scan all spans to find intersections
     for (const Span& other : spans) {
       if (&other != &s) {  // Skip the current span
@@ -6307,12 +6307,12 @@ void Grid::RemoveWord(const Span& s) {
         }
       }
     }
-    
+
     // Only remove non-intersection cells
     if (!is_intersection) {
       lines[p.row][p.col] = '-';  // Reset to empty
     }
-    
+
     // Move to next position
     if (s.vert) {
       p.row++;
@@ -6325,84 +6325,84 @@ void Grid::RemoveWord(const Span& s) {
 class Solver {
 public:
   Solver(Grid& g, Library& l) : grid_(g), lib_(l) {}
-  
+
   bool Solve() {
     // Make sure spans are calculated
     if (grid_.spans.empty()) {
       grid_.FillSpans();
     }
-    
+
     // Get patterns sorted by constraint
     Patterns patterns = grid_.GetSortedPatterns();
-    
+
     cout << "Starting to solve with " << patterns.size() << " patterns" << endl;
-    
+
     // Start the recursive solving process
     return SolveRecursive(patterns, 0);
   }
-  
+
 private:
   bool SolveRecursive(const Patterns& patterns, size_t index) {
     // Base case: we've filled all patterns
     if (index >= patterns.size()) {
       return true;  // Success!
     }
-    
+
     // Get the current pattern to fill
     const Pattern& current = patterns[index];
-    
+
     cout << "Solving pattern " << index << ": " << current.pattern << endl;
-    
+
     // If the pattern is already filled, move to the next one
     if (current.IsFilled()) {
       cout << "Pattern already filled, moving to next" << endl;
       return SolveRecursive(patterns, index + 1);
     }
-    
+
     // Find candidate words for this pattern
     vector<string> candidates = FindCandidateWords(current);
-    
+
     cout << "Found " << candidates.size() << " candidates" << endl;
-    
+
     // Try each candidate
     for (const string& word : candidates) {
       cout << "Trying word: " << word << endl;
-      
+
       // Place the word in the grid
       grid_.PlaceWord(current.span, word);
-      
+
       // Recursively try to solve the rest of the grid
       if (SolveRecursive(patterns, index + 1)) {
         return true;  // Success!
       }
-      
+
       cout << "Backtracking from word: " << word << endl;
       // If we get here, this word didn't lead to a solution.
       // Backtrack by removing the word from the grid.
       grid_.RemoveWord(current.span);
     }
-    
+
     cout << "No solution found for pattern " << index << endl;
     // If we tried all candidates and none worked, this is a dead end
     return false;
   }
-  
+
   vector<string> FindCandidateWords(const Pattern& pattern) {
     vector<string> candidates;
-    
+
     // Find all words in the library that match this pattern
     auto matches = lib_.FindMatchingWords(pattern.pattern);
-    
+
     for (const Word* word : matches) {
       // Verify that the word fits the pattern
       if (grid_.CanPlaceWord(pattern.span, word->word)) {
         candidates.push_back(word->word);
       }
     }
-    
+
     return candidates;
   }
-  
+
   Grid& grid_;
   Library& lib_;
 };
@@ -6411,23 +6411,23 @@ int main() {
   // Load a library of words
   Library lib;
   lib.ReadFromFile("top_12000.txt");
-  
+
   // Create and load a grid
   Grid grid("Crossword Puzzle");
   grid.LoadFromFile("test.txt");
-  
+
   // Print the initial grid
   cout << "Initial grid:" << endl;
   grid.Print();
-  
+
   // Create a solver and solve the grid
   Solver solver(grid, lib);
   bool success = solver.Solve();
-  
+
   // Print the result
   cout << endl << "Solution " << (success ? "found" : "not found") << ":" << endl;
   grid.Print();
-  
+
   return 0;
 }
 ```
@@ -6464,20 +6464,20 @@ Let's implement a simple forward checking optimization:
 ```cpp
 bool Solver::SolveRecursive(const Patterns& patterns, size_t index) {
   // ... existing code ...
-  
+
   for (const string& word : candidates) {
     // Place the word in the grid
     grid_.PlaceWord(current.span, word);
-    
+
     // Forward checking: verify that all intersecting patterns still have candidates
     bool valid = true;
     for (size_t i = index + 1; i < patterns.size(); i++) {
       const Pattern& next = patterns[i];
       string updated_pattern = grid_.GetSpanContent(next.span);
-      
+
       // Skip already filled patterns
       if (next.IsFilled()) continue;
-      
+
       // Check if this pattern still has candidate words
       auto next_matches = lib_.FindMatchingWords(updated_pattern);
       if (next_matches.empty()) {
@@ -6485,18 +6485,18 @@ bool Solver::SolveRecursive(const Patterns& patterns, size_t index) {
         break;
       }
     }
-    
+
     if (valid) {
       // Recursively try to solve the rest of the grid
       if (SolveRecursive(patterns, index + 1)) {
         return true;  // Success!
       }
     }
-    
+
     // Backtrack
     grid_.RemoveWord(current.span);
   }
-  
+
   // ... existing code ...
 }
 ```
@@ -6511,14 +6511,14 @@ To better understand the solving process, let's add some metrics:
 class Solver {
 public:
   // ... existing code ...
-  
+
   // Add statistics tracking
   int GetBacktrackCount() const { return backtrack_count_; }
   int GetWordPlacementCount() const { return word_placement_count_; }
-  
+
 private:
   // ... existing code ...
-  
+
   // Statistics
   int backtrack_count_ = 0;
   int word_placement_count_ = 0;
@@ -6526,15 +6526,15 @@ private:
 
 bool Solver::SolveRecursive(const Patterns& patterns, size_t index) {
   // ... existing code ...
-  
+
   for (const string& word : candidates) {
     word_placement_count_++;
     // ... place word ...
-    
+
     // ... backtrack ...
     backtrack_count_++;
   }
-  
+
   // ... existing code ...
 }
 ```
@@ -6585,18 +6585,18 @@ Let's start by enhancing our Grid class with improved methods for word manipulat
 ```cpp
 struct Grid {
   // ... existing code from previous chapters ...
-  
+
   // New methods for word manipulation
   bool PlaceWord(const Span& s, const string& word);
   bool RemoveWord(const Span& s);
   bool IsWordPlaceable(const Span& s, const string& word) const;
-  
+
   // Helper method to get a reference to a cell
   char& CellAt(const Point& p) {
     assert(in_bounds(p));
     return lines[p.row][p.col];
   }
-  
+
   // New data structures to track word placements
   vector<pair<Span, string>> placed_words;
 };
@@ -6614,17 +6614,17 @@ bool Grid::PlaceWord(const Span& s, const string& word) {
   if (word.length() != s.len) {
     return false;  // Word length doesn't match span length
   }
-  
+
   // Check if the word fits the current grid state
   if (!IsWordPlaceable(s, word)) {
     return false;  // Word doesn't fit
   }
-  
+
   // Place the word
   Point p = s.point;
   for (size_t i = 0; i < word.length(); i++) {
     CellAt(p) = word[i];
-    
+
     // Move to next position
     if (s.vert) {
       p.row++;
@@ -6632,10 +6632,10 @@ bool Grid::PlaceWord(const Span& s, const string& word) {
       p.col++;
     }
   }
-  
+
   // Track this word placement
   placed_words.push_back(make_pair(s, word));
-  
+
   return true;
 }
 ```
@@ -6656,16 +6656,16 @@ bool Grid::IsWordPlaceable(const Span& s, const string& word) const {
   if (word.length() != s.len) {
     return false;  // Word length doesn't match span length
   }
-  
+
   string current = GetSpanContent(s);
-  
+
   for (size_t i = 0; i < current.length(); i++) {
     char existing = current[i];
     if (existing != '-' && existing != word[i]) {
       return false;  // Conflict with existing letter
     }
   }
-  
+
   return true;
 }
 ```
@@ -6690,50 +6690,50 @@ bool Grid::RemoveWord(const Span& s) {
              placed_span.len == s.len &&
              placed_span.vert == s.vert;
     });
-  
+
   // If we didn't find it, nothing to remove
   if (it == placed_words.end()) {
     return false;
   }
-  
+
   // Get the word that was placed
   string word = it->second;
-  
+
   // Remove from our tracking
   placed_words.erase(it);
-  
+
   // Build a set of points that are part of intersections
   unordered_set<Point, PointHash> intersection_points;
-  
+
   // Helper to hash Points
   struct PointHash {
     size_t operator()(const Point& p) const {
       return p.row * 10000 + p.col;
     }
   };
-  
+
   struct PointEqual {
     bool operator()(const Point& a, const Point& b) const {
       return a.row == b.row && a.col == b.col;
     }
   };
-  
+
   // Find all intersection points
   for (const auto& entry : placed_words) {
     const Span& other_span = entry.first;
-    
+
     // Skip if same orientation
     if (other_span.vert == s.vert) {
       continue;
     }
-    
+
     // Check for intersection
     Point intersection;
     if (SpansIntersect(s, other_span, intersection)) {
       intersection_points.insert(intersection);
     }
   }
-  
+
   // Remove the word, preserving intersections
   Point p = s.point;
   for (size_t i = 0; i < s.len; i++) {
@@ -6742,7 +6742,7 @@ bool Grid::RemoveWord(const Span& s) {
       // Not an intersection, clear the cell
       CellAt(p) = '-';
     }
-    
+
     // Move to next position
     if (s.vert) {
       p.row++;
@@ -6750,7 +6750,7 @@ bool Grid::RemoveWord(const Span& s) {
       p.col++;
     }
   }
-  
+
   return true;
 }
 ```
@@ -6790,12 +6790,12 @@ The `placed_words` vector gives us useful information about the current state of
 ```cpp
 struct Grid {
   // ... existing code ...
-  
+
   // Get all currently placed words
   vector<pair<Span, string>> GetPlacedWords() const {
     return placed_words;
   }
-  
+
   // Check if a span already has a word placed
   bool IsSpanFilled(const Span& s) const {
     for (const auto& entry : placed_words) {
@@ -6809,17 +6809,17 @@ struct Grid {
     }
     return false;
   }
-  
+
   // Get the last placed word
   pair<Span, string> GetLastPlacedWord() const {
     assert(!placed_words.empty());
     return placed_words.back();
   }
-  
+
   // Clear all placed words and reset the grid
   void ClearAllWords() {
     placed_words.clear();
-    
+
     // Reset all cells to empty
     for (size_t r = 0; r < lines.size(); r++) {
       for (size_t c = 0; c < lines[r].size(); c++) {
@@ -6842,67 +6842,67 @@ Let's create a test function to demonstrate our word placement functionality:
 void TestWordPlacement(Grid& grid) {
   cout << "Initial grid:" << endl;
   grid.Print();
-  
+
   // Find some spans
   if (grid.spans.empty()) {
     grid.FillSpans();
   }
-  
+
   if (grid.spans.size() < 2) {
     cout << "Not enough spans for testing" << endl;
     return;
   }
-  
+
   // Try to place a word
   const Span& span1 = grid.spans[0];
   string word1 = "TEST";
-  
+
   if (span1.len != word1.length()) {
     cout << "Span length doesn't match word length" << endl;
     return;
   }
-  
+
   cout << "Placing word '" << word1 << "' at " << span1 << endl;
   bool success = grid.PlaceWord(span1, word1);
-  
+
   cout << "Placement " << (success ? "successful" : "failed") << endl;
   grid.Print();
-  
+
   // Try to place another word that intersects
   const Span& span2 = grid.spans[1];
-  
+
   // Find a word that fits and intersects properly
   string word2;
   for (char c = 'A'; c <= 'Z'; c++) {
     word2 = string(span2.len, c);  // Fill with the same letter
-    
+
     Point intersection;
     if (grid.SpansIntersect(span1, span2, intersection)) {
       // Calculate position within each span
-      int pos1 = span1.vert ? 
-                  intersection.row - span1.point.row : 
+      int pos1 = span1.vert ?
+                  intersection.row - span1.point.row :
                   intersection.col - span1.point.col;
-      
-      int pos2 = span2.vert ? 
-                  intersection.row - span2.point.row : 
+
+      int pos2 = span2.vert ?
+                  intersection.row - span2.point.row :
                   intersection.col - span2.point.col;
-      
+
       // Make sure the intersection letter matches
       word2[pos2] = word1[pos1];
       break;
     }
   }
-  
+
   cout << "Placing word '" << word2 << "' at " << span2 << endl;
   success = grid.PlaceWord(span2, word2);
-  
+
   cout << "Placement " << (success ? "successful" : "failed") << endl;
   grid.Print();
-  
+
   // Remove the first word
   cout << "Removing word at " << span1 << endl;
   success = grid.RemoveWord(span1);
-  
+
   cout << "Removal " << (success ? "successful" : "failed") << endl;
   grid.Print();
 }
@@ -6923,35 +6923,35 @@ bool Solver::SolveRecursive(const Patterns& patterns, size_t index) {
   if (index >= patterns.size()) {
     return true;  // Success!
   }
-  
+
   // Get the current pattern to fill
   const Pattern& current = patterns[index];
-  
+
   // If the pattern is already filled (span has a word), move to the next one
   if (grid_.IsSpanFilled(current.span)) {
     return SolveRecursive(patterns, index + 1);
   }
-  
+
   // Find candidate words for this pattern
   vector<string> candidates = FindCandidateWords(current);
-  
+
   // Try each candidate
   for (const string& word : candidates) {
     // Place the word in the grid
     bool success = grid_.PlaceWord(current.span, word);
-    
+
     if (success) {
       // Recursively try to solve the rest of the grid
       if (SolveRecursive(patterns, index + 1)) {
         return true;  // Success!
       }
-      
+
       // If we get here, this word didn't lead to a solution.
       // Backtrack by removing the word from the grid.
       grid_.RemoveWord(current.span);
     }
   }
-  
+
   // If we tried all candidates and none worked, this is a dead end
   return false;
 }
@@ -6967,19 +6967,19 @@ To better understand the state of the grid, let's add a method to visualize word
 void Grid::PrintWithWordHighlights() const {
   // Create a grid of cell highlights
   vector<vector<char>> highlight(lines.size(), vector<char>(lines[0].size(), ' '));
-  
+
   // Mark each placed word with a unique label
   for (size_t i = 0; i < placed_words.size(); i++) {
     const auto& entry = placed_words[i];
     const Span& s = entry.first;
-    
+
     // Use letters A-Z, then recycle
     char label = 'A' + (i % 26);
-    
+
     Point p = s.point;
     for (int j = 0; j < s.len; j++) {
       highlight[p.row][p.col] = label;
-      
+
       if (s.vert) {
         p.row++;
       } else {
@@ -6987,25 +6987,25 @@ void Grid::PrintWithWordHighlights() const {
       }
     }
   }
-  
+
   // Print the grid with highlights
   for (size_t r = 0; r < lines.size(); r++) {
     // Print the grid line
     cout << lines[r] << "   ";
-    
+
     // Print the highlight line
     for (size_t c = 0; c < lines[r].size(); c++) {
       cout << highlight[r][c];
     }
-    
+
     cout << endl;
   }
-  
+
   // Print a legend
   cout << endl << "Words placed:" << endl;
   for (size_t i = 0; i < placed_words.size(); i++) {
     char label = 'A' + (i % 26);
-    cout << "  " << label << ": " << placed_words[i].second 
+    cout << "  " << label << ": " << placed_words[i].second
          << " at " << placed_words[i].first << endl;
   }
 }
@@ -7051,48 +7051,48 @@ struct PointEqual {
 
 struct Grid {
   // ... existing methods from previous chapters ...
-  
+
   // Helper method to get a reference to a cell
   char& CellAt(const Point& p) {
     assert(in_bounds(p));
     return lines[p.row][p.col];
   }
-  
+
   // Check if a word can be placed in a span
   bool IsWordPlaceable(const Span& s, const string& word) const {
     if (word.length() != s.len) {
       return false;  // Word length doesn't match span length
     }
-    
+
     string current = GetSpanContent(s);
-    
+
     for (size_t i = 0; i < current.length(); i++) {
       char existing = current[i];
       if (existing != '-' && existing != word[i]) {
         return false;  // Conflict with existing letter
       }
     }
-    
+
     return true;
   }
-  
+
   // Place a word in the grid
   bool PlaceWord(const Span& s, const string& word) {
     // Validate inputs
     if (word.length() != s.len) {
       return false;  // Word length doesn't match span length
     }
-    
+
     // Check if the word fits the current grid state
     if (!IsWordPlaceable(s, word)) {
       return false;  // Word doesn't fit
     }
-    
+
     // Place the word
     Point p = s.point;
     for (size_t i = 0; i < word.length(); i++) {
       CellAt(p) = word[i];
-      
+
       // Move to next position
       if (s.vert) {
         p.row++;
@@ -7100,13 +7100,13 @@ struct Grid {
         p.col++;
       }
     }
-    
+
     // Track this word placement
     placed_words.push_back(make_pair(s, word));
-    
+
     return true;
   }
-  
+
   // Remove a word from the grid
   bool RemoveWord(const Span& s) {
     // Find this span in our placed_words list
@@ -7118,37 +7118,37 @@ struct Grid {
                placed_span.len == s.len &&
                placed_span.vert == s.vert;
       });
-    
+
     // If we didn't find it, nothing to remove
     if (it == placed_words.end()) {
       return false;
     }
-    
+
     // Get the word that was placed
     string word = it->second;
-    
+
     // Remove from our tracking
     placed_words.erase(it);
-    
+
     // Build a set of points that are part of intersections
     unordered_set<Point, PointHash, PointEqual> intersection_points;
-    
+
     // Find all intersection points
     for (const auto& entry : placed_words) {
       const Span& other_span = entry.first;
-      
+
       // Skip if same orientation
       if (other_span.vert == s.vert) {
         continue;
       }
-      
+
       // Check for intersection
       Point intersection;
       if (SpansIntersect(s, other_span, intersection)) {
         intersection_points.insert(intersection);
       }
     }
-    
+
     // Remove the word, preserving intersections
     Point p = s.point;
     for (size_t i = 0; i < s.len; i++) {
@@ -7157,7 +7157,7 @@ struct Grid {
         // Not an intersection, clear the cell
         CellAt(p) = '-';
       }
-      
+
       // Move to next position
       if (s.vert) {
         p.row++;
@@ -7165,15 +7165,15 @@ struct Grid {
         p.col++;
       }
     }
-    
+
     return true;
   }
-  
+
   // Get all currently placed words
   vector<pair<Span, string>> GetPlacedWords() const {
     return placed_words;
   }
-  
+
   // Check if a span already has a word placed
   bool IsSpanFilled(const Span& s) const {
     for (const auto& entry : placed_words) {
@@ -7187,17 +7187,17 @@ struct Grid {
     }
     return false;
   }
-  
+
   // Get the last placed word
   pair<Span, string> GetLastPlacedWord() const {
     assert(!placed_words.empty());
     return placed_words.back();
   }
-  
+
   // Clear all placed words and reset the grid
   void ClearAllWords() {
     placed_words.clear();
-    
+
     // Reset all cells to empty
     for (size_t r = 0; r < lines.size(); r++) {
       for (size_t c = 0; c < lines[r].size(); c++) {
@@ -7207,24 +7207,24 @@ struct Grid {
       }
     }
   }
-  
+
   // Print the grid with word highlights
   void PrintWithWordHighlights() const {
     // Create a grid of cell highlights
     vector<vector<char>> highlight(lines.size(), vector<char>(lines[0].size(), ' '));
-    
+
     // Mark each placed word with a unique label
     for (size_t i = 0; i < placed_words.size(); i++) {
       const auto& entry = placed_words[i];
       const Span& s = entry.first;
-      
+
       // Use letters A-Z, then recycle
       char label = 'A' + (i % 26);
-      
+
       Point p = s.point;
       for (int j = 0; j < s.len; j++) {
         highlight[p.row][p.col] = label;
-        
+
         if (s.vert) {
           p.row++;
         } else {
@@ -7232,29 +7232,29 @@ struct Grid {
         }
       }
     }
-    
+
     // Print the grid with highlights
     for (size_t r = 0; r < lines.size(); r++) {
       // Print the grid line
       cout << lines[r] << "   ";
-      
+
       // Print the highlight line
       for (size_t c = 0; c < lines[r].size(); c++) {
         cout << highlight[r][c];
       }
-      
+
       cout << endl;
     }
-    
+
     // Print a legend
     cout << endl << "Words placed:" << endl;
     for (size_t i = 0; i < placed_words.size(); i++) {
       char label = 'A' + (i % 26);
-      cout << "  " << label << ": " << placed_words[i].second 
+      cout << "  " << label << ": " << placed_words[i].second
            << " at " << placed_words[i].first << endl;
     }
   }
-  
+
   // ... existing members ...
   vector<pair<Span, string>> placed_words;  // Track placed words
 };
@@ -7268,13 +7268,13 @@ int main() {
   // Load a grid
   Grid grid("Crossword Puzzle");
   grid.LoadFromFile("test.txt");
-  
+
   // Test word placement
   TestWordPlacement(grid);
-  
+
   // Print with highlights
   grid.PrintWithWordHighlights();
-  
+
   return 0;
 }
 ```
@@ -7323,37 +7323,37 @@ Let's start by enhancing our Grid class to track and prevent duplicate words:
 ```cpp
 struct Grid {
   // ... existing code from previous chapters ...
-  
+
   // New data structure to track used words
   unordered_set<string> used_words;
-  
+
   // Check if a word is already used in the grid
   bool IsWordUsed(const string& word) const {
     return used_words.find(word) != used_words.end();
   }
-  
+
   // Enhanced PlaceWord that prevents duplicates
   bool PlaceWord(const Span& s, const string& word, bool allow_duplicates = false) {
     // Check for duplicates
     if (!allow_duplicates && IsWordUsed(word)) {
       return false;  // Word is already used elsewhere
     }
-    
+
     // Existing validation
     if (word.length() != s.len) {
       return false;  // Word length doesn't match span length
     }
-    
+
     // Check if the word fits the current grid state
     if (!IsWordPlaceable(s, word)) {
       return false;  // Word doesn't fit
     }
-    
+
     // Place the word
     Point p = s.point;
     for (size_t i = 0; i < word.length(); i++) {
       CellAt(p) = word[i];
-      
+
       // Move to next position
       if (s.vert) {
         p.row++;
@@ -7361,14 +7361,14 @@ struct Grid {
         p.col++;
       }
     }
-    
+
     // Track this word placement
     placed_words.push_back(make_pair(s, word));
     used_words.insert(word);
-    
+
     return true;
   }
-  
+
   // Enhanced RemoveWord that updates used_words
   bool RemoveWord(const Span& s) {
     // Find this span in our placed_words list
@@ -7380,18 +7380,18 @@ struct Grid {
                placed_span.len == s.len &&
                placed_span.vert == s.vert;
       });
-    
+
     // If we didn't find it, nothing to remove
     if (it == placed_words.end()) {
       return false;
     }
-    
+
     // Get the word that was placed
     string word = it->second;
-    
+
     // Remove from our tracking
     placed_words.erase(it);
-    
+
     // Check if the word appears elsewhere before removing from used_words
     bool word_used_elsewhere = false;
     for (const auto& entry : placed_words) {
@@ -7400,22 +7400,22 @@ struct Grid {
         break;
       }
     }
-    
+
     if (!word_used_elsewhere) {
       used_words.erase(word);
     }
-    
+
     // Rest of the removal logic (preserving intersections)
     // ... existing code from Chapter 17 ...
-    
+
     return true;
   }
-  
+
   // Reset word usage tracking
   void ClearAllWords() {
     placed_words.clear();
     used_words.clear();
-    
+
     // Reset all cells to empty
     for (size_t r = 0; r < lines.size(); r++) {
       for (size_t c = 0; c < lines[r].size(); c++) {
@@ -7442,14 +7442,14 @@ In crossword construction, not all duplicates are equally problematic. Common sh
 ```cpp
 struct Grid {
   // ... existing code ...
-  
+
   // Enhanced duplicate prevention with word length consideration
   bool ShouldAllowDuplicate(const string& word) const {
     // Never allow duplicates of words longer than 3 characters
     if (word.length() > 3) {
       return false;
     }
-    
+
     // For 3-letter words, check how many times it's already used
     if (word.length() == 3) {
       int usage_count = 0;
@@ -7458,11 +7458,11 @@ struct Grid {
           usage_count++;
         }
       }
-      
+
       // Allow at most one duplicate for 3-letter words
       return usage_count < 1;
     }
-    
+
     // For 2-letter words, be even more permissive
     if (word.length() == 2) {
       int usage_count = 0;
@@ -7471,15 +7471,15 @@ struct Grid {
           usage_count++;
         }
       }
-      
+
       // Allow at most two duplicates for 2-letter words
       return usage_count < 2;
     }
-    
+
     // Default - don't allow duplicates
     return false;
   }
-  
+
   // Further enhanced PlaceWord
   bool PlaceWord(const Span& s, const string& word, bool ignore_duplicate_rules = false) {
     // Check for duplicates
@@ -7489,7 +7489,7 @@ struct Grid {
         return false;  // Reject this duplicate
       }
     }
-    
+
     // Rest of the placement logic
     // ... existing code ...
   }
@@ -7506,30 +7506,30 @@ Now let's update our Solver class to work with the enhanced Grid:
 class Solver {
 public:
   // ... existing code ...
-  
+
   // Add options for duplicate prevention
   void SetAllowDuplicates(bool allow) {
     allow_duplicates_ = allow;
   }
-  
+
 private:
   // ... existing code ...
-  
+
   bool SolveRecursive(const Patterns& patterns, size_t index) {
     // ... existing code ...
-    
+
     for (const string& word : candidates) {
       // Place the word in the grid, respecting duplicate prevention
       bool success = grid_.PlaceWord(current.span, word, allow_duplicates_);
-      
+
       if (success) {
         // ... rest of solving logic ...
       }
     }
-    
+
     // ... existing code ...
   }
-  
+
   // Configuration options
   bool allow_duplicates_ = false;
 };
@@ -7544,10 +7544,10 @@ We also need to update the `FindCandidateWords` method to filter out words that 
 ```cpp
 vector<string> Solver::FindCandidateWords(const Pattern& pattern) {
   vector<string> candidates;
-  
+
   // Find all words in the library that match this pattern
   auto matches = lib_.FindMatchingWords(pattern.pattern);
-  
+
   for (const Word* word : matches) {
     // Check for duplicates if required
     if (!allow_duplicates_ && grid_.IsWordUsed(word->word)) {
@@ -7556,13 +7556,13 @@ vector<string> Solver::FindCandidateWords(const Pattern& pattern) {
         continue;  // Skip this duplicate
       }
     }
-    
+
     // Verify that the word fits the pattern
     if (grid_.IsWordPlaceable(pattern.span, word->word)) {
       candidates.push_back(word->word);
     }
   }
-  
+
   return candidates;
 }
 ```
@@ -7576,7 +7576,7 @@ Another way to improve our crossword solutions is to prefer more common or "bett
 ```cpp
 struct Word {
   // ... existing code ...
-  
+
   // Add a quality score (higher is better)
   int quality = 1;
 };
@@ -7584,32 +7584,32 @@ struct Word {
 // Enhanced candidate finding with word scoring
 vector<string> Solver::FindCandidateWords(const Pattern& pattern) {
   vector<pair<string, int>> scored_candidates;
-  
+
   // Find all words in the library that match this pattern
   auto matches = lib_.FindMatchingWords(pattern.pattern);
-  
+
   for (const Word* word : matches) {
     // Check for duplicates
     // ... existing duplicate checking ...
-    
+
     // Verify that the word fits the pattern
     if (grid_.IsWordPlaceable(pattern.span, word->word)) {
       scored_candidates.push_back(make_pair(word->word, word->quality));
     }
   }
-  
+
   // Sort by quality (higher first)
   sort(scored_candidates.begin(), scored_candidates.end(),
        [](const pair<string, int>& a, const pair<string, int>& b) {
          return a.second > b.second;
        });
-  
+
   // Extract just the words
   vector<string> candidates;
   for (const auto& pair : scored_candidates) {
     candidates.push_back(pair.first);
   }
-  
+
   return candidates;
 }
 ```
@@ -7624,13 +7624,13 @@ To understand how duplicate prevention affects our solving process, let's add so
 class Solver {
 public:
   // ... existing code ...
-  
+
   // Statistics about duplicate prevention
   struct DuplicateStats {
     int total_attempts = 0;
     int duplicates_prevented = 0;
     int duplicates_allowed = 0;
-    
+
     void Print() const {
       cout << "Duplicate prevention statistics:" << endl;
       cout << "  Total word placement attempts: " << total_attempts << endl;
@@ -7638,25 +7638,25 @@ public:
       cout << "  Duplicates allowed: " << duplicates_allowed << endl;
     }
   };
-  
+
   // Get the current duplicate stats
   const DuplicateStats& GetDuplicateStats() const {
     return dup_stats_;
   }
-  
+
 private:
   // ... existing code ...
-  
+
   bool SolveRecursive(const Patterns& patterns, size_t index) {
     // ... existing code ...
-    
+
     for (const string& word : candidates) {
       dup_stats_.total_attempts++;
-      
+
       // Check for duplicates before placement
       bool is_duplicate = grid_.IsWordUsed(word);
       bool should_place = true;
-      
+
       if (is_duplicate) {
         if (allow_duplicates_ || grid_.ShouldAllowDuplicate(word)) {
           dup_stats_.duplicates_allowed++;
@@ -7665,19 +7665,19 @@ private:
           should_place = false;
         }
       }
-      
+
       if (should_place) {
         bool success = grid_.PlaceWord(current.span, word, allow_duplicates_);
-        
+
         if (success) {
           // ... rest of solving logic ...
         }
       }
     }
-    
+
     // ... existing code ...
   }
-  
+
   // Statistics tracking
   DuplicateStats dup_stats_;
 };
@@ -7693,26 +7693,26 @@ Let's create a test function to demonstrate our duplicate prevention:
 void TestDuplicatePrevention(Grid& grid, Library& lib) {
   // Clear the grid
   grid.ClearAllWords();
-  
+
   // Fill spans if needed
   if (grid.spans.empty()) {
     grid.FillSpans();
   }
-  
+
   cout << "Initial grid:" << endl;
   grid.Print();
-  
+
   // Find some spans
   if (grid.spans.size() < 2) {
     cout << "Not enough spans for testing" << endl;
     return;
   }
-  
+
   // Find a word from the library
   string test_word;
   for (int i = 0; i < 1000; i++) {  // Try up to 1000 words
     string word = lib.GetWord(i);
-    
+
     // Find a span with matching length
     for (const Span& s : grid.spans) {
       if (s.len == word.length() && grid.IsWordPlaceable(s, word)) {
@@ -7720,15 +7720,15 @@ void TestDuplicatePrevention(Grid& grid, Library& lib) {
         break;
       }
     }
-    
+
     if (!test_word.empty()) break;
   }
-  
+
   if (test_word.empty()) {
     cout << "Couldn't find a suitable test word" << endl;
     return;
   }
-  
+
   // Find spans where this word could be placed
   vector<Span> matching_spans;
   for (const Span& s : grid.spans) {
@@ -7736,23 +7736,23 @@ void TestDuplicatePrevention(Grid& grid, Library& lib) {
       matching_spans.push_back(s);
     }
   }
-  
+
   if (matching_spans.size() < 2) {
     cout << "Not enough matching spans for testing" << endl;
     return;
   }
-  
+
   // Try placing the word twice
   cout << "Placing word '" << test_word << "' at " << matching_spans[0] << endl;
   bool success1 = grid.PlaceWord(matching_spans[0], test_word);
   cout << "First placement " << (success1 ? "successful" : "failed") << endl;
-  
+
   cout << "Trying to place the same word at " << matching_spans[1] << endl;
   bool success2 = grid.PlaceWord(matching_spans[1], test_word);
   cout << "Second placement " << (success2 ? "successful" : "failed") << endl;
-  
+
   grid.Print();
-  
+
   // Try with override
   if (!success2) {
     cout << "Trying again with duplicate override:" << endl;
@@ -7792,7 +7792,7 @@ struct Word {
   Word() {}
   Word(string s, int q = 1) : word(s), quality(q) {}
   int len() const { return word.length(); }
-  
+
   string word;
   int quality;  // Higher is better
 };
@@ -7802,22 +7802,22 @@ struct Word {
 // Enhanced Grid with duplicate prevention
 struct Grid {
   // ... existing code from previous chapters ...
-  
+
   // New data structure to track used words
   unordered_set<string> used_words;
-  
+
   // Check if a word is already used in the grid
   bool IsWordUsed(const string& word) const {
     return used_words.find(word) != used_words.end();
   }
-  
+
   // Enhanced duplicate prevention with word length consideration
   bool ShouldAllowDuplicate(const string& word) const {
     // Never allow duplicates of words longer than 3 characters
     if (word.length() > 3) {
       return false;
     }
-    
+
     // For 3-letter words, check how many times it's already used
     if (word.length() == 3) {
       int usage_count = 0;
@@ -7826,11 +7826,11 @@ struct Grid {
           usage_count++;
         }
       }
-      
+
       // Allow at most one duplicate for 3-letter words
       return usage_count < 1;
     }
-    
+
     // For 2-letter words, be even more permissive
     if (word.length() == 2) {
       int usage_count = 0;
@@ -7839,15 +7839,15 @@ struct Grid {
           usage_count++;
         }
       }
-      
+
       // Allow at most two duplicates for 2-letter words
       return usage_count < 2;
     }
-    
+
     // Default - don't allow duplicates
     return false;
   }
-  
+
   // Enhanced PlaceWord that prevents duplicates
   bool PlaceWord(const Span& s, const string& word, bool ignore_duplicate_rules = false) {
     // Check for duplicates
@@ -7857,22 +7857,22 @@ struct Grid {
         return false;  // Reject this duplicate
       }
     }
-    
+
     // Existing validation
     if (word.length() != s.len) {
       return false;  // Word length doesn't match span length
     }
-    
+
     // Check if the word fits the current grid state
     if (!IsWordPlaceable(s, word)) {
       return false;  // Word doesn't fit
     }
-    
+
     // Place the word
     Point p = s.point;
     for (size_t i = 0; i < word.length(); i++) {
       CellAt(p) = word[i];
-      
+
       // Move to next position
       if (s.vert) {
         p.row++;
@@ -7880,18 +7880,18 @@ struct Grid {
         p.col++;
       }
     }
-    
+
     // Track this word placement
     placed_words.push_back(make_pair(s, word));
     used_words.insert(word);
-    
+
     return true;
   }
-  
+
   // Enhanced RemoveWord that updates used_words
   bool RemoveWord(const Span& s) {
     // ... find and remove the word (existing code) ...
-    
+
     // Check if the word appears elsewhere before removing from used_words
     bool word_used_elsewhere = false;
     for (const auto& entry : placed_words) {
@@ -7900,19 +7900,19 @@ struct Grid {
         break;
       }
     }
-    
+
     if (!word_used_elsewhere) {
       used_words.erase(word);
     }
-    
+
     // ... rest of the removal logic ...
   }
-  
+
   // Reset word usage tracking
   void ClearAllWords() {
     placed_words.clear();
     used_words.clear();
-    
+
     // Reset all cells to empty
     for (size_t r = 0; r < lines.size(); r++) {
       for (size_t c = 0; c < lines[r].size(); c++) {
@@ -7928,41 +7928,41 @@ struct Grid {
 class Solver {
 public:
   Solver(Grid& g, Library& l) : grid_(g), lib_(l), allow_duplicates_(false) {}
-  
+
   // Add options for duplicate prevention
   void SetAllowDuplicates(bool allow) {
     allow_duplicates_ = allow;
   }
-  
+
   bool Solve() {
     // Make sure spans are calculated
     if (grid_.spans.empty()) {
       grid_.FillSpans();
     }
-    
+
     // Get patterns sorted by constraint
     Patterns patterns = grid_.GetSortedPatterns();
-    
+
     cout << "Starting to solve with " << patterns.size() << " patterns" << endl;
-    
+
     // Reset statistics
     dup_stats_ = DuplicateStats();
-    
+
     // Start the recursive solving process
     bool result = SolveRecursive(patterns, 0);
-    
+
     // Print stats
     dup_stats_.Print();
-    
+
     return result;
   }
-  
+
   // Statistics about duplicate prevention
   struct DuplicateStats {
     int total_attempts = 0;
     int duplicates_prevented = 0;
     int duplicates_allowed = 0;
-    
+
     void Print() const {
       cout << "Duplicate prevention statistics:" << endl;
       cout << "  Total word placement attempts: " << total_attempts << endl;
@@ -7970,43 +7970,43 @@ public:
       cout << "  Duplicates allowed: " << duplicates_allowed << endl;
     }
   };
-  
+
   // Get the current duplicate stats
   const DuplicateStats& GetDuplicateStats() const {
     return dup_stats_;
   }
-  
+
 private:
   bool SolveRecursive(const Patterns& patterns, size_t index) {
     // Base case: we've filled all patterns
     if (index >= patterns.size()) {
       return true;  // Success!
     }
-    
+
     // Get the current pattern to fill
     const Pattern& current = patterns[index];
-    
+
     cout << "Solving pattern " << index << ": " << current.pattern << endl;
-    
+
     // If the pattern is already filled, move to the next one
     if (current.IsFilled()) {
       cout << "Pattern already filled, moving to next" << endl;
       return SolveRecursive(patterns, index + 1);
     }
-    
+
     // Find candidate words for this pattern
     vector<string> candidates = FindCandidateWords(current);
-    
+
     cout << "Found " << candidates.size() << " candidates" << endl;
-    
+
     // Try each candidate
     for (const string& word : candidates) {
       dup_stats_.total_attempts++;
-      
+
       // Check for duplicates before placement
       bool is_duplicate = grid_.IsWordUsed(word);
       bool should_place = true;
-      
+
       if (is_duplicate) {
         if (allow_duplicates_ || grid_.ShouldAllowDuplicate(word)) {
           dup_stats_.duplicates_allowed++;
@@ -8015,19 +8015,19 @@ private:
           should_place = false;
         }
       }
-      
+
       if (should_place) {
         cout << "Trying word: " << word << endl;
-        
+
         // Place the word in the grid
         bool success = grid_.PlaceWord(current.span, word, allow_duplicates_);
-        
+
         if (success) {
           // Recursively try to solve the rest of the grid
           if (SolveRecursive(patterns, index + 1)) {
             return true;  // Success!
           }
-          
+
           cout << "Backtracking from word: " << word << endl;
           // If we get here, this word didn't lead to a solution.
           // Backtrack by removing the word from the grid.
@@ -8035,18 +8035,18 @@ private:
         }
       }
     }
-    
+
     cout << "No solution found for pattern " << index << endl;
     // If we tried all candidates and none worked, this is a dead end
     return false;
   }
-  
+
   vector<string> FindCandidateWords(const Pattern& pattern) {
     vector<pair<string, int>> scored_candidates;
-    
+
     // Find all words in the library that match this pattern
     auto matches = lib_.FindMatchingWords(pattern.pattern);
-    
+
     for (const Word* word : matches) {
       // Check for duplicates
       if (!allow_duplicates_ && grid_.IsWordUsed(word->word)) {
@@ -8055,28 +8055,28 @@ private:
           continue;  // Skip this duplicate
         }
       }
-      
+
       // Verify that the word fits the pattern
       if (grid_.IsWordPlaceable(pattern.span, word->word)) {
         scored_candidates.push_back(make_pair(word->word, word->quality));
       }
     }
-    
+
     // Sort by quality (higher first)
     sort(scored_candidates.begin(), scored_candidates.end(),
          [](const pair<string, int>& a, const pair<string, int>& b) {
            return a.second > b.second;
          });
-    
+
     // Extract just the words
     vector<string> candidates;
     for (const auto& pair : scored_candidates) {
       candidates.push_back(pair.first);
     }
-    
+
     return candidates;
   }
-  
+
   Grid& grid_;
   Library& lib_;
   bool allow_duplicates_;
@@ -8092,38 +8092,38 @@ int main() {
   // Load a library of words
   Library lib;
   lib.ReadFromFile("top_12000.txt");
-  
+
   // Create and load a grid
   Grid grid("Crossword Puzzle");
   grid.LoadFromFile("test.txt");
-  
+
   // Test duplicate prevention
   TestDuplicatePrevention(grid, lib);
-  
+
   // Create a solver with duplicate prevention
   Solver solver(grid, lib);
   solver.SetAllowDuplicates(false);  // Prevent duplicates (default)
-  
+
   // Solve the grid
   grid.ClearAllWords();
   cout << "\nSolving with duplicate prevention:" << endl;
   bool success = solver.Solve();
-  
+
   // Print the result
   cout << endl << "Solution " << (success ? "found" : "not found") << ":" << endl;
   grid.Print();
-  
+
   // Try again without duplicate prevention if the first attempt failed
   if (!success) {
     grid.ClearAllWords();
     solver.SetAllowDuplicates(true);
     cout << "\nSolving without duplicate prevention:" << endl;
     success = solver.Solve();
-    
+
     cout << endl << "Solution " << (success ? "found" : "not found") << ":" << endl;
     grid.Print();
   }
-  
+
   return 0;
 }
 ```
@@ -8188,51 +8188,51 @@ Let's start by defining a new structure to manage our partial character hash:
 class PartialCharacterHash {
 public:
   PartialCharacterHash() {}
-  
+
   // Add a word to the hash
   void AddWord(Word* word) {
     const string& str = word->word;
     int len = str.length();
-    
+
     // Store the word in the length-based index
     length_index_[len].push_back(word);
-    
+
     // Store word in character-position indices
     for (int i = 0; i < len; i++) {
       char c = str[i];
       char_pos_index_[make_pair(i, c)].push_back(word);
     }
   }
-  
+
   // Find words matching a pattern
   Words FindMatches(const string& pattern) const {
     Words result;
-    
+
     // First, check if we have an exact pattern match
     auto it = pattern_index_.find(pattern);
     if (it != pattern_index_.end()) {
       return it->second;
     }
-    
+
     // If not, use the partial character hash
     int len = pattern.length();
-    
+
     // Get all words of the right length
     auto len_it = length_index_.find(len);
     if (len_it == length_index_.end()) {
       return result;  // No words of this length
     }
-    
+
     // Find the most restrictive position (one with a specified character)
     int best_pos = -1;
     char best_char = 0;
     int best_count = INT_MAX;
-    
+
     for (int i = 0; i < len; i++) {
       if (pattern[i] != '-') {
         auto count_it = char_pos_counts_.find(make_pair(i, pattern[i]));
         int count = (count_it != char_pos_counts_.end()) ? count_it->second : 0;
-        
+
         if (count < best_count) {
           best_pos = i;
           best_char = pattern[i];
@@ -8240,7 +8240,7 @@ public:
         }
       }
     }
-    
+
     // If we found a restrictive position, use it to filter
     if (best_pos >= 0) {
       auto char_pos_it = char_pos_index_.find(make_pair(best_pos, best_char));
@@ -8260,48 +8260,48 @@ public:
         }
       }
     }
-    
+
     // Cache this result for future lookups
     pattern_index_[pattern] = result;
-    
+
     return result;
   }
-  
+
   // Build counts of character-position pairs
   void BuildCounts() {
     for (const auto& entry : char_pos_index_) {
       char_pos_counts_[entry.first] = entry.second.size();
     }
   }
-  
+
 private:
   // Check if a word matches a pattern
   bool MatchesPattern(const string& word, const string& pattern) const {
     if (word.length() != pattern.length()) {
       return false;
     }
-    
+
     for (size_t i = 0; i < pattern.length(); i++) {
       if (pattern[i] != '-' && pattern[i] != word[i]) {
         return false;
       }
     }
-    
+
     return true;
   }
-  
+
   // Length-based index
   unordered_map<int, Words> length_index_;
-  
+
   // Character-position index
   unordered_map<pair<int, char>, Words, PairHash> char_pos_index_;
-  
+
   // Character-position counts for determining most restrictive positions
   unordered_map<pair<int, char>, int, PairHash> char_pos_counts_;
-  
+
   // Cache for previously computed pattern matches
   mutable unordered_map<string, Words> pattern_index_;
-  
+
   // Helper for hashing pairs
   struct PairHash {
     size_t operator()(const pair<int, char>& p) const {
@@ -8330,13 +8330,13 @@ public:
       delete w;
     }
   }
-  
+
   // Find words matching a pattern
   Words FindMatchingWords(const string& pattern) const {
     // Use the new partial character hash for lookups
     return partial_hash_.FindMatches(pattern);
   }
-  
+
   // Read words from a file
   void ReadFromFile(string filename) {
     ifstream f;
@@ -8350,62 +8350,62 @@ public:
         if (line[len - 1] == '\r') {
           line = line.substr(0, len - 1);
         }
-        
+
         Word* w = new Word(line);
         words_.push_back(w);
-        
+
         // Add to the partial character hash
         partial_hash_.AddWord(w);
-        
+
         // Also add to the traditional pattern hash for comparison
         CreatePatternHash(w);
       }
     }
-    
+
     f.close();
-    
+
     // Build the character-position counts
     partial_hash_.BuildCounts();
-    
+
     cout << "Read " << words_.size() << " words from file '" << filename << "'" << endl;
   }
-  
+
   // ... other existing methods ...
-  
+
   // Benchmark the performance of different lookup methods
   void BenchmarkLookups() const {
     vector<string> test_patterns = {
       "THE", "C-T", "--G", "-----", "A-----", "------", "-------"
     };
-    
+
     cout << "Benchmarking pattern lookups:" << endl;
-    
+
     for (const string& pattern : test_patterns) {
       // Time the traditional pattern hash
       auto start1 = chrono::high_resolution_clock::now();
-      
+
       auto it = word_map_.find(pattern);
       size_t count1 = (it != word_map_.end()) ? it->second.size() : 0;
-      
+
       auto end1 = chrono::high_resolution_clock::now();
       auto duration1 = chrono::duration_cast<chrono::microseconds>(end1 - start1);
-      
+
       // Time the partial character hash
       auto start2 = chrono::high_resolution_clock::now();
-      
+
       Words matches = partial_hash_.FindMatches(pattern);
       size_t count2 = matches.size();
-      
+
       auto end2 = chrono::high_resolution_clock::now();
       auto duration2 = chrono::duration_cast<chrono::microseconds>(end2 - start2);
-      
+
       cout << "Pattern '" << pattern << "':" << endl;
       cout << "  Traditional hash: " << count1 << " words in " << duration1.count() << " μs" << endl;
       cout << "  Partial char hash: " << count2 << " words in " << duration2.count() << " μs" << endl;
       cout << "  Speedup: " << (duration1.count() > 0 ? (float)duration1.count() / duration2.count() : 0) << "x" << endl;
     }
   }
-  
+
 private:
   Words words_;                // All words
   WordMap word_map_;           // Traditional pattern hash
@@ -8428,19 +8428,19 @@ Let's refine our pattern matching algorithm to be even more efficient:
 Words PartialCharacterHash::FindMatches(const string& pattern) const {
   Words result;
   int len = pattern.length();
-  
+
   // First check the cache
   auto cache_it = pattern_index_.find(pattern);
   if (cache_it != pattern_index_.end()) {
     return cache_it->second;
   }
-  
+
   // Get words of the right length
   auto len_it = length_index_.find(len);
   if (len_it == length_index_.end()) {
     return result;  // No words of this length
   }
-  
+
   // Count the number of specified (non-wildcard) characters
   int specified_count = 0;
   for (char c : pattern) {
@@ -8448,12 +8448,12 @@ Words PartialCharacterHash::FindMatches(const string& pattern) const {
       specified_count++;
     }
   }
-  
+
   // If all wildcards, return all words of this length
   if (specified_count == 0) {
     return len_it->second;
   }
-  
+
   // If only one character is specified, use the character-position index directly
   if (specified_count == 1) {
     int pos = -1;
@@ -8463,26 +8463,26 @@ Words PartialCharacterHash::FindMatches(const string& pattern) const {
         break;
       }
     }
-    
+
     auto char_pos_it = char_pos_index_.find(make_pair(pos, pattern[pos]));
     if (char_pos_it != char_pos_index_.end()) {
       return char_pos_it->second;
     }
     return result;
   }
-  
+
   // For patterns with multiple specified characters, use a more complex approach
-  
+
   // Find the most restrictive character position
   int best_pos = -1;
   char best_char = 0;
   int best_count = INT_MAX;
-  
+
   for (int i = 0; i < len; i++) {
     if (pattern[i] != '-') {
       auto count_it = char_pos_counts_.find(make_pair(i, pattern[i]));
       int count = (count_it != char_pos_counts_.end()) ? count_it->second : 0;
-      
+
       if (count < best_count && count > 0) {
         best_pos = i;
         best_char = pattern[i];
@@ -8490,7 +8490,7 @@ Words PartialCharacterHash::FindMatches(const string& pattern) const {
       }
     }
   }
-  
+
   // If we found a restrictive position, use it as a starting filter
   if (best_pos >= 0) {
     auto char_pos_it = char_pos_index_.find(make_pair(best_pos, best_char));
@@ -8498,24 +8498,24 @@ Words PartialCharacterHash::FindMatches(const string& pattern) const {
       // Check each candidate against the full pattern
       for (Word* word : char_pos_it->second) {
         bool match = true;
-        
+
         for (int i = 0; i < len; i++) {
           if (pattern[i] != '-' && pattern[i] != word->word[i]) {
             match = false;
             break;
           }
         }
-        
+
         if (match) {
           result.push_back(word);
         }
       }
     }
   }
-  
+
   // Cache the result
   pattern_index_[pattern] = result;
-  
+
   return result;
 }
 ```
@@ -8535,18 +8535,18 @@ For an even more efficient implementation, we can use bitsets to represent which
 class BitsetCharHash {
 public:
   BitsetCharHash() {}
-  
+
   // Add a word to the hash
   void AddWord(Word* word) {
     const string& str = word->word;
     int len = str.length();
-    
+
     // Store word in length index
     length_index_[len].push_back(word);
-    
+
     // Create a vector of bitsets for this word
     vector<bitset<26>> char_masks(len);
-    
+
     // Set bits for each character position
     for (int i = 0; i < len; i++) {
       char c = str[i];
@@ -8555,32 +8555,32 @@ public:
         char_masks[i].set(bit_pos);
       }
     }
-    
+
     // Store the word and its bitsets
     word_bitsets_[word] = char_masks;
   }
-  
+
   // Find words that match a pattern
   Words FindMatches(const string& pattern) const {
     Words result;
     int len = pattern.length();
-    
+
     // Check cache first
     auto cache_it = pattern_cache_.find(pattern);
     if (cache_it != pattern_cache_.end()) {
       return cache_it->second;
     }
-    
+
     // Get words of the right length
     auto len_it = length_index_.find(len);
     if (len_it == length_index_.end()) {
       return result;  // No words of this length
     }
-    
+
     // Create a pattern mask
     vector<bitset<26>> pattern_masks(len);
     vector<bool> is_wildcard(len, false);
-    
+
     for (int i = 0; i < len; i++) {
       char c = pattern[i];
       if (c == '-') {
@@ -8593,12 +8593,12 @@ public:
         pattern_masks[i].set(bit_pos);
       }
     }
-    
+
     // Check each word of the right length
     for (Word* word : len_it->second) {
       const auto& word_masks = word_bitsets_.at(word);
       bool match = true;
-      
+
       for (int i = 0; i < len; i++) {
         if (!is_wildcard[i]) {
           // Check if the word has the required character at this position
@@ -8608,25 +8608,25 @@ public:
           }
         }
       }
-      
+
       if (match) {
         result.push_back(word);
       }
     }
-    
+
     // Cache the result
     pattern_cache_[pattern] = result;
-    
+
     return result;
   }
-  
+
 private:
   // Length-based index
   unordered_map<int, Words> length_index_;
-  
+
   // Word to bitset mapping
   unordered_map<Word*, vector<bitset<26>>> word_bitsets_;
-  
+
   // Pattern cache
   mutable unordered_map<string, Words> pattern_cache_;
 };
@@ -8651,13 +8651,13 @@ void PerformanceAnalysis(const Library& lib) {
     "------",  // All wildcards (medium)
     "--------" // All wildcards (long)
   };
-  
+
   cout << "Performance Analysis:" << endl;
   cout << "=====================" << endl;
-  
+
   for (const string& pattern : test_patterns) {
     cout << "Pattern: '" << pattern << "'" << endl;
-    
+
     // Measure the traditional pattern hash
     auto start1 = chrono::high_resolution_clock::now();
     for (int i = 0; i < 1000; i++) {
@@ -8665,7 +8665,7 @@ void PerformanceAnalysis(const Library& lib) {
     }
     auto end1 = chrono::high_resolution_clock::now();
     auto duration1 = chrono::duration_cast<chrono::milliseconds>(end1 - start1);
-    
+
     // Measure the partial character hash
     auto start2 = chrono::high_resolution_clock::now();
     for (int i = 0; i < 1000; i++) {
@@ -8673,7 +8673,7 @@ void PerformanceAnalysis(const Library& lib) {
     }
     auto end2 = chrono::high_resolution_clock::now();
     auto duration2 = chrono::duration_cast<chrono::milliseconds>(end2 - start2);
-    
+
     // Measure the bitset hash
     auto start3 = chrono::high_resolution_clock::now();
     for (int i = 0; i < 1000; i++) {
@@ -8681,7 +8681,7 @@ void PerformanceAnalysis(const Library& lib) {
     }
     auto end3 = chrono::high_resolution_clock::now();
     auto duration3 = chrono::duration_cast<chrono::milliseconds>(end3 - start3);
-    
+
     cout << "  Traditional: " << duration1.count() << " ms" << endl;
     cout << "  Partial Char: " << duration2.count() << " ms" << endl;
     cout << "  Bitset:       " << duration3.count() << " ms" << endl;
@@ -8704,7 +8704,7 @@ void AnalyzeMemoryUsage(const Library& lib) {
   size_t traditional_size = lib.EstimateTraditionalHashSize();
   size_t partial_size = lib.EstimatePartialHashSize();
   size_t bitset_size = lib.EstimateBitsetHashSize();
-  
+
   cout << "Memory Usage Analysis:" << endl;
   cout << "======================" << endl;
   cout << "  Traditional Hash: " << traditional_size / (1024 * 1024) << " MB" << endl;
@@ -8732,7 +8732,7 @@ Words Library::FindMatchingWords(const string& pattern) const {
       break;
     }
   }
-  
+
   if (!has_wildcard) {
     // For exact patterns, use the traditional hash
     auto it = word_map_.find(pattern);
@@ -8741,7 +8741,7 @@ Words Library::FindMatchingWords(const string& pattern) const {
     }
     return Words();
   }
-  
+
   // For wildcard patterns, use the partial character hash
   return partial_hash_.FindMatches(pattern);
 }
@@ -8764,7 +8764,7 @@ public:
       delete w;
     }
   }
-  
+
   // Find words matching a pattern using the optimal approach
   Words FindMatchingWords(const string& pattern) const {
     // Check if this is an exact pattern (no wildcards)
@@ -8775,7 +8775,7 @@ public:
         break;
       }
     }
-    
+
     if (!has_wildcard) {
       // For exact patterns, use the traditional hash
       auto it = word_map_.find(pattern);
@@ -8784,7 +8784,7 @@ public:
       }
       return Words();
     }
-    
+
     // For wildcard patterns, use the best approach based on pattern
     if (pattern.length() <= 3) {
       // For short patterns, the traditional hash might be fast enough
@@ -8793,13 +8793,13 @@ public:
         return it->second;
       }
     }
-    
+
     // For longer or more complex patterns, use the partial character hash
     return partial_hash_.FindMatches(pattern);
   }
-  
+
   // ... other methods ...
-  
+
   // Various lookup methods for comparison
   Words FindMatchingWordsTraditional(const string& pattern) const {
     auto it = word_map_.find(pattern);
@@ -8808,15 +8808,15 @@ public:
     }
     return Words();
   }
-  
+
   Words FindMatchingWordsPartial(const string& pattern) const {
     return partial_hash_.FindMatches(pattern);
   }
-  
+
   Words FindMatchingWordsBitset(const string& pattern) const {
     return bitset_hash_.FindMatches(pattern);
   }
-  
+
 private:
   Words words_;
   WordMap word_map_;
@@ -8835,36 +8835,36 @@ The improved pattern matching performance directly benefits our crossword solver
 ```cpp
 vector<string> Solver::FindCandidateWords(const Pattern& pattern) {
   vector<string> candidates;
-  
+
   // Use our optimized matching function
   auto matches = lib_.FindMatchingWords(pattern.pattern);
-  
+
   // Time the matching
   auto start = chrono::high_resolution_clock::now();
-  
+
   // Process matches
   for (const Word* word : matches) {
     // Apply other constraints (no duplicates, etc.)
-    if (!allow_duplicates_ && grid_.IsWordUsed(word->word) && 
+    if (!allow_duplicates_ && grid_.IsWordUsed(word->word) &&
         !grid_.ShouldAllowDuplicate(word->word)) {
       continue;
     }
-    
+
     // Verify the word fits in the grid
     if (grid_.IsWordPlaceable(pattern.span, word->word)) {
       candidates.push_back(word->word);
     }
   }
-  
+
   auto end = chrono::high_resolution_clock::now();
   auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-  
+
   // Debug output
   if (debug_level_ > 1) {
-    cout << "Found " << candidates.size() << " candidates for pattern " 
+    cout << "Found " << candidates.size() << " candidates for pattern "
          << pattern.pattern << " in " << duration.count() << " μs" << endl;
   }
-  
+
   return candidates;
 }
 ```
@@ -8931,36 +8931,36 @@ using namespace std;
 // Function that will run in a separate thread
 void ThreadFunction(int id) {
   cout << "Thread " << id << " running" << endl;
-  
+
   // Simulate some work
   for (int i = 0; i < 1000000; i++) {
     // Do some calculations
     double result = sqrt(i * 3.14159);
   }
-  
+
   cout << "Thread " << id << " finished" << endl;
 }
 
 int main() {
   const int num_threads = 4;
   vector<thread> threads;
-  
+
   cout << "Main thread: Creating " << num_threads << " threads" << endl;
-  
+
   // Create threads
   for (int i = 0; i < num_threads; i++) {
     threads.push_back(thread(ThreadFunction, i));
   }
-  
+
   cout << "Main thread: Waiting for threads to finish" << endl;
-  
+
   // Wait for all threads to finish
   for (auto& t : threads) {
     t.join();
   }
-  
+
   cout << "Main thread: All threads have finished" << endl;
-  
+
   return 0;
 }
 ```
@@ -8978,164 +8978,164 @@ Now let's apply multi-threading to our crossword solver. We'll modify our `Solve
 class Solver {
 public:
   // ... existing code ...
-  
+
   // New multi-threaded solve method
   bool SolveMultiThreaded(int num_threads = 4) {
     // Make sure spans are calculated
     if (grid_.spans.empty()) {
       grid_.FillSpans();
     }
-    
+
     // Get patterns sorted by constraint
     Patterns patterns = grid_.GetSortedPatterns();
-    
+
     cout << "Starting to solve with " << patterns.size() << " patterns" << endl;
     cout << "Using " << num_threads << " threads" << endl;
-    
+
     // Reset statistics
     dup_stats_ = DuplicateStats();
     found_solution_ = false;
-    
+
     // Get initial pattern
     if (patterns.empty()) {
       return true;  // Empty grid, trivial solution
     }
-    
+
     const Pattern& first_pattern = patterns[0];
-    
+
     // Find candidate words for the first pattern
     vector<string> candidates = FindCandidateWords(first_pattern);
-    
+
     cout << "Found " << candidates.size() << " candidates for first pattern" << endl;
-    
+
     // If no candidates, fail immediately
     if (candidates.empty()) {
       return false;
     }
-    
+
     // Create a grid for each thread
     vector<Grid> thread_grids;
     for (int i = 0; i < num_threads; i++) {
       thread_grids.push_back(grid_);  // Copy the initial grid
     }
-    
+
     // Create a mutex for thread synchronization
     mutex solution_mutex;
-    
+
     // Create threads
     vector<thread> threads;
     int words_per_thread = (candidates.size() + num_threads - 1) / num_threads;
-    
+
     for (int t = 0; t < num_threads; t++) {
       int start_idx = t * words_per_thread;
       int end_idx = min((t + 1) * words_per_thread, (int)candidates.size());
-      
+
       // Skip if no words for this thread
       if (start_idx >= candidates.size()) {
         continue;
       }
-      
-      threads.push_back(thread(&Solver::SolveThreadFunction, this, 
-                               ref(thread_grids[t]), ref(patterns), 
-                               start_idx, end_idx, candidates, 
+
+      threads.push_back(thread(&Solver::SolveThreadFunction, this,
+                               ref(thread_grids[t]), ref(patterns),
+                               start_idx, end_idx, candidates,
                                ref(solution_mutex), t));
     }
-    
+
     // Wait for threads to finish
     for (auto& t : threads) {
       t.join();
     }
-    
+
     // Check if a solution was found
     if (found_solution_) {
       // Copy the solution grid to the main grid
       grid_ = solution_grid_;
     }
-    
+
     return found_solution_;
   }
-  
+
 private:
   // Function that runs in each thread
-  void SolveThreadFunction(Grid& grid, const Patterns& patterns, 
-                          int start_idx, int end_idx, 
+  void SolveThreadFunction(Grid& grid, const Patterns& patterns,
+                          int start_idx, int end_idx,
                           const vector<string>& candidates,
                           mutex& solution_mutex, int thread_id) {
-    cout << "Thread " << thread_id << " exploring candidates " 
+    cout << "Thread " << thread_id << " exploring candidates "
          << start_idx << " to " << (end_idx - 1) << endl;
-    
+
     for (int i = start_idx; i < end_idx; i++) {
       // Check if a solution has already been found
       if (found_solution_) {
         return;
       }
-      
+
       const string& word = candidates[i];
-      
+
       cout << "Thread " << thread_id << " trying word: " << word << endl;
-      
+
       // Place the word in the thread's grid
       bool success = grid.PlaceWord(patterns[0].span, word, allow_duplicates_);
-      
+
       if (success) {
         // Recursively try to solve the rest of the grid
         if (SolveRecursiveInThread(grid, patterns, 1, thread_id)) {
           // Found a solution, update the shared state
           lock_guard<mutex> lock(solution_mutex);
-          
+
           if (!found_solution_) {
             found_solution_ = true;
             solution_grid_ = grid;
-            
+
             cout << "Thread " << thread_id << " found a solution!" << endl;
           }
-          
+
           return;
         }
-        
+
         // If we get here, this word didn't lead to a solution
         grid.RemoveWord(patterns[0].span);
       }
     }
-    
+
     cout << "Thread " << thread_id << " finished without finding a solution" << endl;
   }
-  
+
   // Recursive solving function used by each thread
-  bool SolveRecursiveInThread(Grid& grid, const Patterns& patterns, 
+  bool SolveRecursiveInThread(Grid& grid, const Patterns& patterns,
                              size_t index, int thread_id) {
     // Check if a solution has already been found
     if (found_solution_) {
       return false;
     }
-    
+
     // Base case: we've filled all patterns
     if (index >= patterns.size()) {
       return true;  // Success!
     }
-    
+
     // Get the current pattern to fill
     const Pattern& current = patterns[index];
-    
+
     // If the pattern is already filled, move to the next one
     if (grid.IsSpanFilled(current.span)) {
       return SolveRecursiveInThread(grid, patterns, index + 1, thread_id);
     }
-    
+
     // Find candidate words for this pattern
     vector<string> candidates = FindCandidateWords(current);
-    
+
     // Try each candidate
     for (const string& word : candidates) {
       // Check if a solution has already been found
       if (found_solution_) {
         return false;
       }
-      
+
       // Check for duplicates before placement
       bool is_duplicate = grid.IsWordUsed(word);
       bool should_place = true;
-      
+
       if (is_duplicate) {
         if (allow_duplicates_ || grid.ShouldAllowDuplicate(word)) {
           // Allow this duplicate
@@ -9143,29 +9143,29 @@ private:
           should_place = false;
         }
       }
-      
+
       if (should_place) {
         // Place the word in the grid
         bool success = grid.PlaceWord(current.span, word, allow_duplicates_);
-        
+
         if (success) {
           // Recursively try to solve the rest of the grid
           if (SolveRecursiveInThread(grid, patterns, index + 1, thread_id)) {
             return true;  // Success!
           }
-          
+
           // If we get here, this word didn't lead to a solution
           grid.RemoveWord(current.span);
         }
       }
     }
-    
+
     // If we tried all candidates and none worked, this is a dead end
     return false;
   }
-  
+
   // ... existing members ...
-  
+
   // New members for multi-threading
   atomic<bool> found_solution_{false};  // Shared flag indicating if a solution was found
   Grid solution_grid_;  // Grid to store the solution
@@ -9191,10 +9191,10 @@ When multiple threads access shared data, we need to ensure proper synchronizati
 private:
   // Atomic flag indicating if a solution was found
   atomic<bool> found_solution_{false};
-  
+
   // Mutex for thread synchronization
   mutex solution_mutex_;
-  
+
   // Grid to store the solution
   Grid solution_grid_;
 ```
@@ -9211,37 +9211,37 @@ Our initial implementation divides the work evenly among threads, but this may n
 class WorkQueue {
 public:
   WorkQueue() : done_(false) {}
-  
+
   void AddWork(const string& word, const Pattern& pattern) {
     lock_guard<mutex> lock(queue_mutex_);
     work_items_.push_back(make_pair(word, pattern));
   }
-  
+
   bool GetWork(string& word, Pattern& pattern) {
     lock_guard<mutex> lock(queue_mutex_);
     if (work_items_.empty()) {
       return false;
     }
-    
+
     auto work = work_items_.back();
     work_items_.pop_back();
-    
+
     word = work.first;
     pattern = work.second;
-    
+
     return true;
   }
-  
+
   void SetDone() {
     lock_guard<mutex> lock(queue_mutex_);
     done_ = true;
   }
-  
+
   bool IsDone() {
     lock_guard<mutex> lock(queue_mutex_);
     return done_ && work_items_.empty();
   }
-  
+
 private:
   vector<pair<string, Pattern>> work_items_;
   mutex queue_mutex_;
@@ -9252,58 +9252,58 @@ private:
 class Solver {
 public:
   // ... existing code ...
-  
+
   bool SolveMultiThreadedDynamic(int num_threads = 4) {
     // ... initialization code ...
-    
+
     // Create a work queue
     WorkQueue work_queue;
-    
+
     // Add initial work items (first pattern candidates)
     for (const string& word : candidates) {
       work_queue.AddWork(word, first_pattern);
     }
-    
+
     // Create threads
     vector<thread> threads;
-    
+
     for (int t = 0; t < num_threads; t++) {
-      threads.push_back(thread(&Solver::WorkerThreadFunction, this, 
+      threads.push_back(thread(&Solver::WorkerThreadFunction, this,
                                t, ref(work_queue), ref(solution_mutex_)));
     }
-    
+
     // Wait for threads to finish
     for (auto& t : threads) {
       t.join();
     }
-    
+
     // ... finalization code ...
   }
-  
+
 private:
   void WorkerThreadFunction(int thread_id, WorkQueue& work_queue, mutex& solution_mutex) {
     // Create a local grid for this thread
     Grid grid = grid_;  // Copy the initial grid
-    
+
     while (!work_queue.IsDone() && !found_solution_) {
       string word;
       Pattern pattern;
-      
+
       // Get work from the queue
       if (!work_queue.GetWork(word, pattern)) {
         // No work available, but queue is not done
         this_thread::sleep_for(chrono::milliseconds(10));
         continue;
       }
-      
+
       // Process this work item
       // ... (similar to the previous implementation)
-      
+
       // Add new work items if needed
       // ... (add candidate words for the next pattern)
     }
   }
-  
+
   // ... existing members ...
 };
 ```
@@ -9326,27 +9326,27 @@ public:
       workers_.emplace_back([this] {
         while (true) {
           function<void()> task;
-          
+
           {
             unique_lock<mutex> lock(queue_mutex_);
-            condition_.wait(lock, [this] { 
-              return stop_ || !tasks_.empty(); 
+            condition_.wait(lock, [this] {
+              return stop_ || !tasks_.empty();
             });
-            
+
             if (stop_ && tasks_.empty()) {
               return;
             }
-            
+
             task = move(tasks_.front());
             tasks_.pop();
           }
-          
+
           task();
         }
       });
     }
   }
-  
+
   template<class F>
   void Enqueue(F&& f) {
     {
@@ -9355,7 +9355,7 @@ public:
     }
     condition_.notify_one();
   }
-  
+
   ~ThreadPool() {
     {
       unique_lock<mutex> lock(queue_mutex_);
@@ -9366,11 +9366,11 @@ public:
       worker.join();
     }
   }
-  
+
 private:
   vector<thread> workers_;
   queue<function<void()>> tasks_;
-  
+
   mutex queue_mutex_;
   condition_variable condition_;
   bool stop_;
@@ -9380,43 +9380,43 @@ private:
 class Solver {
 public:
   // ... existing code ...
-  
+
   bool SolveWithThreadPool(int num_threads = 4) {
     // ... initialization code ...
-    
+
     // Create a thread pool
     ThreadPool pool(num_threads);
-    
+
     // Create a counter to track active tasks
     atomic<int> active_tasks(0);
     mutex counter_mutex;
     condition_variable counter_cv;
-    
+
     // Enqueue the initial tasks
     for (const string& word : candidates) {
       active_tasks++;
-      pool.Enqueue([this, word, &patterns, &active_tasks, 
+      pool.Enqueue([this, word, &patterns, &active_tasks,
                     &counter_mutex, &counter_cv]() {
         // Create a local grid for this task
         Grid local_grid = grid_;
-        
+
         // Try this word
         bool success = local_grid.PlaceWord(patterns[0].span, word, allow_duplicates_);
-        
+
         if (success) {
           // Recursively try to solve the rest of the grid
-          if (SolveRecursiveWithThreadPool(local_grid, patterns, 1, 
+          if (SolveRecursiveWithThreadPool(local_grid, patterns, 1,
                                           active_tasks, counter_mutex, counter_cv)) {
             // Found a solution, update the shared state
             lock_guard<mutex> lock(solution_mutex_);
-            
+
             if (!found_solution_) {
               found_solution_ = true;
               solution_grid_ = local_grid;
             }
           }
         }
-        
+
         // Decrement the active task counter
         {
           lock_guard<mutex> lock(counter_mutex);
@@ -9425,27 +9425,27 @@ public:
         counter_cv.notify_all();
       });
     }
-    
+
     // Wait for all tasks to complete
     {
       unique_lock<mutex> lock(counter_mutex);
-      counter_cv.wait(lock, [&active_tasks] { 
-        return active_tasks == 0; 
+      counter_cv.wait(lock, [&active_tasks] {
+        return active_tasks == 0;
       });
     }
-    
+
     // ... finalization code ...
   }
-  
+
 private:
-  bool SolveRecursiveWithThreadPool(Grid& grid, const Patterns& patterns, 
+  bool SolveRecursiveWithThreadPool(Grid& grid, const Patterns& patterns,
                                     size_t index,
                                     atomic<int>& active_tasks,
                                     mutex& counter_mutex,
                                     condition_variable& counter_cv) {
     // ... similar to previous recursive functions ...
   }
-  
+
   // ... existing members ...
 };
 ```
@@ -9465,55 +9465,55 @@ void PerformanceAnalysis(const string& grid_file, const string& dict_file) {
   // Load library and grid
   Library lib;
   lib.ReadFromFile(dict_file);
-  
+
   Grid grid("Performance Test");
   grid.LoadFromFile(grid_file);
-  
+
   // Create solvers
   Solver single_threaded(grid, lib);
   Solver multi_threaded(grid, lib);
   Solver dynamic_threaded(grid, lib);
   Solver pool_threaded(grid, lib);
-  
+
   // Set options
   single_threaded.SetAllowDuplicates(false);
   multi_threaded.SetAllowDuplicates(false);
   dynamic_threaded.SetAllowDuplicates(false);
   pool_threaded.SetAllowDuplicates(false);
-  
+
   // Measure single-threaded performance
   auto start1 = chrono::high_resolution_clock::now();
   bool success1 = single_threaded.Solve();
   auto end1 = chrono::high_resolution_clock::now();
   auto duration1 = chrono::duration_cast<chrono::milliseconds>(end1 - start1);
-  
+
   // Reset the grid
   grid.ClearAllWords();
-  
+
   // Measure multi-threaded performance
   auto start2 = chrono::high_resolution_clock::now();
   bool success2 = multi_threaded.SolveMultiThreaded(4);
   auto end2 = chrono::high_resolution_clock::now();
   auto duration2 = chrono::duration_cast<chrono::milliseconds>(end2 - start2);
-  
+
   // Reset the grid
   grid.ClearAllWords();
-  
+
   // Measure dynamic multi-threaded performance
   auto start3 = chrono::high_resolution_clock::now();
   bool success3 = dynamic_threaded.SolveMultiThreadedDynamic(4);
   auto end3 = chrono::high_resolution_clock::now();
   auto duration3 = chrono::duration_cast<chrono::milliseconds>(end3 - start3);
-  
+
   // Reset the grid
   grid.ClearAllWords();
-  
+
   // Measure thread pool performance
   auto start4 = chrono::high_resolution_clock::now();
   bool success4 = pool_threaded.SolveWithThreadPool(4);
   auto end4 = chrono::high_resolution_clock::now();
   auto duration4 = chrono::duration_cast<chrono::milliseconds>(end4 - start4);
-  
+
   // Print results
   cout << "Performance Analysis:" << endl;
   cout << "====================" << endl;
@@ -9521,12 +9521,12 @@ void PerformanceAnalysis(const string& grid_file, const string& dict_file) {
   cout << "Multi-threaded: " << duration2.count() << " ms (success: " << success2 << ")" << endl;
   cout << "Dynamic threading: " << duration3.count() << " ms (success: " << success3 << ")" << endl;
   cout << "Thread pool: " << duration4.count() << " ms (success: " << success4 << ")" << endl;
-  
+
   // Calculate speedup
   double speedup2 = (double)duration1.count() / duration2.count();
   double speedup3 = (double)duration1.count() / duration3.count();
   double speedup4 = (double)duration1.count() / duration4.count();
-  
+
   cout << "Speedup (multi-threaded): " << speedup2 << "x" << endl;
   cout << "Speedup (dynamic): " << speedup3 << "x" << endl;
   cout << "Speedup (thread pool): " << speedup4 << "x" << endl;
@@ -9578,14 +9578,14 @@ class ThreadPool {
 public:
   ThreadPool(size_t num_threads);
   ~ThreadPool();
-  
+
   template<class F>
   void Enqueue(F&& f);
-  
+
 private:
   vector<thread> workers_;
   queue<function<void()>> tasks_;
-  
+
   mutex queue_mutex_;
   condition_variable condition_;
   bool stop_;
@@ -9595,12 +9595,12 @@ private:
 class WorkQueue {
 public:
   WorkQueue();
-  
+
   void AddWork(const string& word, const Pattern& pattern);
   bool GetWork(string& word, Pattern& pattern);
   void SetDone();
   bool IsDone();
-  
+
 private:
   vector<pair<string, Pattern>> work_items_;
   mutex queue_mutex_;
@@ -9611,36 +9611,36 @@ private:
 class Solver {
 public:
   Solver(Grid& g, Library& l);
-  
+
   // Single-threaded solve
   bool Solve();
-  
+
   // Multi-threaded solve with static work distribution
   bool SolveMultiThreaded(int num_threads = 4);
-  
+
   // Multi-threaded solve with dynamic work distribution
   bool SolveMultiThreadedDynamic(int num_threads = 4);
-  
+
   // Multi-threaded solve with thread pool
   bool SolveWithThreadPool(int num_threads = 4);
-  
+
   // ... existing methods ...
-  
+
 private:
   // Thread functions
-  void SolveThreadFunction(Grid& grid, const Patterns& patterns, 
-                          int start_idx, int end_idx, 
+  void SolveThreadFunction(Grid& grid, const Patterns& patterns,
+                          int start_idx, int end_idx,
                           const vector<string>& candidates,
                           mutex& solution_mutex, int thread_id);
-                          
+
   void WorkerThreadFunction(int thread_id, WorkQueue& work_queue, mutex& solution_mutex);
-  
+
   // Recursive solving functions
   bool SolveRecursive(const Patterns& patterns, size_t index);
   bool SolveRecursiveInThread(Grid& grid, const Patterns& patterns, size_t index, int thread_id);
-  
+
   // ... existing members ...
-  
+
   // Threading members
   atomic<bool> found_solution_{false};
   mutex solution_mutex_;
@@ -9654,31 +9654,31 @@ int main() {
   // Load library and grid
   Library lib;
   lib.ReadFromFile("top_12000.txt");
-  
+
   Grid grid("Crossword Puzzle");
   grid.LoadFromFile("test.txt");
-  
+
   // Create solver
   Solver solver(grid, lib);
-  
+
   // Try multi-threaded solve
   cout << "Solving with multi-threading..." << endl;
-  
+
   auto start = chrono::high_resolution_clock::now();
   bool success = solver.SolveMultiThreaded(4);
   auto end = chrono::high_resolution_clock::now();
-  
+
   auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
-  
+
   cout << "Solved in " << duration.count() << " ms" << endl;
   cout << "Solution " << (success ? "found" : "not found") << endl;
-  
+
   grid.Print();
-  
+
   // Run performance analysis
   cout << "\nRunning performance analysis..." << endl;
   PerformanceAnalysis("test.txt", "top_12000.txt");
-  
+
   return 0;
 }
 ```
@@ -9729,7 +9729,7 @@ struct Word {
   Word() {}
   Word(string s, int q = 1) : word(s), quality(q) {}
   int len() const { return word.length(); }
-  
+
   string word;
   int quality;  // Higher is better
 };
@@ -9757,17 +9757,17 @@ public:
     int length_score = LengthScore(word);
     int variety_score = CharacterVarietyScore(word);
     int scrabble_score = ScrabbleScore(word);
-    
+
     // Combine scores with appropriate weights
-    int composite_score = (freq_score * 5) + 
-                          (length_score * 2) + 
-                          (variety_score * 1) + 
+    int composite_score = (freq_score * 5) +
+                          (length_score * 2) +
+                          (variety_score * 1) +
                           (scrabble_score * 1);
-    
+
     // Ensure a minimum score of 1
     return max(1, composite_score);
   }
-  
+
 private:
   // Score based on word frequency (higher for more common words)
   static int FrequencyScore(const string& word) {
@@ -9775,31 +9775,31 @@ private:
     // In a real implementation, this would use actual frequency data
     static const unordered_set<string> tier1 = {"THE", "AND", "FOR", "THAT", "WITH"};
     static const unordered_set<string> tier2 = {"ABOUT", "WOULD", "THERE", "THEIR", "WHICH"};
-    
+
     if (tier1.find(word) != tier1.end()) return 10;
     if (tier2.find(word) != tier2.end()) return 8;
-    
+
     // Default score based on length (shorter words tend to be more common)
     return max(1, 10 - word.length());
   }
-  
+
   // Score based on word length (favoring medium-length words)
   static int LengthScore(const string& word) {
     int len = word.length();
-    
+
     // Penalize very short words
     if (len <= 3) return 1;
-    
+
     // Favor medium-length words (5-8 letters)
     if (len >= 5 && len <= 8) return 5;
-    
+
     // Slightly penalize longer words
     if (len > 10) return 2;
-    
+
     // Default
     return 3;
   }
-  
+
   // Score based on character variety
   static int CharacterVarietyScore(const string& word) {
     // Count unique letters
@@ -9807,7 +9807,7 @@ private:
     for (char c : word) {
       unique_chars.insert(c);
     }
-    
+
     // Count vowels
     int vowel_count = 0;
     for (char c : word) {
@@ -9815,15 +9815,15 @@ private:
         vowel_count++;
       }
     }
-    
+
     // Calculate vowel ratio (should be around 40% for English)
     double vowel_ratio = (double)vowel_count / word.length();
     int vowel_score = (vowel_ratio >= 0.3 && vowel_ratio <= 0.5) ? 3 : 1;
-    
+
     // Score based on unique characters and vowel ratio
     return min(5, (int)unique_chars.size() / 2) + vowel_score;
   }
-  
+
   // Score based on Scrabble letter values
   static int ScrabbleScore(const string& word) {
     static const unordered_map<char, int> letter_values = {
@@ -9834,12 +9834,12 @@ private:
       {'U', 1}, {'V', 4}, {'W', 4}, {'X', 8}, {'Y', 4},
       {'Z', 10}
     };
-    
+
     int score = 0;
     for (char c : word) {
       score += letter_values.at(c);
     }
-    
+
     // Normalize score (1-10 scale)
     return min(10, 1 + score / 3);
   }
@@ -9858,32 +9858,32 @@ public:
   // Load word frequencies from a file
   static unordered_map<string, int> LoadFrequencies(const string& filename) {
     unordered_map<string, int> frequencies;
-    
+
     ifstream file(filename);
     if (!file.is_open()) {
       cerr << "Error: Could not open frequency file: " << filename << endl;
       return frequencies;
     }
-    
+
     string line;
     while (getline(file, line)) {
       istringstream iss(line);
       string word;
       int freq;
-      
+
       if (iss >> word >> freq) {
         // Convert to uppercase for consistency
         for (char& c : word) {
           c = toupper(c);
         }
-        
+
         frequencies[word] = freq;
       }
     }
-    
+
     file.close();
     cout << "Loaded " << frequencies.size() << " word frequencies from " << filename << endl;
-    
+
     return frequencies;
   }
 };
@@ -9904,7 +9904,7 @@ public:
       delete w;
     }
   }
-  
+
   // Read words from a file with scoring
   void ReadFromFile(const string& filename, const string& freq_file = "") {
     // Load word frequencies if available
@@ -9912,25 +9912,25 @@ public:
     if (!freq_file.empty()) {
       frequencies = FrequencyLoader::LoadFrequencies(freq_file);
     }
-    
+
     // Open word list file
     ifstream f(filename);
     if (!f.is_open()) {
       cerr << "Error: Could not open word file: " << filename << endl;
       return;
     }
-    
+
     // Read words
     while (!f.eof()) {
       string line;
       getline(f, line);
-      
+
       if (!line.empty()) {
         line = ToUpper(line);
         if (line[line.length() - 1] == '\r') {
           line = line.substr(0, line.length() - 1);
         }
-        
+
         // Calculate word quality
         int quality;
         if (!frequencies.empty() && frequencies.find(line) != frequencies.end()) {
@@ -9940,65 +9940,65 @@ public:
           // Otherwise use our scoring algorithm
           quality = WordScorer::ScoreWord(line);
         }
-        
+
         // Create word with quality score
         Word* w = new Word(line, quality);
         words_.push_back(w);
-        
+
         // Add to indices
         word_map_[line].push_back(w);
         CreatePatternHash(w);
       }
     }
-    
+
     f.close();
-    
+
     cout << "Read " << words_.size() << " words from file '" << filename << "'" << endl;
-    
+
     // Compute word statistics with quality distribution
     ComputeStats();
   }
-  
+
   // Enhanced statistics with quality distribution
   void ComputeStats() {
     // ... existing counts code ...
-    
+
     // Compute quality distribution
     quality_counts_.resize(11, 0);  // Quality scores 0-10
-    
+
     for (const Word* w : words_) {
       int q = min(10, w->quality);
       quality_counts_[q]++;
     }
   }
-  
+
   void PrintStats() const {
     // ... existing stats output ...
-    
+
     // Print quality distribution
     cout << "Word quality distribution:" << endl;
     for (int i = 1; i <= 10; i++) {
       cout << "  Quality " << i << ": " << quality_counts_[i] << " words" << endl;
     }
   }
-  
+
   // Get a sample of words with different quality scores
   void PrintWordSamples() const {
     cout << "Word quality samples:" << endl;
-    
+
     // Create buckets for each quality level
     vector<vector<const Word*>> quality_buckets(11);
     for (const Word* w : words_) {
       int q = min(10, w->quality);
       quality_buckets[q].push_back(w);
     }
-    
+
     // Print samples from each quality level
     for (int q = 10; q >= 1; q--) {
       const auto& bucket = quality_buckets[q];
       if (!bucket.empty()) {
         cout << "  Quality " << q << " words: ";
-        
+
         // Print up to 5 examples
         for (int i = 0; i < min(5, (int)bucket.size()); i++) {
           cout << bucket[i]->word << " ";
@@ -10007,9 +10007,9 @@ public:
       }
     }
   }
-  
+
   // ... existing methods ...
-  
+
 private:
   // ... existing members ...
   vector<int> quality_counts_;  // Distribution of quality scores
@@ -10026,26 +10026,26 @@ Now let's modify our Solver to prioritize high-quality words:
 class Solver {
 public:
   // ... existing methods ...
-  
+
   // Set quality preference (higher values favor higher quality words)
   void SetQualityPreference(double pref) {
     quality_preference_ = pref;
   }
-  
+
   // Enhanced candidate finding with quality-based sorting
   vector<string> FindCandidateWords(const Pattern& pattern) {
     vector<pair<string, double>> scored_candidates;
-    
+
     // Find all words matching the pattern
     Words matches = lib_.FindMatchingWords(pattern.pattern);
-    
+
     for (const Word* word : matches) {
       // Apply existing filters (duplicates, etc.)
-      if (!allow_duplicates_ && grid_.IsWordUsed(word->word) && 
+      if (!allow_duplicates_ && grid_.IsWordUsed(word->word) &&
           !grid_.ShouldAllowDuplicate(word->word)) {
         continue;
       }
-      
+
       // Verify the word fits in the grid
       if (grid_.IsWordPlaceable(pattern.span, word->word)) {
         // Calculate a score that combines quality and constraint satisfaction
@@ -10053,41 +10053,41 @@ public:
         scored_candidates.push_back(make_pair(word->word, score));
       }
     }
-    
+
     // Sort by score (higher first)
     sort(scored_candidates.begin(), scored_candidates.end(),
          [](const pair<string, double>& a, const pair<string, double>& b) {
            return a.second > b.second;
          });
-    
+
     // Extract just the words
     vector<string> candidates;
     for (const auto& pair : scored_candidates) {
       candidates.push_back(pair.first);
     }
-    
+
     return candidates;
   }
-  
+
 private:
   // Calculate a score for a candidate word
   double CalculateCandidateScore(const Word* word, const Pattern& pattern) {
     // Base score is the word's quality
     double score = word->quality;
-    
+
     // Adjust based on how constrained the pattern is
     int filled_positions = 0;
     for (char c : pattern.pattern) {
       if (c != '-') filled_positions++;
     }
-    
+
     // Words that satisfy more constraints get a bonus
     double constraint_bonus = filled_positions * 2.0;
-    
+
     // Apply quality preference factor
     return (score * quality_preference_) + constraint_bonus;
   }
-  
+
   // ... existing members ...
   double quality_preference_ = 1.0;  // How much to prioritize word quality
 };
@@ -10110,28 +10110,28 @@ public:
     double total_score = 0;
     double min_word_score = 10;
     double avg_word_score = 0;
-    
+
     // Get all words placed in the grid
     vector<pair<Span, string>> words = grid.GetPlacedWords();
-    
+
     if (words.empty()) {
       return 0;  // Empty grid
     }
-    
+
     // Calculate scores for each word
     for (const auto& entry : words) {
       const string& word = entry.second;
-      
+
       // Get word quality (either from library or recalculate)
       double word_score = lib.GetWordQuality(word);
-      
+
       // Update statistics
       total_score += word_score;
       min_word_score = min(min_word_score, word_score);
     }
-    
+
     avg_word_score = total_score / words.size();
-    
+
     // Final score combines average and minimum word quality
     // This penalizes grids with even a single poor word
     return (avg_word_score * 0.7) + (min_word_score * 0.3);
@@ -10145,36 +10145,36 @@ We can integrate this scoring into our solver to keep track of the best solution
 class Solver {
 public:
   // ... existing methods ...
-  
+
   // Solve and return the best solution based on quality
   Grid SolveBest(int max_solutions = 10) {
     // Reset best solution tracking
     best_solutions_.clear();
     best_scores_.clear();
-    
+
     // Make sure spans are calculated
     if (grid_.spans.empty()) {
       grid_.FillSpans();
     }
-    
+
     // Get patterns sorted by constraint
     Patterns patterns = grid_.GetSortedPatterns();
-    
+
     cout << "Looking for " << max_solutions << " best solutions..." << endl;
-    
+
     // Start recursive solving
     SolveRecursiveBest(patterns, 0, max_solutions);
-    
+
     // Return the best solution if found
     if (!best_solutions_.empty()) {
       cout << "Found " << best_solutions_.size() << " solutions" << endl;
-      
+
       // Print quality scores
       cout << "Solution qualities:" << endl;
       for (int i = 0; i < best_solutions_.size(); i++) {
         cout << "  Solution " << (i + 1) << ": " << best_scores_[i] << endl;
       }
-      
+
       // Return the best solution (highest score)
       return best_solutions_[0];
     } else {
@@ -10182,7 +10182,7 @@ public:
       return grid_;  // Return the original grid
     }
   }
-  
+
 private:
   // Recursive solving that tracks the best solutions
   bool SolveRecursiveBest(const Patterns& patterns, size_t index, int max_solutions) {
@@ -10190,17 +10190,17 @@ private:
     if (index >= patterns.size()) {
       // Found a complete solution - score it
       double score = GridScorer::ScoreGrid(grid_, lib_);
-      
+
       // Add to our list of best solutions
       AddSolution(grid_, score, max_solutions);
-      
+
       // Continue searching for more solutions
       return false;
     }
-    
+
     // ... rest of recursive solving logic ...
   }
-  
+
   // Add a solution to our list of best solutions
   void AddSolution(const Grid& grid, double score, int max_solutions) {
     // Find where this solution ranks
@@ -10211,12 +10211,12 @@ private:
         break;
       }
     }
-    
+
     // Insert the solution at the appropriate position
     if (insert_pos < max_solutions) {
       best_solutions_.insert(best_solutions_.begin() + insert_pos, grid);
       best_scores_.insert(best_scores_.begin() + insert_pos, score);
-      
+
       // Trim excess solutions
       if (best_solutions_.size() > max_solutions) {
         best_solutions_.pop_back();
@@ -10224,9 +10224,9 @@ private:
       }
     }
   }
-  
+
   // ... existing members ...
-  
+
   // Best solution tracking
   vector<Grid> best_solutions_;
   vector<double> best_scores_;
@@ -10246,21 +10246,21 @@ To better understand our word quality system, let's add a visualization method:
 void Grid::PrintWithQuality(const Library& lib) const {
   // Create grid for quality visualization
   vector<vector<char>> quality_markers(lines.size(), vector<char>(lines[0].size(), ' '));
-  
+
   // Assign quality markers to cells based on words
   for (const auto& entry : placed_words) {
     const Span& span = entry.first;
     const string& word = entry.second;
-    
+
     // Get word quality
     int quality = lib.GetWordQuality(word);
-    
+
     // Convert quality to a character (higher quality = brighter color)
     char marker;
     if (quality >= 8) marker = '+';      // High quality
     else if (quality >= 5) marker = '*';  // Medium quality
     else marker = '-';                    // Low quality
-    
+
     // Mark all cells in this word
     Point p = span.point;
     for (int i = 0; i < span.len; i++) {
@@ -10269,20 +10269,20 @@ void Grid::PrintWithQuality(const Library& lib) const {
       else p.col++;
     }
   }
-  
+
   // Print the grid with quality markers
   cout << "Grid with quality indicators:" << endl;
   cout << "  '+' = high quality, '*' = medium quality, '-' = low quality" << endl << endl;
-  
+
   for (size_t r = 0; r < lines.size(); r++) {
     // Print the grid line
     cout << lines[r] << "   ";
-    
+
     // Print the quality markers
     for (size_t c = 0; c < lines[r].size(); c++) {
       cout << quality_markers[r][c];
     }
-    
+
     cout << endl;
   }
 }
@@ -10313,7 +10313,7 @@ struct Word {
   Word() {}
   Word(string s, int q = 1) : word(s), quality(q) {}
   int len() const { return word.length(); }
-  
+
   string word;
   int quality;  // Higher is better
 };
@@ -10322,7 +10322,7 @@ struct Word {
 class WordScorer {
 public:
   static int ScoreWord(const string& word);
-  
+
 private:
   static int FrequencyScore(const string& word);
   static int LengthScore(const string& word);
@@ -10340,13 +10340,13 @@ public:
 class Library {
 public:
   // ... existing methods ...
-  
+
   void ReadFromFile(const string& filename, const string& freq_file = "");
   void ComputeStats();
   void PrintStats() const;
   void PrintWordSamples() const;
   int GetWordQuality(const string& word) const;
-  
+
 private:
   // ... existing members ...
   vector<int> quality_counts_;
@@ -10362,17 +10362,17 @@ public:
 class Solver {
 public:
   // ... existing methods ...
-  
+
   void SetQualityPreference(double pref);
   Grid SolveBest(int max_solutions = 10);
-  
+
 private:
   // ... existing methods ...
-  
+
   bool SolveRecursiveBest(const Patterns& patterns, size_t index, int max_solutions);
   void AddSolution(const Grid& grid, double score, int max_solutions);
   double CalculateCandidateScore(const Word* word, const Pattern& pattern);
-  
+
   double quality_preference_ = 1.0;
   vector<Grid> best_solutions_;
   vector<double> best_scores_;
@@ -10382,7 +10382,7 @@ private:
 class Grid {
 public:
   // ... existing methods ...
-  
+
   void PrintWithQuality(const Library& lib) const;
 };
 
@@ -10390,25 +10390,25 @@ int main() {
   // Load library with word frequencies
   Library lib;
   lib.ReadFromFile("top_12000.txt", "word_frequencies.txt");
-  
+
   // Print some statistics
   lib.PrintStats();
   lib.PrintWordSamples();
-  
+
   // Load grid
   Grid grid("Crossword Puzzle");
   grid.LoadFromFile("test.txt");
-  
+
   // Create solver with quality preference
   Solver solver(grid, lib);
   solver.SetQualityPreference(2.0);  // Strongly prefer high-quality words
-  
+
   // Find the best solution
   Grid solution = solver.SolveBest(5);
-  
+
   // Print the solution with quality indicators
   solution.PrintWithQuality(lib);
-  
+
   return 0;
 }
 ```
@@ -10495,9 +10495,9 @@ Let's implement a class to manage our collection of best solutions:
 ```cpp
 class SolutionTracker {
 public:
-  SolutionTracker(size_t max_solutions = 10) 
+  SolutionTracker(size_t max_solutions = 10)
     : max_solutions_(max_solutions) {}
-  
+
   // Add a solution to the tracker
   bool AddSolution(const Grid& grid, double score) {
     // If we haven't reached capacity yet, add the solution
@@ -10505,68 +10505,68 @@ public:
       solutions_[score] = grid;
       return true;
     }
-    
+
     // Otherwise, check if this solution is better than our worst one
     auto last = --solutions_.end();
     if (score > last->first) {
       // Remove the worst solution
       solutions_.erase(last);
-      
+
       // Add the new, better solution
       solutions_[score] = grid;
       return true;
     }
-    
+
     return false;  // Solution wasn't good enough
   }
-  
+
   // Check if a score would qualify for inclusion
   bool WouldQualify(double score) const {
     if (solutions_.size() < max_solutions_) {
       return true;  // We have room for more solutions
     }
-    
+
     // Check against our worst solution
     auto last = --solutions_.end();
     return score > last->first;
   }
-  
+
   // Get the best N solutions
   vector<pair<double, Grid>> GetBestSolutions(size_t n = 0) const {
     if (n == 0 || n > solutions_.size()) {
       n = solutions_.size();
     }
-    
+
     vector<pair<double, Grid>> result;
     auto it = solutions_.begin();
-    
+
     for (size_t i = 0; i < n && it != solutions_.end(); ++i, ++it) {
       result.push_back(*it);
     }
-    
+
     return result;
   }
-  
+
   // Get the number of solutions currently tracked
   size_t Size() const {
     return solutions_.size();
   }
-  
+
   // Check if we have any solutions
   bool Empty() const {
     return solutions_.empty();
   }
-  
+
   // Get the lowest score that would qualify
   double GetQualificationThreshold() const {
     if (solutions_.size() < max_solutions_) {
       return std::numeric_limits<double>::lowest();  // Any score qualifies
     }
-    
+
     auto last = --solutions_.end();
     return last->first;
   }
-  
+
 private:
   SolutionMap solutions_;  // Map of score to grid
   size_t max_solutions_;   // Maximum number of solutions to track
@@ -10587,48 +10587,48 @@ Now, let's integrate our `SolutionTracker` with the `Solver` class:
 class Solver {
 public:
   // ... existing methods ...
-  
+
   // Solve and find the best N solutions
-  vector<pair<double, Grid>> SolveBestN(size_t max_solutions = 10, 
+  vector<pair<double, Grid>> SolveBestN(size_t max_solutions = 10,
                                        double min_quality = 0.0,
                                        int max_time_seconds = 0) {
     // Initialize solution tracker
     solution_tracker_ = SolutionTracker(max_solutions);
-    
+
     // Make sure spans are calculated
     if (grid_.spans.empty()) {
       grid_.FillSpans();
     }
-    
+
     // Get patterns sorted by constraint
     Patterns patterns = grid_.GetSortedPatterns();
-    
+
     cout << "Looking for up to " << max_solutions << " best solutions..." << endl;
     cout << "Minimum quality threshold: " << min_quality << endl;
-    
+
     // Track start time for time limit
     auto start_time = chrono::high_resolution_clock::now();
     bool time_limit_reached = false;
-    
+
     // Start the recursive solving process
     SolveRecursiveBestN(patterns, 0, min_quality, start_time, max_time_seconds, time_limit_reached);
-    
+
     if (time_limit_reached) {
       cout << "Time limit reached. Stopping search." << endl;
     }
-    
+
     // Get the best solutions
     auto solutions = solution_tracker_.GetBestSolutions();
-    
+
     cout << "Found " << solutions.size() << " solutions" << endl;
     return solutions;
   }
-  
+
 private:
   // ... existing methods ...
-  
+
   // Recursive solving function that maintains best N solutions
-  bool SolveRecursiveBestN(const Patterns& patterns, size_t index, 
+  bool SolveRecursiveBestN(const Patterns& patterns, size_t index,
                           double min_quality,
                           const chrono::high_resolution_clock::time_point& start_time,
                           int max_time_seconds,
@@ -10637,63 +10637,63 @@ private:
     if (max_time_seconds > 0) {
       auto current_time = chrono::high_resolution_clock::now();
       auto elapsed = chrono::duration_cast<chrono::seconds>(current_time - start_time);
-      
+
       if (elapsed.count() >= max_time_seconds) {
         time_limit_reached = true;
         return false;
       }
     }
-    
+
     // Base case: we've filled all patterns
     if (index >= patterns.size()) {
       // Found a complete solution - score it
       double score = GridScorer::ScoreGrid(grid_, lib_);
-      
+
       // Only consider solutions that meet the minimum quality
       if (score >= min_quality) {
         // Add to our solution tracker
         solution_tracker_.AddSolution(grid_, score);
-        
-        cout << "Found solution with score: " << score 
+
+        cout << "Found solution with score: " << score
              << " (current threshold: " << solution_tracker_.GetQualificationThreshold() << ")" << endl;
       }
-      
+
       // Continue searching for more solutions
       return false;
     }
-    
+
     // Get the current pattern to fill
     const Pattern& current = patterns[index];
-    
+
     // If the pattern is already filled, move to the next one
     if (grid_.IsSpanFilled(current.span)) {
-      return SolveRecursiveBestN(patterns, index + 1, min_quality, 
+      return SolveRecursiveBestN(patterns, index + 1, min_quality,
                                 start_time, max_time_seconds, time_limit_reached);
     }
-    
+
     // Find candidate words for this pattern
     vector<string> candidates = FindCandidateWords(current);
-    
+
     // Try each candidate
     for (const string& word : candidates) {
       // If time limit reached, stop exploring
       if (time_limit_reached) {
         return false;
       }
-      
+
       // Check for duplicates and other constraints
       // ... (existing duplicate checking logic) ...
-      
+
       // Place the word in the grid
       bool success = grid_.PlaceWord(current.span, word, allow_duplicates_);
-      
+
       if (success) {
         // Quick check if a full solution with this partial solution could qualify
         // This is an optimization to prune unproductive branches
         if (index > patterns.size() / 2) {  // Only estimate for significantly filled grids
           double partial_score = GridScorer::EstimatePartialGridScore(grid_, lib_);
           double qualification_threshold = solution_tracker_.GetQualificationThreshold();
-          
+
           // If we have a full set of solutions and this partial solution
           // doesn't look promising, skip it
           if (solution_tracker_.Size() >= solution_tracker_.GetMaxSolutions() &&
@@ -10702,22 +10702,22 @@ private:
             continue;
           }
         }
-        
+
         // Recursively try to solve the rest of the grid
-        SolveRecursiveBestN(patterns, index + 1, min_quality, 
+        SolveRecursiveBestN(patterns, index + 1, min_quality,
                            start_time, max_time_seconds, time_limit_reached);
-        
+
         // Backtrack
         grid_.RemoveWord(current.span);
       }
     }
-    
+
     // If we tried all candidates and none worked, this is a dead end
     return false;
   }
-  
+
   // ... existing members ...
-  
+
   SolutionTracker solution_tracker_;  // Tracks the best N solutions
 };
 ```
@@ -10736,24 +10736,24 @@ To support our optimization that estimates scores for partially filled grids, le
 class GridScorer {
 public:
   // ... existing methods ...
-  
+
   // Estimate the potential score of a partially filled grid
   static double EstimatePartialGridScore(const Grid& grid, const Library& lib) {
     // Get placed words and their scores
     vector<pair<Span, string>> placed_words = grid.GetPlacedWords();
     double total_score = 0;
     double total_weight = 0;
-    
+
     for (const auto& entry : placed_words) {
       const string& word = entry.second;
       double word_score = lib.GetWordQuality(word);
       total_score += word_score;
       total_weight += 1.0;
     }
-    
+
     // Get unfilled spans
     vector<Span> unfilled_spans = grid.GetUnfilledSpans();
-    
+
     // Estimate quality for unfilled spans (optimistically)
     for (const Span& span : unfilled_spans) {
       // Assume a moderately high quality for unfilled spans
@@ -10761,7 +10761,7 @@ public:
       total_score += 7.0;  // Assuming 10 is max quality
       total_weight += 1.0;
     }
-    
+
     // Calculate weighted average
     return total_weight > 0 ? total_score / total_weight : 0;
   }
@@ -10785,79 +10785,79 @@ void DisplayMultipleSolutions(const vector<pair<double, Grid>>& solutions,
     cout << "No solutions to display." << endl;
     return;
   }
-  
+
   int display_count = min(max_to_display, (int)solutions.size());
-  
+
   cout << "Displaying top " << display_count << " solutions:" << endl << endl;
-  
+
   // Display solution grids side by side
   vector<vector<string>> grid_lines(display_count);
-  
+
   for (int i = 0; i < display_count; i++) {
     double score = solutions[i].first;
     const Grid& grid = solutions[i].second;
-    
+
     // Get the grid lines
     grid_lines[i] = grid.GetLines();
-    
+
     // Add header with score
-    grid_lines[i].insert(grid_lines[i].begin(), 
-                        "Solution " + to_string(i+1) + " (Score: " + 
+    grid_lines[i].insert(grid_lines[i].begin(),
+                        "Solution " + to_string(i+1) + " (Score: " +
                         to_string(score) + ")");
     grid_lines[i].insert(grid_lines[i].begin() + 1, string(grid_lines[i][0].length(), '-'));
   }
-  
+
   // Find the maximum number of lines across all grids
   size_t max_lines = 0;
   for (const auto& lines : grid_lines) {
     max_lines = max(max_lines, lines.size());
   }
-  
+
   // Display grids side by side
   for (size_t line_idx = 0; line_idx < max_lines; line_idx++) {
     for (int grid_idx = 0; grid_idx < display_count; grid_idx++) {
       // Get the current grid's lines
       const auto& lines = grid_lines[grid_idx];
-      
+
       // Display the current line or spaces if this grid doesn't have this line
       if (line_idx < lines.size()) {
         cout << lines[line_idx];
       } else {
         cout << string(lines[0].length(), ' ');
       }
-      
+
       // Add spacing between grids
       cout << "   ";
     }
     cout << endl;
   }
-  
+
   cout << endl;
-  
+
   // Display statistics for each solution
   for (int i = 0; i < display_count; i++) {
     double score = solutions[i].first;
     const Grid& grid = solutions[i].second;
-    
+
     cout << "Solution " << (i+1) << " details:" << endl;
     cout << "  Score: " << score << endl;
-    
+
     // Get word statistics
     map<int, int> quality_counts;  // Map of quality level to count
     auto placed_words = grid.GetPlacedWords();
-    
+
     for (const auto& entry : placed_words) {
       const string& word = entry.second;
       int quality = lib.GetWordQuality(word);
       quality_counts[quality]++;
     }
-    
+
     // Print quality distribution
     cout << "  Word quality distribution:" << endl;
     for (auto it = quality_counts.rbegin(); it != quality_counts.rend(); ++it) {
       cout << "    Quality " << it->first << ": " << it->second << " words" << endl;
     }
-    
+
     cout << endl;
   }
 }
@@ -10873,12 +10873,12 @@ One challenge with maintaining only the highest-scoring solutions is that they m
 class SolutionTracker {
 public:
   // ... existing methods ...
-  
+
   // Set diversity preference (higher values encourage more diverse solutions)
   void SetDiversityPreference(double preference) {
     diversity_preference_ = preference;
   }
-  
+
   // Add a solution with diversity consideration
   bool AddSolutionWithDiversity(const Grid& grid, double score) {
     // If we have room, add normally
@@ -10886,80 +10886,80 @@ public:
       solutions_[score] = grid;
       return true;
     }
-    
+
     // Calculate similarity to existing solutions
     double max_similarity = CalculateMaxSimilarity(grid);
-    
+
     // Adjust score based on diversity
     double adjusted_score = score - (max_similarity * diversity_preference_);
-    
+
     // Check if this would qualify based on adjusted score
     auto last = --solutions_.end();
     if (adjusted_score > last->first) {
       // Remove the worst solution
       solutions_.erase(last);
-      
+
       // Add the new solution with its original score
       // (we adjust for diversity during selection, but store the true score)
       solutions_[score] = grid;
       return true;
     }
-    
+
     return false;
   }
-  
+
 private:
   // Calculate maximum similarity to any existing solution
   double CalculateMaxSimilarity(const Grid& grid) const {
     if (solutions_.empty()) {
       return 0.0;
     }
-    
+
     double max_similarity = 0.0;
-    
+
     // Get words from the new grid
     vector<string> new_words;
     for (const auto& entry : grid.GetPlacedWords()) {
       new_words.push_back(entry.second);
     }
-    
+
     // Compare with each existing solution
     for (const auto& entry : solutions_) {
       const Grid& existing_grid = entry.second;
-      
+
       // Get words from the existing grid
       vector<string> existing_words;
       for (const auto& word_entry : existing_grid.GetPlacedWords()) {
         existing_words.push_back(word_entry.second);
       }
-      
+
       // Calculate Jaccard similarity (intersection over union)
       double similarity = CalculateJaccardSimilarity(new_words, existing_words);
       max_similarity = max(max_similarity, similarity);
     }
-    
+
     return max_similarity;
   }
-  
+
   // Calculate Jaccard similarity between two sets of words
-  double CalculateJaccardSimilarity(const vector<string>& words1, 
+  double CalculateJaccardSimilarity(const vector<string>& words1,
                                   const vector<string>& words2) const {
     // Count words in the intersection
     int intersection_count = 0;
-    
+
     for (const string& word : words1) {
       if (find(words2.begin(), words2.end(), word) != words2.end()) {
         intersection_count++;
       }
     }
-    
+
     // Calculate union size (|A|+|B|-|A∩B|)
     int union_count = words1.size() + words2.size() - intersection_count;
-    
+
     // Return Jaccard index
     return union_count > 0 ? (double)intersection_count / union_count : 0.0;
   }
-  
+
   SolutionMap solutions_;
   size_t max_solutions_;
   double diversity_preference_ = 0.0;  // How much to prefer diverse solutions
@@ -10979,78 +10979,78 @@ Let's add functionality to save our best solutions to a file and load them later
 class SolutionManager {
 public:
   // Save solutions to a file
-  static bool SaveSolutions(const string& filename, 
+  static bool SaveSolutions(const string& filename,
                           const vector<pair<double, Grid>>& solutions) {
     ofstream file(filename);
     if (!file.is_open()) {
       cerr << "Error: Could not open file for writing: " << filename << endl;
       return false;
     }
-    
+
     // Write the number of solutions
     file << solutions.size() << endl;
-    
+
     // Write each solution
     for (const auto& entry : solutions) {
       double score = entry.first;
       const Grid& grid = entry.second;
-      
+
       // Write the score
       file << score << endl;
-      
+
       // Write the grid dimensions
       file << grid.rows() << " " << grid.cols() << endl;
-      
+
       // Write the grid content
       for (int r = 0; r < grid.rows(); r++) {
         file << grid.GetLine(r) << endl;
       }
-      
+
       // Write placed words
       auto placed_words = grid.GetPlacedWords();
       file << placed_words.size() << endl;
-      
+
       for (const auto& word_entry : placed_words) {
         const Span& span = word_entry.first;
         const string& word = word_entry.second;
-        
+
         // Write span details and word
-        file << span.point.row << " " << span.point.col << " " 
+        file << span.point.row << " " << span.point.col << " "
              << span.len << " " << span.vert << " " << word << endl;
       }
     }
-    
+
     file.close();
     cout << "Saved " << solutions.size() << " solutions to " << filename << endl;
     return true;
   }
-  
+
   // Load solutions from a file
   static vector<pair<double, Grid>> LoadSolutions(const string& filename) {
     vector<pair<double, Grid>> solutions;
-    
+
     ifstream file(filename);
     if (!file.is_open()) {
       cerr << "Error: Could not open file for reading: " << filename << endl;
       return solutions;
     }
-    
+
     // Read the number of solutions
     int num_solutions;
     file >> num_solutions;
-    
+
     // Read each solution
     for (int i = 0; i < num_solutions; i++) {
       double score;
       int rows, cols;
-      
+
       // Read score and dimensions
       file >> score >> rows >> cols;
       file.ignore(); // Skip newline
-      
+
       // Create a grid
       Grid grid("Loaded Solution");
-      
+
       // Read grid content
       vector<string> lines;
       for (int r = 0; r < rows; r++) {
@@ -11058,29 +11058,29 @@ public:
         getline(file, line);
         lines.push_back(line);
       }
-      
+
       grid.SetLines(lines);
-      
+
       // Read placed words
       int num_words;
       file >> num_words;
-      
+
       for (int w = 0; w < num_words; w++) {
         int row, col, len;
         bool vert;
         string word;
-        
+
         file >> row >> col >> len >> vert >> word;
-        
+
         // Add the word to the grid
         Span span(Point(row, col), len, vert);
         grid.PlaceWord(span, word);
       }
-      
+
       // Add to solutions
       solutions.push_back(make_pair(score, grid));
     }
-    
+
     file.close();
     cout << "Loaded " << solutions.size() << " solutions from " << filename << endl;
     return solutions;
@@ -11101,33 +11101,33 @@ int main() {
   // Load library
   Library lib;
   lib.ReadFromFile("top_12000.txt", "word_frequencies.txt");
-  
+
   // Load grid
   Grid grid("Crossword Puzzle");
   grid.LoadFromFile("test.txt");
-  
+
   // Create solver
   Solver solver(grid, lib);
   solver.SetQualityPreference(2.0);  // Prefer high-quality words
-  
+
   // Set up solution tracker with diversity preference
   solver.SetDiversityPreference(0.3);  // Moderate diversity preference
-  
+
   // Find the best solutions with time limit
   cout << "Searching for best solutions (max 30 seconds)..." << endl;
   auto solutions = solver.SolveBestN(5, 6.0, 30);  // Up to 5 solutions, min quality 6.0, 30 second time limit
-  
+
   // Display the solutions
   DisplayMultipleSolutions(solutions, lib);
-  
+
   // Save solutions
   SolutionManager::SaveSolutions("best_solutions.txt", solutions);
-  
+
   // Load and display saved solutions
   auto loaded_solutions = SolutionManager::LoadSolutions("best_solutions.txt");
   cout << "Loaded solutions:" << endl;
   DisplayMultipleSolutions(loaded_solutions, lib);
-  
+
   return 0;
 }
 ```
@@ -11215,14 +11215,14 @@ Let's implement island detection in our Grid class:
 class Grid {
 public:
   // ... existing methods ...
-  
+
   // Find all islands in the grid
   vector<vector<Point>> FindIslands() const {
     vector<vector<Point>> islands;
-    
+
     // Create a visited flag grid
     vector<vector<bool>> visited(rows(), vector<bool>(cols(), false));
-    
+
     // Mark all blocks as visited (we're only interested in non-block cells)
     for (int r = 0; r < rows(); r++) {
       for (int c = 0; c < cols(); c++) {
@@ -11231,7 +11231,7 @@ public:
         }
       }
     }
-    
+
     // Find all islands using flood fill
     for (int r = 0; r < rows(); r++) {
       for (int c = 0; c < cols(); c++) {
@@ -11243,33 +11243,33 @@ public:
         }
       }
     }
-    
+
     return islands;
   }
-  
+
 private:
   // Perform flood fill from a starting point
-  void FloodFill(const Point& start, vector<vector<bool>>& visited, 
+  void FloodFill(const Point& start, vector<vector<bool>>& visited,
                 vector<Point>& island) const {
     // Create a queue for BFS traversal
     queue<Point> q;
     q.push(start);
     visited[start.row][start.col] = true;
     island.push_back(start);
-    
+
     // Define the four directions (up, right, down, left)
     const int dr[] = {-1, 0, 1, 0};
     const int dc[] = {0, 1, 0, -1};
-    
+
     // BFS traversal
     while (!q.empty()) {
       Point current = q.front();
       q.pop();
-      
+
       // Check all four adjacent cells
       for (int i = 0; i < 4; i++) {
         Point next(current.row + dr[i], current.col + dc[i]);
-        
+
         // Check if the adjacent cell is valid and unvisited
         if (in_bounds(next) && !visited[next.row][next.col]) {
           visited[next.row][next.col] = true;
@@ -11296,35 +11296,35 @@ Let's add a method to visualize the islands in a grid:
 void Grid::PrintWithIslands() const {
   // Find islands
   vector<vector<Point>> islands = FindIslands();
-  
+
   // Create a grid for visualization
   vector<vector<char>> island_markers(rows(), vector<char>(cols(), ' '));
-  
+
   // Assign a different marker for each island
   const string markers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   for (size_t i = 0; i < islands.size(); i++) {
     char marker = i < markers.length() ? markers[i] : '*';
-    
+
     for (const Point& p : islands[i]) {
       island_markers[p.row][p.col] = marker;
     }
   }
-  
+
   // Print the grid with island markers
   cout << "Grid with islands (" << islands.size() << " found):" << endl;
-  
+
   for (int r = 0; r < rows(); r++) {
     // Print the original grid line
     cout << lines[r] << "   ";
-    
+
     // Print the island markers
     for (int c = 0; c < cols(); c++) {
       cout << island_markers[r][c];
     }
-    
+
     cout << endl;
   }
-  
+
   // Print island statistics
   cout << endl << "Island statistics:" << endl;
   for (size_t i = 0; i < islands.size(); i++) {
@@ -11348,22 +11348,22 @@ Now that we can detect islands, let's enhance our grid scoring to penalize puzzl
 class GridScorer {
 public:
   // ... existing methods ...
-  
+
   // Score a grid, taking islands into account
   static double ScoreGridWithIslands(const Grid& grid, const Library& lib) {
     // Get base score from word quality
     double base_score = ScoreGrid(grid, lib);
-    
+
     // Find islands
     vector<vector<Point>> islands = grid.FindIslands();
-    
+
     // Apply island penalty
     double island_penalty = 0.0;
     if (islands.size() > 1) {
       // Severe penalty for multiple islands
       island_penalty = (islands.size() - 1) * 2.0;
     }
-    
+
     return base_score - island_penalty;
   }
 };
@@ -11381,32 +11381,32 @@ Let's update our Solver class to be aware of islands:
 class Solver {
 public:
   // ... existing methods ...
-  
+
   // Set whether to allow islands
   void SetAllowIslands(bool allow) {
     allow_islands_ = allow;
   }
-  
+
   // Enhanced solution scoring taking islands into account
   double ScoreSolution(const Grid& grid) const {
     double score = GridScorer::ScoreGrid(grid, lib_);
-    
+
     if (!allow_islands_) {
       // Find islands
       vector<vector<Point>> islands = grid.FindIslands();
-      
+
       // Apply penalty for multiple islands
       if (islands.size() > 1) {
         score -= (islands.size() - 1) * 2.0;
       }
     }
-    
+
     return score;
   }
-  
+
 private:
   // ... existing methods ...
-  
+
   // Modified recursive solver that checks for islands
   bool SolveRecursiveWithIslandCheck(const Patterns& patterns, size_t index) {
     // Base case: we've filled all patterns
@@ -11418,13 +11418,13 @@ private:
           return false;  // Reject solutions with multiple islands
         }
       }
-      
+
       return true;  // Valid solution
     }
-    
+
     // ... rest of recursive solving logic ...
   }
-  
+
   bool allow_islands_ = false;  // By default, don't allow islands
 };
 ```
@@ -11443,7 +11443,7 @@ bool Grid::HasOrWillHaveIslands() const {
   // Create a grid that represents the connectivity potential
   // A cell is "connectable" if it's not a block
   vector<vector<bool>> connectable(rows(), vector<bool>(cols(), false));
-  
+
   for (int r = 0; r < rows(); r++) {
     for (int c = 0; c < cols(); c++) {
       if (!is_block(Point(r, c))) {
@@ -11451,12 +11451,12 @@ bool Grid::HasOrWillHaveIslands() const {
       }
     }
   }
-  
+
   // Perform flood fill from the first connectable cell
   vector<vector<bool>> visited = connectable;  // Start with a copy
   bool found_first = false;
   Point start;
-  
+
   // Find the first connectable cell
   for (int r = 0; r < rows() && !found_first; r++) {
     for (int c = 0; c < cols() && !found_first; c++) {
@@ -11466,15 +11466,15 @@ bool Grid::HasOrWillHaveIslands() const {
       }
     }
   }
-  
+
   if (!found_first) {
     return false;  // No connectable cells
   }
-  
+
   // Perform flood fill
   vector<Point> dummy;  // We don't need to collect the points
   FloodFill(start, visited, dummy);
-  
+
   // Check if there are unvisited connectable cells
   for (int r = 0; r < rows(); r++) {
     for (int c = 0; c < cols(); c++) {
@@ -11483,7 +11483,7 @@ bool Grid::HasOrWillHaveIslands() const {
       }
     }
   }
-  
+
   return false;  // No islands
 }
 ```
@@ -11504,17 +11504,17 @@ bool Solver::SolveRecursiveWithEarlyPruning(const Patterns& patterns, size_t ind
   if (index >= patterns.size()) {
     return true;  // Valid solution
   }
-  
+
   // Early island detection (after placing a few words)
   if (!allow_islands_ && index > min(5, (int)patterns.size() / 3)) {
     if (grid_.HasOrWillHaveIslands()) {
       return false;  // This path will lead to islands
     }
   }
-  
+
   // Get the current pattern to fill
   const Pattern& current = patterns[index];
-  
+
   // ... rest of recursive solving logic ...
 }
 ```
@@ -11528,36 +11528,36 @@ Rather than simply rejecting solutions with islands, we might want to try to fix
 ```cpp
 vector<Point> Grid::FindPotentialBridges() const {
   vector<Point> bridges;
-  
+
   // Find islands
   vector<vector<Point>> islands = FindIslands();
-  
+
   // If there's only one island or no islands, no bridges needed
   if (islands.size() <= 1) {
     return bridges;
   }
-  
+
   // For each pair of islands, try to find the shortest possible bridge
   for (size_t i = 0; i < islands.size(); i++) {
     for (size_t j = i + 1; j < islands.size(); j++) {
       // Find the closest pair of cells between islands i and j
       Point best_bridge;
       int min_distance = INT_MAX;
-      
+
       for (const Point& p1 : islands[i]) {
         for (const Point& p2 : islands[j]) {
           // Check if p1 and p2 are separated by exactly one block
           if (abs(p1.row - p2.row) + abs(p1.col - p2.col) == 2) {
             // Calculate the midpoint (potential bridge location)
             Point midpoint((p1.row + p2.row) / 2, (p1.col + p2.col) / 2);
-            
+
             // Check if it's a block
             if (in_bounds(midpoint) && is_block(midpoint)) {
               // Calculate the "cost" of removing this block
               // (preference for bridges away from the edges)
-              int edge_distance = min(midpoint.row, rows() - 1 - midpoint.row) + 
+              int edge_distance = min(midpoint.row, rows() - 1 - midpoint.row) +
                                  min(midpoint.col, cols() - 1 - midpoint.col);
-              
+
               if (edge_distance < min_distance) {
                 min_distance = edge_distance;
                 best_bridge = midpoint;
@@ -11566,14 +11566,14 @@ vector<Point> Grid::FindPotentialBridges() const {
           }
         }
       }
-      
+
       // If we found a potential bridge, add it to the list
       if (min_distance != INT_MAX) {
         bridges.push_back(best_bridge);
       }
     }
   }
-  
+
   return bridges;
 }
 ```
@@ -11592,28 +11592,28 @@ Let's add a method to automatically fix islands by adding bridges:
 bool Grid::FixIslands() {
   // Find islands
   vector<vector<Point>> islands = FindIslands();
-  
+
   // If there's only one island or no islands, nothing to fix
   if (islands.size() <= 1) {
     return false;  // No changes made
   }
-  
+
   // Find potential bridges
   vector<Point> bridges = FindPotentialBridges();
-  
+
   // If no bridges found, can't fix
   if (bridges.empty()) {
     return false;
   }
-  
+
   // Apply bridges (remove blocks)
   for (const Point& bridge : bridges) {
     lines[bridge.row][bridge.col] = '-';  // Replace block with empty cell
   }
-  
+
   // Check if we've fixed all islands
   islands = FindIslands();
-  
+
   return islands.size() == 1;
 }
 ```
@@ -11640,15 +11640,15 @@ Now, let's integrate these island-handling capabilities into our main program:
 class Grid {
 public:
   // ... existing methods ...
-  
+
   vector<vector<Point>> FindIslands() const;
   void PrintWithIslands() const;
   bool HasOrWillHaveIslands() const;
   vector<Point> FindPotentialBridges() const;
   bool FixIslands();
-  
+
 private:
-  void FloodFill(const Point& start, vector<vector<bool>>& visited, 
+  void FloodFill(const Point& start, vector<vector<bool>>& visited,
                 vector<Point>& island) const;
 };
 
@@ -11656,7 +11656,7 @@ private:
 class GridScorer {
 public:
   // ... existing methods ...
-  
+
   static double ScoreGridWithIslands(const Grid& grid, const Library& lib);
 };
 
@@ -11664,16 +11664,16 @@ public:
 class Solver {
 public:
   // ... existing methods ...
-  
+
   void SetAllowIslands(bool allow);
   double ScoreSolution(const Grid& grid) const;
-  
+
 private:
   // ... existing methods ...
-  
+
   bool SolveRecursiveWithIslandCheck(const Patterns& patterns, size_t index);
   bool SolveRecursiveWithEarlyPruning(const Patterns& patterns, size_t index);
-  
+
   bool allow_islands_ = false;
 };
 
@@ -11681,19 +11681,19 @@ int main() {
   // Load library
   Library lib;
   lib.ReadFromFile("top_12000.txt", "word_frequencies.txt");
-  
+
   // Load grid
   Grid grid("Crossword Puzzle");
   grid.LoadFromFile("test.txt");
-  
+
   // Display initial grid
   cout << "Initial grid:" << endl;
   grid.Print();
-  
+
   // Check for islands
   cout << "Checking for islands..." << endl;
   grid.PrintWithIslands();
-  
+
   // Try to fix islands
   cout << "Attempting to fix islands..." << endl;
   if (grid.FixIslands()) {
@@ -11702,18 +11702,18 @@ int main() {
   } else {
     cout << "Could not fix all islands automatically." << endl;
   }
-  
+
   // Create solver
   Solver solver(grid, lib);
   solver.SetAllowIslands(false);  // Don't allow islands
-  
+
   // Find the best solutions
   cout << "Finding the best solutions..." << endl;
   auto solutions = solver.SolveBestN(5, 6.0, 30);
-  
+
   // Display the solutions
   DisplayMultipleSolutions(solutions, lib);
-  
+
   return 0;
 }
 ```
@@ -11793,19 +11793,19 @@ Let's implement partition detection:
 class Grid {
 public:
   // ... existing methods ...
-  
+
   // Find all partitions in the grid
   vector<vector<Span>> FindPartitions() const {
     vector<vector<Span>> partitions;
-    
+
     // Skip if no spans are defined
     if (spans.empty()) {
       return partitions;
     }
-    
+
     // Create a graph where spans are nodes and intersections are edges
     vector<vector<size_t>> graph(spans.size());
-    
+
     // Find all intersections between spans
     for (size_t i = 0; i < spans.size(); i++) {
       for (size_t j = i + 1; j < spans.size(); j++) {
@@ -11817,25 +11817,25 @@ public:
         }
       }
     }
-    
+
     // Use BFS to find connected components (partitions)
     vector<bool> visited(spans.size(), false);
-    
+
     for (size_t i = 0; i < spans.size(); i++) {
       if (!visited[i]) {
         // Start a new partition
         vector<Span> partition;
         queue<size_t> q;
-        
+
         q.push(i);
         visited[i] = true;
-        
+
         while (!q.empty()) {
           size_t current = q.front();
           q.pop();
-          
+
           partition.push_back(spans[current]);
-          
+
           // Add all unvisited neighbors
           for (size_t neighbor : graph[current]) {
             if (!visited[neighbor]) {
@@ -11844,35 +11844,35 @@ public:
             }
           }
         }
-        
+
         partitions.push_back(partition);
       }
     }
-    
+
     return partitions;
   }
-  
+
   // Visualize partitions
   void PrintWithPartitions() const {
     // Find partitions
     vector<vector<Span>> partitions = FindPartitions();
-    
+
     // Create a grid for visualization
     vector<vector<char>> partition_markers(rows(), vector<char>(cols(), ' '));
-    
+
     // Assign a different marker for each partition
     const string markers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    
+
     for (size_t p = 0; p < partitions.size(); p++) {
       char marker = p < markers.length() ? markers[p] : '*';
-      
+
       // Mark all cells in this partition's spans
       for (const Span& span : partitions[p]) {
         Point pos = span.point;
-        
+
         for (int i = 0; i < span.len; i++) {
           partition_markers[pos.row][pos.col] = marker;
-          
+
           // Move to next position
           if (span.vert) {
             pos.row++;
@@ -11882,22 +11882,22 @@ public:
         }
       }
     }
-    
+
     // Print the grid with partition markers
     cout << "Grid with partitions (" << partitions.size() << " found):" << endl;
-    
+
     for (int r = 0; r < rows(); r++) {
       // Print the original grid line
       cout << lines[r] << "   ";
-      
+
       // Print the partition markers
       for (int c = 0; c < cols(); c++) {
         cout << partition_markers[r][c];
       }
-      
+
       cout << endl;
     }
-    
+
     // Print partition statistics
     cout << endl << "Partition statistics:" << endl;
     for (size_t p = 0; p < partitions.size(); p++) {
@@ -11921,76 +11921,76 @@ Now let's enhance our Solver class to use partitioning:
 ```cpp
 class PartitionSolver {
 public:
-  PartitionSolver(Grid& grid, Library& lib) 
+  PartitionSolver(Grid& grid, Library& lib)
     : grid_(grid), lib_(lib), solver_(grid, lib) {}
-  
+
   // Solve using partitioning
   bool Solve() {
     // Find partitions
     vector<vector<Span>> partitions = grid_.FindPartitions();
-    
+
     if (partitions.empty()) {
       cout << "No partitions found." << endl;
       return false;
     }
-    
+
     cout << "Found " << partitions.size() << " partitions." << endl;
-    
+
     // Create subgrids for each partition
     vector<Grid> subgrids;
-    
+
     for (const auto& partition : partitions) {
       Grid subgrid = ExtractPartitionSubgrid(partition);
       subgrids.push_back(subgrid);
     }
-    
+
     // Solve each subgrid
     vector<Grid> solved_subgrids;
-    
+
     for (size_t i = 0; i < subgrids.size(); i++) {
       cout << "Solving partition " << (i + 1) << " of " << subgrids.size() << "..." << endl;
-      
+
       // Create a solver for this subgrid
       Solver partition_solver(subgrids[i], lib_);
       partition_solver.SetQualityPreference(solver_.GetQualityPreference());
       partition_solver.SetAllowDuplicates(solver_.GetAllowDuplicates());
-      
+
       // Solve the subgrid
       bool success = partition_solver.Solve();
-      
+
       if (!success) {
         cout << "Failed to solve partition " << (i + 1) << endl;
         return false;
       }
-      
+
       solved_subgrids.push_back(subgrids[i]);
     }
-    
+
     // Combine the solved subgrids
     bool combined = CombineSolvedPartitions(solved_subgrids, partitions);
-    
+
     if (!combined) {
       cout << "Failed to combine solved partitions." << endl;
       return false;
     }
-    
+
     cout << "Successfully solved and combined all partitions." << endl;
     return true;
   }
-  
+
 private:
   // Extract a subgrid for a partition
   Grid ExtractPartitionSubgrid(const vector<Span>& partition) const {
     // Create a mask of cells in this partition
     vector<vector<bool>> mask(grid_.rows(), vector<bool>(grid_.cols(), false));
-    
+
     // Mark all cells in the partition's spans
     for (const Span& span : partition) {
       Point pos = span.point;
-      
+
       for (int i = 0; i < span.len; i++) {
         mask[pos.row][pos.col] = true;
-        
+
         // Move to next position
         if (span.vert) {
           pos.row++;
@@ -11999,13 +11999,13 @@ private:
         }
       }
     }
-    
+
     // Find the bounding box of the partition
     int min_row = grid_.rows();
     int min_col = grid_.cols();
     int max_row = 0;
     int max_col = 0;
-    
+
     for (int r = 0; r < grid_.rows(); r++) {
       for (int c = 0; c < grid_.cols(); c++) {
         if (mask[r][c]) {
@@ -12016,14 +12016,14 @@ private:
         }
       }
     }
-    
+
     // Create a new grid for this partition
     Grid subgrid("Partition Subgrid");
-    
+
     // Copy the relevant portion of the grid
     for (int r = min_row; r <= max_row; r++) {
       string line;
-      
+
       for (int c = min_col; c <= max_col; c++) {
         if (mask[r][c]) {
           // This cell is part of the partition
@@ -12033,52 +12033,52 @@ private:
           line.push_back('.');
         }
       }
-      
+
       subgrid.AddLine(line);
     }
-    
+
     // Calculate spans for the subgrid
     subgrid.FillSpans();
-    
+
     return subgrid;
   }
-  
+
   // Combine solved partitions back into the main grid
-  bool CombineSolvedPartitions(const vector<Grid>& solved_subgrids, 
+  bool CombineSolvedPartitions(const vector<Grid>& solved_subgrids,
                               const vector<vector<Span>>& partitions) {
     // For each partition and its solved subgrid
     for (size_t p = 0; p < solved_subgrids.size(); p++) {
       const Grid& subgrid = solved_subgrids[p];
       const vector<Span>& partition = partitions[p];
-      
+
       // Create a mapping from original spans to subgrid spans
       map<pair<int, int>, pair<int, int>> span_mapping;
-      
+
       // Find bounding box of this partition
       // ... (similar to ExtractPartitionSubgrid) ...
-      
+
       // Map each original span to its corresponding span in the subgrid
       // ... (calculate offset mapping) ...
-      
+
       // Get placed words from the solved subgrid
       auto placed_words = subgrid.GetPlacedWords();
-      
+
       // Place each word in the main grid
       for (const auto& entry : placed_words) {
         const Span& subgrid_span = entry.first;
         const string& word = entry.second;
-        
+
         // Convert to the corresponding span in the main grid
         // ... (apply mapping) ...
-        
+
         // Place the word in the main grid
         grid_.PlaceWord(main_grid_span, word);
       }
     }
-    
+
     return true;
   }
-  
+
   Grid& grid_;
   Library& lib_;
   Solver solver_;  // Reference solver for settings
@@ -12099,14 +12099,14 @@ Let's enhance our implementation with more details for extracting and combining 
 Grid ExtractPartitionSubgrid(const vector<Span>& partition) const {
   // Create a mask of cells in this partition
   vector<vector<bool>> mask(grid_.rows(), vector<bool>(grid_.cols(), false));
-  
+
   // Mark all cells in the partition's spans
   for (const Span& span : partition) {
     Point pos = span.point;
-    
+
     for (int i = 0; i < span.len; i++) {
       mask[pos.row][pos.col] = true;
-      
+
       // Move to next position
       if (span.vert) {
         pos.row++;
@@ -12115,13 +12115,13 @@ Grid ExtractPartitionSubgrid(const vector<Span>& partition) const {
       }
     }
   }
-  
+
   // Find the bounding box of the partition
   int min_row = grid_.rows();
   int min_col = grid_.cols();
   int max_row = 0;
   int max_col = 0;
-  
+
   for (int r = 0; r < grid_.rows(); r++) {
     for (int c = 0; c < grid_.cols(); c++) {
       if (mask[r][c]) {
@@ -12132,20 +12132,20 @@ Grid ExtractPartitionSubgrid(const vector<Span>& partition) const {
       }
     }
   }
-  
+
   // Add a one-cell border around the partition if possible
   min_row = max(0, min_row - 1);
   min_col = max(0, min_col - 1);
   max_row = min(grid_.rows() - 1, max_row + 1);
   max_col = min(grid_.cols() - 1, max_col + 1);
-  
+
   // Create a new grid for this partition
   Grid subgrid("Partition Subgrid");
-  
+
   // Copy the relevant portion of the grid
   for (int r = min_row; r <= max_row; r++) {
     string line;
-    
+
     for (int c = min_col; c <= max_col; c++) {
       if (mask[r][c]) {
         // This cell is part of the partition
@@ -12155,55 +12155,55 @@ Grid ExtractPartitionSubgrid(const vector<Span>& partition) const {
         line.push_back('.');
       }
     }
-    
+
     subgrid.AddLine(line);
   }
-  
+
   // Calculate spans for the subgrid
   subgrid.FillSpans();
-  
+
   // Store the offset for later reconstruction
   subgrid.SetOffsets(min_row, min_col);
-  
+
   return subgrid;
 }
 
-bool CombineSolvedPartitions(const vector<Grid>& solved_subgrids, 
+bool CombineSolvedPartitions(const vector<Grid>& solved_subgrids,
                             const vector<vector<Span>>& partitions) {
   // For each partition and its solved subgrid
   for (size_t p = 0; p < solved_subgrids.size(); p++) {
     const Grid& subgrid = solved_subgrids[p];
-    
+
     // Get offsets from subgrid
     int row_offset = subgrid.GetRowOffset();
     int col_offset = subgrid.GetColOffset();
-    
+
     // Get placed words from the solved subgrid
     auto placed_words = subgrid.GetPlacedWords();
-    
+
     // Place each word in the main grid
     for (const auto& entry : placed_words) {
       const Span& subgrid_span = entry.first;
       const string& word = entry.second;
-      
+
       // Convert to the corresponding span in the main grid
       Point main_grid_point(
         subgrid_span.point.row + row_offset,
         subgrid_span.point.col + col_offset
       );
-      
+
       Span main_grid_span(main_grid_point, subgrid_span.len, subgrid_span.vert);
-      
+
       // Place the word in the main grid
       bool success = grid_.PlaceWord(main_grid_span, word);
-      
+
       if (!success) {
         cerr << "Failed to place word '" << word << "' in main grid." << endl;
         return false;
       }
     }
   }
-  
+
   return true;
 }
 ```
@@ -12219,52 +12219,52 @@ void PerformanceAnalysis(const string& grid_file, const string& dict_file) {
   // Load library and grid
   Library lib;
   lib.ReadFromFile(dict_file);
-  
+
   Grid grid("Performance Test");
   grid.LoadFromFile(grid_file);
-  
+
   // Find partitions
   vector<vector<Span>> partitions = grid.FindPartitions();
-  
+
   if (partitions.size() <= 1) {
     cout << "Grid has only one partition. No performance comparison possible." << endl;
     return;
   }
-  
+
   cout << "Found " << partitions.size() << " partitions." << endl;
-  
+
   // Regular solver
   Solver regular_solver(grid, lib);
-  
+
   // Partition solver
   PartitionSolver partition_solver(grid, lib);
-  
+
   // Measure regular solver performance
   cout << "Solving with regular solver..." << endl;
   auto start1 = chrono::high_resolution_clock::now();
   bool success1 = regular_solver.Solve();
   auto end1 = chrono::high_resolution_clock::now();
-  
+
   auto duration1 = chrono::duration_cast<chrono::milliseconds>(end1 - start1);
-  
+
   // Reset the grid
   grid.ClearAllWords();
-  
+
   // Measure partition solver performance
   cout << "Solving with partition solver..." << endl;
   auto start2 = chrono::high_resolution_clock::now();
   bool success2 = partition_solver.Solve();
   auto end2 = chrono::high_resolution_clock::now();
-  
+
   auto duration2 = chrono::duration_cast<chrono::milliseconds>(end2 - start2);
-  
+
   // Print results
   cout << "Performance results:" << endl;
-  cout << "  Regular solver: " << duration1.count() << " ms (" 
+  cout << "  Regular solver: " << duration1.count() << " ms ("
        << (success1 ? "success" : "failure") << ")" << endl;
-  cout << "  Partition solver: " << duration2.count() << " ms (" 
+  cout << "  Partition solver: " << duration2.count() << " ms ("
        << (success2 ? "success" : "failure") << ")" << endl;
-  
+
   if (success1 && success2) {
     double speedup = (double)duration1.count() / duration2.count();
     cout << "  Speedup: " << speedup << "x" << endl;
@@ -12285,25 +12285,25 @@ For more sophisticated puzzles, we might want to analyze the characteristics of 
 void AnalyzePartitions(const Grid& grid) {
   // Find partitions
   vector<vector<Span>> partitions = grid.FindPartitions();
-  
+
   cout << "Partition Analysis:" << endl;
   cout << "  Total partitions: " << partitions.size() << endl;
-  
+
   if (partitions.empty()) {
     return;
   }
-  
+
   // Analyze each partition
   for (size_t p = 0; p < partitions.size(); p++) {
     const vector<Span>& partition = partitions[p];
-    
+
     cout << "  Partition " << (p + 1) << ":" << endl;
     cout << "    Spans: " << partition.size() << endl;
-    
+
     // Count horizontal and vertical spans
     int horizontal = 0;
     int vertical = 0;
-    
+
     for (const Span& span : partition) {
       if (span.vert) {
         vertical++;
@@ -12311,25 +12311,25 @@ void AnalyzePartitions(const Grid& grid) {
         horizontal++;
       }
     }
-    
+
     cout << "    Horizontal spans: " << horizontal << endl;
     cout << "    Vertical spans: " << vertical << endl;
-    
+
     // Analyze span lengths
     map<int, int> length_counts;
-    
+
     for (const Span& span : partition) {
       length_counts[span.len]++;
     }
-    
+
     cout << "    Span length distribution:" << endl;
     for (const auto& entry : length_counts) {
       cout << "      Length " << entry.first << ": " << entry.second << " spans" << endl;
     }
-    
+
     // Calculate density (ratio of filled cells to total cells in bounding box)
     // ... (calculate partition bounding box and density) ...
-    
+
     cout << endl;
   }
 }
@@ -12347,10 +12347,10 @@ bool SolveOverlappingPartitions(Grid& grid, Library& lib) {
   if (grid.spans.empty()) {
     grid.FillSpans();
   }
-  
+
   // Create an adjacency graph of spans
   vector<vector<size_t>> graph(grid.spans.size());
-  
+
   // Find all intersections between spans
   for (size_t i = 0; i < grid.spans.size(); i++) {
     for (size_t j = i + 1; j < grid.spans.size(); j++) {
@@ -12362,20 +12362,20 @@ bool SolveOverlappingPartitions(Grid& grid, Library& lib) {
       }
     }
   }
-  
+
   // Calculate span "connectivity" (how many other spans it intersects)
   vector<int> connectivity(grid.spans.size());
-  
+
   for (size_t i = 0; i < graph.size(); i++) {
     connectivity[i] = graph[i].size();
   }
-  
+
   // Find cut points in the graph (spans that, when removed, create partitions)
   // ... (advanced graph algorithm) ...
-  
+
   // Solve partitions in sequence, preserving shared spans
   // ... (sequential solving with constraints) ...
-  
+
   return true;
 }
 ```
@@ -12400,16 +12400,16 @@ Let's integrate partitioning into our main program:
 class Grid {
 public:
   // ... existing methods ...
-  
+
   vector<vector<Span>> FindPartitions() const;
   void PrintWithPartitions() const;
   void SetOffsets(int row_offset, int col_offset);
   int GetRowOffset() const;
   int GetColOffset() const;
-  
+
 private:
   // ... existing members ...
-  
+
   int row_offset_ = 0;
   int col_offset_ = 0;
 };
@@ -12419,12 +12419,12 @@ class PartitionSolver {
 public:
   PartitionSolver(Grid& grid, Library& lib);
   bool Solve();
-  
+
 private:
   Grid ExtractPartitionSubgrid(const vector<Span>& partition) const;
-  bool CombineSolvedPartitions(const vector<Grid>& solved_subgrids, 
+  bool CombineSolvedPartitions(const vector<Grid>& solved_subgrids,
                               const vector<vector<Span>>& partitions);
-  
+
   Grid& grid_;
   Library& lib_;
   Solver solver_;
@@ -12434,29 +12434,29 @@ int main() {
   // Load library
   Library lib;
   lib.ReadFromFile("top_12000.txt");
-  
+
   // Load grid
   Grid grid("Crossword Puzzle");
   grid.LoadFromFile("test.txt");
-  
+
   // Display initial grid
   cout << "Initial grid:" << endl;
   grid.Print();
-  
+
   // Check for partitions
   cout << "Checking for partitions..." << endl;
   grid.PrintWithPartitions();
-  
+
   // Analyze partitions
   AnalyzePartitions(grid);
-  
+
   // Create solvers
   Solver regular_solver(grid, lib);
   PartitionSolver partition_solver(grid, lib);
-  
+
   // Choose solver based on partition count
   vector<vector<Span>> partitions = grid.FindPartitions();
-  
+
   if (partitions.size() > 1) {
     cout << "Using partition solver..." << endl;
     bool success = partition_solver.Solve();
@@ -12466,13 +12466,13 @@ int main() {
     bool success = regular_solver.Solve();
     cout << "Solution " << (success ? "found" : "not found") << endl;
   }
-  
+
   // Display the solution
   grid.Print();
-  
+
   // Run performance analysis
   PerformanceAnalysis("test.txt", "top_12000.txt");
-  
+
   return 0;
 }
 ```
@@ -12526,34 +12526,34 @@ bool Solver::SolveRecursive(const Patterns& patterns, size_t index) {
   if (index >= patterns.size()) {
     return true;  // Success!
   }
-  
+
   // Get the current pattern to fill
   const Pattern& current = patterns[index];
-  
+
   // Skip already filled patterns
   if (grid_.IsSpanFilled(current.span)) {
     return SolveRecursive(patterns, index + 1);
   }
-  
+
   // Find candidate words for this pattern
   vector<string> candidates = FindCandidateWords(current);
-  
+
   // Try each candidate
   for (const string& word : candidates) {
     // Place the word in the grid
     bool success = grid_.PlaceWord(current.span, word, allow_duplicates_);
-    
+
     if (success) {
       // Recursively try to solve the rest of the grid
       if (SolveRecursive(patterns, index + 1)) {
         return true;  // Success!
       }
-      
+
       // Backtrack by removing the word from the grid
       grid_.RemoveWord(current.span);
     }
   }
-  
+
   // If we tried all candidates and none worked, this is a dead end
   return false;
 }
@@ -12581,19 +12581,19 @@ Let's create a specialized StateManager class to handle these optimizations:
 class StateManager {
 public:
   StateManager(Grid& grid) : grid_(grid) {}
-  
+
   // Apply a word placement and return a state change object
   StateChange PlaceWord(const Span& span, const string& word) {
     StateChange change;
     change.span = span;
     change.word = word;
-    
+
     // Record the current state of cells that will be changed
     Point pos = span.point;
     for (int i = 0; i < span.len; i++) {
       char current_char = grid_.GetChar(pos);
       change.original_chars.push_back(current_char);
-      
+
       // Move to next position
       if (span.vert) {
         pos.row++;
@@ -12601,14 +12601,14 @@ public:
         pos.col++;
       }
     }
-    
+
     // Check if the placement is valid
     if (IsValidPlacement(span, word)) {
       // Actually place the word
       pos = span.point;
       for (int i = 0; i < span.len; i++) {
         grid_.SetChar(pos, word[i]);
-        
+
         // Move to next position
         if (span.vert) {
           pos.row++;
@@ -12616,32 +12616,32 @@ public:
           pos.col++;
         }
       }
-      
+
       // Track that this span is now filled
       filled_spans_.insert(span);
-      
+
       // Track the word usage
       used_words_.insert(word);
-      
+
       change.valid = true;
     } else {
       change.valid = false;
     }
-    
+
     return change;
   }
-  
+
   // Revert a state change
   void RevertChange(const StateChange& change) {
     if (!change.valid) {
       return;  // Nothing to revert
     }
-    
+
     // Restore original characters
     Point pos = change.span.point;
     for (int i = 0; i < change.original_chars.size(); i++) {
       grid_.SetChar(pos, change.original_chars[i]);
-      
+
       // Move to next position
       if (change.span.vert) {
         pos.row++;
@@ -12649,10 +12649,10 @@ public:
         pos.col++;
       }
     }
-    
+
     // Remove tracking data
     filled_spans_.erase(change.span);
-    
+
     // Check if the word is used elsewhere before removing from used_words
     bool used_elsewhere = false;
     for (const auto& span : filled_spans_) {
@@ -12662,38 +12662,38 @@ public:
         break;
       }
     }
-    
+
     if (!used_elsewhere) {
       used_words_.erase(change.word);
     }
   }
-  
+
   // Check if a span is filled
   bool IsSpanFilled(const Span& span) const {
     return filled_spans_.find(span) != filled_spans_.end();
   }
-  
+
   // Check if a word is used anywhere in the grid
   bool IsWordUsed(const string& word) const {
     return used_words_.find(word) != used_words_.end();
   }
-  
+
 private:
   // Check if a word placement is valid
   bool IsValidPlacement(const Span& span, const string& word) const {
     if (word.length() != span.len) {
       return false;
     }
-    
+
     // Check compatibility with existing letters
     Point pos = span.point;
     for (int i = 0; i < span.len; i++) {
       char current = grid_.GetChar(pos);
-      
+
       if (current != '-' && current != word[i]) {
         return false;  // Conflict with existing letter
       }
-      
+
       // Move to next position
       if (span.vert) {
         pos.row++;
@@ -12701,10 +12701,10 @@ private:
         pos.col++;
       }
     }
-    
+
     return true;
   }
-  
+
   Grid& grid_;
   unordered_set<Span, SpanHash> filled_spans_;
   unordered_set<string> used_words_;
@@ -12743,11 +12743,11 @@ Now let's update our Solver to use the StateManager:
 ```cpp
 class Solver {
 public:
-  Solver(Grid& grid, Library& lib) 
+  Solver(Grid& grid, Library& lib)
     : grid_(grid), lib_(lib), state_manager_(grid) {}
-  
+
   // ... existing methods ...
-  
+
 private:
   // Enhanced recursive solver with efficient state management
   bool SolveRecursiveOptimized(const Patterns& patterns, size_t index) {
@@ -12755,43 +12755,43 @@ private:
     if (index >= patterns.size()) {
       return true;  // Success!
     }
-    
+
     // Get the current pattern to fill
     const Pattern& current = patterns[index];
-    
+
     // Skip already filled patterns
     if (state_manager_.IsSpanFilled(current.span)) {
       return SolveRecursiveOptimized(patterns, index + 1);
     }
-    
+
     // Find candidate words for this pattern
     vector<string> candidates = FindCandidateWords(current);
-    
+
     // Try each candidate
     for (const string& word : candidates) {
       // Check for duplicates
       if (!allow_duplicates_ && state_manager_.IsWordUsed(word)) {
         continue;  // Skip this word
       }
-      
+
       // Place the word using state manager
       StateChange change = state_manager_.PlaceWord(current.span, word);
-      
+
       if (change.valid) {
         // Recursively try to solve the rest of the grid
         if (SolveRecursiveOptimized(patterns, index + 1)) {
           return true;  // Success!
         }
-        
+
         // Backtrack by reverting the state change
         state_manager_.RevertChange(change);
       }
     }
-    
+
     // If we tried all candidates and none worked, this is a dead end
     return false;
   }
-  
+
   Grid& grid_;
   Library& lib_;
   StateManager state_manager_;
@@ -12809,7 +12809,7 @@ struct StateChange {
   Span span;
   vector<char> original_chars;
   bool valid = false;
-  
+
   // No need to store the entire word - just a reference
   // to avoid string copying
   const string* word_ref = nullptr;
@@ -12818,22 +12818,22 @@ struct StateChange {
 class StateManager {
 public:
   // ... existing methods ...
-  
+
   // Optimized PlaceWord that avoids string copying
   StateChange PlaceWord(const Span& span, const string& word) {
     StateChange change;
     change.span = span;
     change.word_ref = &word;  // Store reference instead of copying
-    
+
     // ... rest of the method ...
   }
-  
+
   // Updated RevertChange
   void RevertChange(const StateChange& change) {
     if (!change.valid || !change.word_ref) {
       return;  // Nothing to revert
     }
-    
+
     // ... rest of the method, using *change.word_ref instead of change.word ...
   }
 };
@@ -12847,7 +12847,7 @@ Currently, we extract pattern content on-demand, which involves scanning the gri
 class StateManager {
 public:
   // ... existing methods ...
-  
+
   // Get the current content of a pattern
   string GetPatternContent(const Span& span) const {
     // Check if we have cached the pattern
@@ -12855,14 +12855,14 @@ public:
     if (it != pattern_cache_.end()) {
       return it->second;
     }
-    
+
     // Extract the pattern from the grid
     string content;
     Point pos = span.point;
-    
+
     for (int i = 0; i < span.len; i++) {
       content.push_back(grid_.GetChar(pos));
-      
+
       // Move to next position
       if (span.vert) {
         pos.row++;
@@ -12870,28 +12870,28 @@ public:
         pos.col++;
       }
     }
-    
+
     // Cache the result
     pattern_cache_[span] = content;
-    
+
     return content;
   }
-  
+
   // Invalidate pattern cache for spans that intersect with the given span
   void InvalidateIntersectingPatterns(const Span& span) {
     for (const auto& entry : pattern_cache_) {
       const Span& other_span = entry.first;
-      
+
       Point intersection;
       if (grid_.SpansIntersect(span, other_span, intersection)) {
         pattern_cache_.erase(other_span);
       }
     }
   }
-  
+
 private:
   // ... existing members ...
-  
+
   // Cache for pattern contents
   mutable unordered_map<Span, string, SpanHash> pattern_cache_;
 };
@@ -12910,14 +12910,14 @@ For deeper optimization, we can maintain a stack of changes for efficient backtr
 class StateManager {
 public:
   // ... existing methods ...
-  
+
   // Push a change onto the stack
   void PushChange(const StateChange& change) {
     if (change.valid) {
       change_stack_.push_back(change);
     }
   }
-  
+
   // Pop and revert the most recent change
   void PopChange() {
     if (!change_stack_.empty()) {
@@ -12926,22 +12926,22 @@ public:
       RevertChange(change);
     }
   }
-  
+
   // Revert to a specific checkpoint (stack size)
   void RevertToCheckpoint(size_t checkpoint) {
     while (change_stack_.size() > checkpoint) {
       PopChange();
     }
   }
-  
+
   // Get current stack size for checkpointing
   size_t CreateCheckpoint() const {
     return change_stack_.size();
   }
-  
+
 private:
   // ... existing members ...
-  
+
   vector<StateChange> change_stack_;
 };
 ```
@@ -12967,7 +12967,7 @@ public:
           // Calculate positions within each span
           int pos_i = GetPositionInSpan(grid_.spans[i], intersection);
           int pos_j = GetPositionInSpan(grid_.spans[j], intersection);
-          
+
           // Record the intersection
           intersections_[grid_.spans[i]].push_back(
             {grid_.spans[j], pos_i, pos_j});
@@ -12977,7 +12977,7 @@ public:
       }
     }
   }
-  
+
   // Check if placing a word would violate any constraints
   bool CheckConstraints(const Span& span, const string& word) {
     // Check existing intersections
@@ -12987,26 +12987,26 @@ public:
         const Span& other_span = intersection.span;
         int pos_in_word = intersection.pos_this;
         int pos_in_other = intersection.pos_other;
-        
+
         // Skip if the other span isn't filled yet
         if (!state_manager_.IsSpanFilled(other_span)) {
           continue;
         }
-        
+
         // Get the letter at the intersection in the other span
         string other_word = state_manager_.GetSpanContent(other_span);
         char other_letter = other_word[pos_in_other];
-        
+
         // Check if the letters match
         if (word[pos_in_word] != other_letter) {
           return false;  // Constraint violation
         }
       }
     }
-    
+
     return true;  // All constraints satisfied
   }
-  
+
 private:
   // Calculate position within a span
   int GetPositionInSpan(const Span& span, const Point& point) {
@@ -13016,13 +13016,13 @@ private:
       return point.col - span.point.col;
     }
   }
-  
+
   struct Intersection {
     Span span;      // The intersecting span
     int pos_this;   // Position in this span
     int pos_other;  // Position in other span
   };
-  
+
   Grid& grid_;
   unordered_map<Span, vector<Intersection>, SpanHash> intersections_;
 };
@@ -13045,45 +13045,45 @@ public:
     filled_spans_bits_.resize((grid_.spans.size() + 63) / 64, 0);
     modified_cells_bits_.resize((grid_.rows() * grid_.cols() + 63) / 64, 0);
   }
-  
+
   // Set a bit in a bit vector
   void SetBit(vector<uint64_t>& bits, size_t index) {
     size_t word_index = index / 64;
     size_t bit_index = index % 64;
     bits[word_index] |= (1ULL << bit_index);
   }
-  
+
   // Clear a bit in a bit vector
   void ClearBit(vector<uint64_t>& bits, size_t index) {
     size_t word_index = index / 64;
     size_t bit_index = index % 64;
     bits[word_index] &= ~(1ULL << bit_index);
   }
-  
+
   // Test if a bit is set
   bool TestBit(const vector<uint64_t>& bits, size_t index) const {
     size_t word_index = index / 64;
     size_t bit_index = index % 64;
     return (bits[word_index] & (1ULL << bit_index)) != 0;
   }
-  
+
   // Mark a span as filled
   void MarkSpanFilled(size_t span_index) {
     SetBit(filled_spans_bits_, span_index);
   }
-  
+
   // Check if a span is filled
   bool IsSpanFilled(size_t span_index) const {
     return TestBit(filled_spans_bits_, span_index);
   }
-  
+
   // Mark a cell as modified
   void MarkCellModified(const Point& p) {
     size_t cell_index = p.row * grid_.cols() + p.col;
     SetBit(modified_cells_bits_, cell_index);
     modified_cells_.push_back(p);
   }
-  
+
   // Clear all modifications
   void ClearModifications() {
     for (const Point& p : modified_cells_) {
@@ -13092,7 +13092,7 @@ public:
     }
     modified_cells_.clear();
   }
-  
+
 private:
   Grid& grid_;
   vector<uint64_t> filled_spans_bits_;     // Bit vector for filled spans
@@ -13115,68 +13115,68 @@ void BenchmarkSolverOptimizations(const string& grid_file, const string& dict_fi
   // Load library and grid
   Library lib;
   lib.ReadFromFile(dict_file);
-  
+
   Grid grid("Benchmark Grid");
   grid.LoadFromFile(grid_file);
-  
+
   // Create different solvers
   Solver original_solver(grid, lib);
   OptimizedSolver state_solver(grid, lib);      // With StateManager
   OptimizedSolver constraint_solver(grid, lib); // With ConstraintManager
   OptimizedSolver bitvector_solver(grid, lib);  // With BitVectorStateManager
-  
+
   // Run benchmarks
   auto benchmark = [&grid](auto& solver, const string& name) {
     grid.ClearAllWords();
-    
+
     auto start = chrono::high_resolution_clock::now();
     bool success = solver.Solve();
     auto end = chrono::high_resolution_clock::now();
-    
+
     auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
-    
-    cout << name << ": " << duration.count() << " ms (" 
+
+    cout << name << ": " << duration.count() << " ms ("
          << (success ? "success" : "failure") << ")" << endl;
-    
+
     return duration.count();
   };
-  
+
   // Run benchmarks multiple times for statistical significance
   const int runs = 5;
-  
+
   vector<long long> original_times, state_times, constraint_times, bitvector_times;
-  
+
   for (int i = 0; i < runs; i++) {
     cout << "Run " << (i + 1) << ":" << endl;
-    
+
     original_times.push_back(benchmark(original_solver, "Original solver"));
     state_times.push_back(benchmark(state_solver, "State manager"));
     constraint_times.push_back(benchmark(constraint_solver, "Constraint manager"));
     bitvector_times.push_back(benchmark(bitvector_solver, "Bit vector state"));
-    
+
     cout << endl;
   }
-  
+
   // Calculate and display average times
   auto average = [](const vector<long long>& times) {
     return accumulate(times.begin(), times.end(), 0LL) / times.size();
   };
-  
+
   cout << "Average times:" << endl;
   cout << "Original solver: " << average(original_times) << " ms" << endl;
   cout << "State manager: " << average(state_times) << " ms" << endl;
   cout << "Constraint manager: " << average(constraint_times) << " ms" << endl;
   cout << "Bit vector state: " << average(bitvector_times) << " ms" << endl;
-  
+
   // Calculate and display speedups
   long long baseline = average(original_times);
-  
+
   cout << "Speedups:" << endl;
-  cout << "State manager: " << fixed << setprecision(2) 
+  cout << "State manager: " << fixed << setprecision(2)
        << (double)baseline / average(state_times) << "x" << endl;
-  cout << "Constraint manager: " << fixed << setprecision(2) 
+  cout << "Constraint manager: " << fixed << setprecision(2)
        << (double)baseline / average(constraint_times) << "x" << endl;
-  cout << "Bit vector state: " << fixed << setprecision(2) 
+  cout << "Bit vector state: " << fixed << setprecision(2)
        << (double)baseline / average(bitvector_times) << "x" << endl;
 }
 ```
@@ -13195,12 +13195,12 @@ Besides speed, let's also analyze memory usage:
 ```cpp
 void AnalyzeMemoryUsage() {
   // ... implementation of memory profiling ...
-  
+
   cout << "Memory usage comparison:" << endl;
   cout << "Original solver: " << original_memory_mb << " MB" << endl;
   cout << "Optimized solver: " << optimized_memory_mb << " MB" << endl;
-  cout << "Memory reduction: " << (original_memory_mb - optimized_memory_mb) 
-       << " MB (" << (1.0 - optimized_memory_mb / original_memory_mb) * 100.0 
+  cout << "Memory reduction: " << (original_memory_mb - optimized_memory_mb)
+       << " MB (" << (1.0 - optimized_memory_mb / original_memory_mb) * 100.0
        << "%)" << endl;
 }
 ```
@@ -13248,10 +13248,10 @@ class OptimizedSolver {
 public:
   OptimizedSolver(Grid& grid, Library& lib);
   bool Solve();
-  
+
 private:
   bool SolveRecursiveOptimized(const Patterns& patterns, size_t index);
-  
+
   Grid& grid_;
   Library& lib_;
   StateManager state_manager_;
@@ -13263,36 +13263,36 @@ int main() {
   // Load library and grid
   Library lib;
   lib.ReadFromFile("top_12000.txt");
-  
+
   Grid grid("Crossword Puzzle");
   grid.LoadFromFile("test.txt");
-  
+
   // Display initial grid
   cout << "Initial grid:" << endl;
   grid.Print();
-  
+
   // Create optimized solver
   OptimizedSolver solver(grid, lib);
-  
+
   // Time the solving process
   auto start = chrono::high_resolution_clock::now();
   bool success = solver.Solve();
   auto end = chrono::high_resolution_clock::now();
-  
+
   auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
-  
-  cout << "Solution " << (success ? "found" : "not found") 
+
+  cout << "Solution " << (success ? "found" : "not found")
        << " in " << duration.count() << " ms" << endl;
-  
+
   // Display the solution
   grid.Print();
-  
+
   // Run benchmarks
   BenchmarkSolverOptimizations("test.txt", "top_12000.txt");
-  
+
   // Analyze memory usage
   AnalyzeMemoryUsage();
-  
+
   return 0;
 }
 ```
@@ -13372,73 +13372,73 @@ public:
     void SetMaxRecursionDepth(int max_depth) {
         max_recursion_depth_ = max_depth;
     }
-    
+
     // Set maximum node exploration count
     void SetMaxNodeCount(uint64_t max_nodes) {
         max_node_count_ = max_nodes;
     }
-    
+
 private:
     // Recursive solving with limits
-    bool SolveRecursiveWithLimits(const Patterns& patterns, size_t index, 
+    bool SolveRecursiveWithLimits(const Patterns& patterns, size_t index,
                                   int current_depth, uint64_t& node_count) {
         // Check recursion depth limit
         if (max_recursion_depth_ > 0 && current_depth >= max_recursion_depth_) {
             return false;  // Depth limit reached
         }
-        
+
         // Check node count limit
         if (max_node_count_ > 0 && node_count >= max_node_count_) {
             recursion_limit_reached_ = true;
             return false;  // Node count limit reached
         }
-        
+
         // Base case: we've filled all patterns
         if (index >= patterns.size()) {
             return true;  // Solution found
         }
-        
+
         // Get the current pattern to fill
         const Pattern& current = patterns[index];
-        
+
         // If the pattern is already filled, move to the next one
         if (grid_.IsSpanFilled(current.span)) {
-            return SolveRecursiveWithLimits(patterns, index + 1, 
+            return SolveRecursiveWithLimits(patterns, index + 1,
                                           current_depth + 1, node_count);
         }
-        
+
         // Find candidate words for this pattern
         vector<string> candidates = FindCandidateWords(current);
-        
+
         // Try each candidate
         for (const string& word : candidates) {
             // Increment node count
             node_count++;
-            
+
             // Place the word in the grid
             bool success = grid_.PlaceWord(current.span, word, allow_duplicates_);
-            
+
             if (success) {
                 // Recursively try to solve the rest of the grid
-                if (SolveRecursiveWithLimits(patterns, index + 1, 
+                if (SolveRecursiveWithLimits(patterns, index + 1,
                                            current_depth + 1, node_count)) {
                     return true;  // Solution found
                 }
-                
+
                 // If we get here, this word didn't lead to a solution
                 grid_.RemoveWord(current.span);
             }
-            
+
             // Check if we've hit the node limit while backtracking
             if (recursion_limit_reached_) {
                 return false;
             }
         }
-        
+
         // No solution found with any candidate
         return false;
     }
-    
+
     int max_recursion_depth_ = 0;  // 0 means no limit
     uint64_t max_node_count_ = 0;  // 0 means no limit
     bool recursion_limit_reached_ = false;
@@ -13455,7 +13455,7 @@ To make our limits more intelligent, let's adjust them based on CPU capabilities
 void DetermineLimitsBasedOnCPU() {
     // Get number of CPU cores
     unsigned int cpu_cores = thread::hardware_concurrency();
-    
+
     // Adjust limits based on available cores
     if (cpu_cores <= 2) {
         // Low-end CPU: conservative limits
@@ -13474,7 +13474,7 @@ void DetermineLimitsBasedOnCPU() {
         max_node_count_ = 50000000;  // 50 million nodes
         max_recursion_depth_ = 35;
     }
-    
+
     cout << "CPU-based limits: " << cpu_cores << " cores detected" << endl;
     cout << "  Max node count: " << max_node_count_ << endl;
     cout << "  Max recursion depth: " << max_recursion_depth_ << endl;
@@ -13492,15 +13492,15 @@ void EstimateTreeSizeAndSetLimits(const Patterns& patterns) {
     // Calculate the estimated tree size
     double estimated_tree_size = 1.0;
     double cumulative_branching = 0.0;
-    
+
     for (const Pattern& pattern : patterns) {
         // Estimate number of candidate words for this pattern
         int empty_cells = pattern.EmptyCellCount();
         int filled_cells = pattern.pattern.length() - empty_cells;
-        
+
         // Rough estimate of branching factor based on pattern constraints
         double branching_factor;
-        
+
         if (empty_cells == 0) {
             branching_factor = 1.0;  // Already filled
         } else if (filled_cells == 0) {
@@ -13509,16 +13509,16 @@ void EstimateTreeSizeAndSetLimits(const Patterns& patterns) {
             // More constrained patterns have fewer candidates
             branching_factor = min(50.0, pow(10.0, empty_cells) / pow(5.0, filled_cells));
         }
-        
+
         cumulative_branching += branching_factor;
         estimated_tree_size *= max(1.0, branching_factor);
     }
-    
+
     cout << "Tree size estimation:" << endl;
     cout << "  Patterns: " << patterns.size() << endl;
     cout << "  Avg. branching factor: " << cumulative_branching / patterns.size() << endl;
     cout << "  Estimated tree size: " << estimated_tree_size << endl;
-    
+
     // Set limits based on estimated tree size
     if (estimated_tree_size < 1000000) {
         // Small tree: explore exhaustively
@@ -13533,7 +13533,7 @@ void EstimateTreeSizeAndSetLimits(const Patterns& patterns) {
         max_node_count_ = min(max_node_count_, static_cast<uint64_t>(10000000));
         max_recursion_depth_ = min(max_recursion_depth_, static_cast<int>(patterns.size() * 0.7));
     }
-    
+
     cout << "Tree-based limits:" << endl;
     cout << "  Max node count: " << max_node_count_ << endl;
     cout << "  Max recursion depth: " << max_recursion_depth_ << endl;
@@ -13553,35 +13553,35 @@ Another approach is to set time-based limits, which can be more intuitive for us
 bool SolveWithTimeLimit(int max_seconds) {
     auto start_time = chrono::high_resolution_clock::now();
     uint64_t node_count = 0;
-    
+
     // Start the recursive solving process
     bool success = SolveRecursiveWithTimeLimit(patterns_, 0, 0, node_count, start_time, max_seconds);
-    
+
     cout << "Solving statistics:" << endl;
     cout << "  Nodes explored: " << node_count << endl;
     cout << "  Solution found: " << (success ? "Yes" : "No") << endl;
-    
+
     auto end_time = chrono::high_resolution_clock::now();
     auto duration = chrono::duration_cast<chrono::seconds>(end_time - start_time);
     cout << "  Time taken: " << duration.count() << " seconds" << endl;
-    
+
     return success;
 }
 
-bool SolveRecursiveWithTimeLimit(const Patterns& patterns, size_t index, 
+bool SolveRecursiveWithTimeLimit(const Patterns& patterns, size_t index,
                                int current_depth, uint64_t& node_count,
                                const chrono::high_resolution_clock::time_point& start_time,
                                int max_seconds) {
     // Check time limit
     auto current_time = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::seconds>(current_time - start_time);
-    
+
     if (elapsed.count() >= max_seconds) {
         cout << "Time limit reached." << endl;
         time_limit_reached_ = true;
         return false;
     }
-    
+
     // Rest of the recursive solving logic...
 }
 ```
@@ -13598,33 +13598,33 @@ bool SolveWithProgressiveDeepening() {
     int max_depth = 5;
     int max_depth_increment = 5;
     int max_attempts = 6;  // Will go up to depth 30
-    
+
     for (int attempt = 1; attempt <= max_attempts; attempt++) {
-        cout << "Progressive deepening: attempt " << attempt 
+        cout << "Progressive deepening: attempt " << attempt
              << ", max depth " << max_depth << endl;
-        
+
         // Set the depth limit for this attempt
         max_recursion_depth_ = max_depth;
         recursion_limit_reached_ = false;
         uint64_t node_count = 0;
-        
+
         // Try to solve with current depth limit
         bool success = SolveRecursiveWithLimits(patterns_, 0, 0, node_count);
-        
+
         if (success) {
             cout << "Solution found at depth " << max_depth << endl;
             return true;
         }
-        
+
         if (!recursion_limit_reached_) {
             cout << "Search exhausted without hitting depth limit." << endl;
             return false;  // No solution exists
         }
-        
+
         // Increase depth for next attempt
         max_depth += max_depth_increment;
     }
-    
+
     cout << "No solution found within maximum depth." << endl;
     return false;
 }
@@ -13644,7 +13644,7 @@ bool CheckMemoryUsage() {
     ifstream status_file("/proc/self/status");
     string line;
     size_t vm_usage = 0;
-    
+
     while (getline(status_file, line)) {
         if (line.substr(0, 6) == "VmSize") {
             string vm_str = line.substr(line.find_last_of(' ') + 1);
@@ -13652,14 +13652,14 @@ bool CheckMemoryUsage() {
             break;
         }
     }
-    
+
     // Check if memory usage exceeds threshold (e.g., 2GB)
     if (vm_usage > 2000000) {  // 2GB in KB
         cout << "Memory usage limit exceeded: " << vm_usage << " KB" << endl;
         return false;  // Memory limit exceeded
     }
 #endif
-    
+
     return true;  // Memory usage is acceptable
 }
 ```
@@ -13675,47 +13675,47 @@ bool Solve() {
     // Initial setup
     grid_.FillSpans();
     Patterns patterns = grid_.GetSortedPatterns();
-    
+
     // Set initial limits based on CPU
     DetermineLimitsBasedOnCPU();
-    
+
     // Refine limits based on tree size estimation
     EstimateTreeSizeAndSetLimits(patterns);
-    
+
     // Solve with combined limits
     uint64_t node_count = 0;
     auto start_time = chrono::high_resolution_clock::now();
-    
+
     bool success = SolveRecursiveWithCombinedLimits(
         patterns, 0, 0, node_count, start_time,
         max_recursion_depth_, max_node_count_, max_time_seconds_);
-    
+
     // Report statistics
     auto end_time = chrono::high_resolution_clock::now();
     auto duration = chrono::duration_cast<chrono::seconds>(end_time - start_time);
-    
+
     cout << "Solving completed:" << endl;
     cout << "  Time taken: " << duration.count() << " seconds" << endl;
     cout << "  Nodes explored: " << node_count << endl;
     cout << "  Solution found: " << (success ? "Yes" : "No") << endl;
-    
+
     return success;
 }
 
 bool SolveRecursiveWithCombinedLimits(
-    const Patterns& patterns, size_t index, int current_depth, 
+    const Patterns& patterns, size_t index, int current_depth,
     uint64_t& node_count, const chrono::high_resolution_clock::time_point& start_time,
     int max_depth, uint64_t max_nodes, int max_seconds) {
-    
+
     // Check all limits
     if (max_depth > 0 && current_depth >= max_depth) {
         return false;  // Depth limit reached
     }
-    
+
     if (max_nodes > 0 && node_count >= max_nodes) {
         return false;  // Node count limit reached
     }
-    
+
     if (max_seconds > 0) {
         auto current_time = chrono::high_resolution_clock::now();
         auto elapsed = chrono::duration_cast<chrono::seconds>(current_time - start_time);
@@ -13723,12 +13723,12 @@ bool SolveRecursiveWithCombinedLimits(
             return false;  // Time limit reached
         }
     }
-    
+
     // Check memory usage periodically
     if (node_count % 10000 == 0 && !CheckMemoryUsage()) {
         return false;  // Memory limit reached
     }
-    
+
     // Rest of the recursive solving logic...
 }
 ```
@@ -13790,21 +13790,21 @@ So far, we've been using a simple constraint-based approach to order our spans:
 ```cpp
 Patterns Grid::GetSortedPatterns() const {
     Patterns result = GetAllPatterns();
-    
+
     // Sort by number of empty cells (ascending)
-    sort(result.begin(), result.end(), 
+    sort(result.begin(), result.end(),
          [](const Pattern& a, const Pattern& b) {
            int a_empty = a.EmptyCellCount();
            int b_empty = b.EmptyCellCount();
-           
+
            // If equal empty counts, prefer shorter patterns
            if (a_empty == b_empty) {
              return a.pattern.length() < b.pattern.length();
            }
-           
+
            return a_empty < b_empty;
          });
-    
+
     return result;
 }
 ```
@@ -13840,25 +13840,25 @@ int CountIntersections(const Span& span, const vector<Span>& all_spans) {
 Patterns Grid::GetIntersectionSortedPatterns() const {
     Patterns result = GetAllPatterns();
     vector<Span> all_spans;
-    
+
     // Extract all spans
     for (const Pattern& p : result) {
         all_spans.push_back(p.span);
     }
-    
+
     // Sort by intersection count (descending), then by empty cells (ascending)
-    sort(result.begin(), result.end(), 
+    sort(result.begin(), result.end(),
          [&all_spans](const Pattern& a, const Pattern& b) {
            int a_intersections = CountIntersections(a.span, all_spans);
            int b_intersections = CountIntersections(b.span, all_spans);
-           
+
            if (a_intersections != b_intersections) {
                return a_intersections > b_intersections;
            }
-           
+
            return a.EmptyCellCount() < b.EmptyCellCount();
          });
-    
+
     return result;
 }
 ```
@@ -13873,16 +13873,16 @@ This strategy dynamically reevaluates which span is most constrained after each 
 class DynamicMCVSolver {
 public:
     // ... existing methods ...
-    
+
     bool Solve() {
         // Initialize
         grid_.FillSpans();
         Patterns all_patterns = grid_.GetAllPatterns();
-        
+
         // Start the recursive solving process with dynamic MCV
         return SolveWithDynamicMCV(all_patterns);
     }
-    
+
 private:
     bool SolveWithDynamicMCV(const Patterns& all_patterns) {
         // Check if we're done (all spans filled)
@@ -13893,26 +13893,26 @@ private:
                 break;
             }
         }
-        
+
         if (all_filled) {
             return true;  // Solution found
         }
-        
+
         // Find the most constrained unfilled span
         Pattern best_pattern;
         int min_candidates = INT_MAX;
         bool found_unfilled = false;
-        
+
         for (const Pattern& p : all_patterns) {
             if (!grid_.IsSpanFilled(p.span)) {
                 // Get current pattern with updated content
                 string current_content = grid_.GetSpanContent(p.span);
                 Pattern current_pattern(p.span, current_content);
-                
+
                 // Count valid candidates
                 vector<string> candidates = FindCandidateWords(current_pattern);
                 int candidate_count = candidates.size();
-                
+
                 // Update if this is more constrained
                 if (candidate_count < min_candidates) {
                     min_candidates = candidate_count;
@@ -13921,35 +13921,35 @@ private:
                 }
             }
         }
-        
+
         if (!found_unfilled) {
             return true;  // All spans are filled
         }
-        
+
         // If no valid candidates for the most constrained span, we're stuck
         if (min_candidates == 0) {
             return false;
         }
-        
+
         // Get candidates for the chosen span
         vector<string> candidates = FindCandidateWords(best_pattern);
-        
+
         // Try each candidate
         for (const string& word : candidates) {
             // Place the word
             bool success = grid_.PlaceWord(best_pattern.span, word, allow_duplicates_);
-            
+
             if (success) {
                 // Recursively try to solve the rest
                 if (SolveWithDynamicMCV(all_patterns)) {
                     return true;  // Solution found
                 }
-                
+
                 // If we get here, this word didn't work
                 grid_.RemoveWord(best_pattern.span);
             }
         }
-        
+
         return false;  // No solution with any candidate
     }
 };
@@ -13969,30 +13969,30 @@ This strategy considers how the choice of span affects overall solution quality:
 ```cpp
 Patterns Grid::GetQualityImpactSortedPatterns(const Library& lib) const {
     Patterns result = GetAllPatterns();
-    
+
     // Compute a quality impact score for each pattern
     vector<pair<Pattern, double>> scored_patterns;
-    
+
     for (const Pattern& p : result) {
         // Skip already filled patterns
         if (p.IsFilled()) {
             continue;
         }
-        
+
         // Find candidate words
         vector<Word*> candidates = lib.FindMatchingWords(p.pattern);
-        
+
         // Calculate average quality and quality variance
         double total_quality = 0.0;
         vector<int> qualities;
-        
+
         for (const Word* w : candidates) {
             total_quality += w->quality;
             qualities.push_back(w->quality);
         }
-        
+
         double avg_quality = candidates.empty() ? 0 : total_quality / candidates.size();
-        
+
         // Calculate standard deviation
         double variance = 0.0;
         for (int q : qualities) {
@@ -14000,29 +14000,29 @@ Patterns Grid::GetQualityImpactSortedPatterns(const Library& lib) const {
         }
         variance = candidates.size() > 1 ? variance / (candidates.size() - 1) : 0;
         double std_dev = sqrt(variance);
-        
+
         // Quality impact score combines:
         // - Pattern constraint level (fewer empties is better)
         // - Average word quality (higher is better)
         // - Quality variance (higher is better - more diverse options)
         double constraint_score = 10.0 / (1.0 + p.EmptyCellCount());
         double quality_impact = constraint_score * (avg_quality + std_dev * 0.5);
-        
+
         scored_patterns.push_back(make_pair(p, quality_impact));
     }
-    
+
     // Sort by quality impact (descending)
     sort(scored_patterns.begin(), scored_patterns.end(),
          [](const pair<Pattern, double>& a, const pair<Pattern, double>& b) {
              return a.second > b.second;
          });
-    
+
     // Extract just the patterns
     result.clear();
     for (const auto& pair : scored_patterns) {
         result.push_back(pair.first);
     }
-    
+
     return result;
 }
 ```
@@ -14037,7 +14037,7 @@ This approach identifies "critical paths" in the grid - sequences of interconnec
 vector<Span> Grid::FindCriticalPath() const {
     // Create a graph of span intersections
     vector<vector<size_t>> graph(spans.size());
-    
+
     for (size_t i = 0; i < spans.size(); i++) {
         for (size_t j = i + 1; j < spans.size(); j++) {
             Point intersection;
@@ -14047,62 +14047,62 @@ vector<Span> Grid::FindCriticalPath() const {
             }
         }
     }
-    
+
     // Find the span with the most intersections
     size_t start_span = 0;
     int max_intersections = 0;
-    
+
     for (size_t i = 0; i < graph.size(); i++) {
         if (graph[i].size() > max_intersections) {
             max_intersections = graph[i].size();
             start_span = i;
         }
     }
-    
+
     // Perform a depth-first traversal to find the critical path
     vector<Span> critical_path;
     vector<bool> visited(spans.size(), false);
-    
+
     function<void(size_t)> dfs = [&](size_t span_idx) {
         visited[span_idx] = true;
         critical_path.push_back(spans[span_idx]);
-        
+
         // Visit neighbors (prioritize unvisited neighbors with most connections)
         vector<pair<size_t, int>> neighbors;
-        
+
         for (size_t neighbor : graph[span_idx]) {
             if (!visited[neighbor]) {
                 neighbors.push_back(make_pair(neighbor, graph[neighbor].size()));
             }
         }
-        
+
         // Sort by number of connections (descending)
         sort(neighbors.begin(), neighbors.end(),
              [](const pair<size_t, int>& a, const pair<size_t, int>& b) {
                  return a.second > b.second;
              });
-        
+
         // Visit in sorted order
         for (const auto& neighbor : neighbors) {
             dfs(neighbor.first);
         }
     };
-    
+
     dfs(start_span);
-    
+
     return critical_path;
 }
 
 Patterns Grid::GetCriticalPathPatterns() const {
     vector<Span> path = FindCriticalPath();
     Patterns result;
-    
+
     // Convert spans to patterns
     for (const Span& span : path) {
         string content = GetSpanContent(span);
         result.push_back(Pattern(span, content));
     }
-    
+
     return result;
 }
 ```
@@ -14121,31 +14121,31 @@ class HybridSlotSelector {
 public:
     HybridSlotSelector(Grid& grid, Library& lib)
         : grid_(grid), lib_(lib) {}
-    
+
     // Get the next best span to fill
     Pattern GetNextSpan(const vector<Pattern>& unfilled_patterns) {
         if (unfilled_patterns.empty()) {
             throw runtime_error("No unfilled patterns available");
         }
-        
+
         // Calculate scores for each pattern
         vector<pair<Pattern, double>> scored_patterns;
-        
+
         for (const Pattern& p : unfilled_patterns) {
             double score = CalculatePatternScore(p);
             scored_patterns.push_back(make_pair(p, score));
         }
-        
+
         // Sort by score (descending)
         sort(scored_patterns.begin(), scored_patterns.end(),
              [](const pair<Pattern, double>& a, const pair<Pattern, double>& b) {
                  return a.second > b.second;
              });
-        
+
         // Return the highest-scoring pattern
         return scored_patterns[0].first;
     }
-    
+
 private:
     // Calculate a combined score for a pattern
     double CalculatePatternScore(const Pattern& pattern) {
@@ -14154,27 +14154,27 @@ private:
         double intersection_score = CalculateIntersectionScore(pattern);
         double quality_impact_score = CalculateQualityImpactScore(pattern);
         double critical_path_score = CalculateCriticalPathScore(pattern);
-        
+
         // Combine with weights
         return (constraint_score * 0.4) +
                (intersection_score * 0.3) +
                (quality_impact_score * 0.2) +
                (critical_path_score * 0.1);
     }
-    
+
     // Calculate constraint score (higher for more constrained patterns)
     double CalculateConstraintScore(const Pattern& pattern) {
         int empty_count = pattern.EmptyCellCount();
         int filled_count = pattern.pattern.length() - empty_count;
-        
+
         // More filled = more constrained = higher score
         return filled_count / (double)pattern.pattern.length();
     }
-    
+
     // Calculate intersection score (higher for patterns with more intersections)
     double CalculateIntersectionScore(const Pattern& pattern) {
         int intersection_count = 0;
-        
+
         for (const Span& span : grid_.spans) {
             if (span.point.row != pattern.span.point.row ||
                 span.point.col != pattern.span.point.col ||
@@ -14187,49 +14187,49 @@ private:
                 }
             }
         }
-        
+
         // Normalize by maximum possible intersections (pattern length)
         return min(1.0, intersection_count / (double)pattern.pattern.length());
     }
-    
+
     // Calculate quality impact score (higher when word choice impacts quality)
     double CalculateQualityImpactScore(const Pattern& pattern) {
         // Find candidate words
         vector<Word*> candidates = lib_.FindMatchingWords(pattern.pattern);
-        
+
         // Calculate quality statistics
         double total_quality = 0.0;
         double max_quality = 0.0;
         double min_quality = 10.0;  // Assuming quality is between 0-10
-        
+
         for (const Word* w : candidates) {
             total_quality += w->quality;
             max_quality = max(max_quality, (double)w->quality);
             min_quality = min(min_quality, (double)w->quality);
         }
-        
+
         double avg_quality = candidates.empty() ? 0 : total_quality / candidates.size();
         double quality_range = max_quality - min_quality;
-        
+
         // Combine average quality and range (diversity)
         return (avg_quality / 10.0) * 0.7 + (quality_range / 10.0) * 0.3;
     }
-    
+
     // Calculate critical path score (higher for spans on critical paths)
     double CalculateCriticalPathScore(const Pattern& pattern) {
         static vector<Span> critical_path;
         static bool path_calculated = false;
-        
+
         // Calculate critical path once
         if (!path_calculated) {
             critical_path = grid_.FindCriticalPath();
             path_calculated = true;
         }
-        
+
         // Check if this span is on the critical path
         for (size_t i = 0; i < critical_path.size(); i++) {
             const Span& cp_span = critical_path[i];
-            
+
             if (cp_span.point.row == pattern.span.point.row &&
                 cp_span.point.col == pattern.span.point.col &&
                 cp_span.len == pattern.span.len &&
@@ -14239,10 +14239,10 @@ private:
                 return 1.0 - (i / (double)critical_path.size());
             }
         }
-        
+
         return 0.0;  // Not on critical path
     }
-    
+
     Grid& grid_;
     Library& lib_;
 };
@@ -14261,13 +14261,13 @@ For even better performance, we can create an adaptive selector that changes its
 class AdaptiveSlotSelector {
 public:
     // ... constructor and other methods ...
-    
-    Pattern GetNextSpan(const vector<Pattern>& unfilled_patterns, 
+
+    Pattern GetNextSpan(const vector<Pattern>& unfilled_patterns,
                         int current_depth, int backtrack_count) {
         if (unfilled_patterns.empty()) {
             throw runtime_error("No unfilled patterns available");
         }
-        
+
         // Adjust strategy based on context
         if (current_depth < 5) {
             // Early in the solving process, focus on quality impact
@@ -14280,18 +14280,18 @@ public:
             return hybrid_selector_.GetNextSpan(unfilled_patterns);
         }
     }
-    
+
 private:
     // Get span with highest quality impact
     Pattern GetQualityImpactSpan(const vector<Pattern>& patterns) {
         // ... implementation ...
     }
-    
+
     // Get most constrained span (fewest candidates)
     Pattern GetMostConstrainedSpan(const vector<Pattern>& patterns) {
         // ... implementation ...
     }
-    
+
     HybridSlotSelector hybrid_selector_;
 };
 ```
@@ -14309,7 +14309,7 @@ Now let's integrate our advanced slot selection strategies with the solver:
 class Solver {
 public:
     // ... existing methods ...
-    
+
     // Set the slot selection policy
     enum SlotSelectionPolicy {
         CONSTRAINT_BASED,       // Original strategy
@@ -14320,14 +14320,14 @@ public:
         HYBRID,                 // Combined approach
         ADAPTIVE                // Context-sensitive selection
     };
-    
+
     void SetSlotSelectionPolicy(SlotSelectionPolicy policy) {
         slot_policy_ = policy;
     }
-    
+
 private:
     // ... existing methods ...
-    
+
     // Get patterns sorted according to current policy
     Patterns GetPatternsWithPolicy() {
         switch (slot_policy_) {
@@ -14350,14 +14350,14 @@ private:
                 return grid_.GetSortedPatterns();
         }
     }
-    
+
     // Solve with dynamic selection policies
     bool SolveWithDynamicSelection() {
         // Initialize
         grid_.FillSpans();
         Patterns all_patterns = grid_.GetAllPatterns();
         backtrack_count_ = 0;
-        
+
         if (slot_policy_ == DYNAMIC_MCV) {
             return SolveWithDynamicMCV(all_patterns, 0);
         } else if (slot_policy_ == ADAPTIVE) {
@@ -14367,12 +14367,12 @@ private:
             return Solve();
         }
     }
-    
+
     // Solve with the dynamic MCV approach
     bool SolveWithDynamicMCV(const Patterns& all_patterns, int depth) {
         // ... implementation as shown earlier ...
     }
-    
+
     // Solve with adaptive selection
     bool SolveWithAdaptiveSelection(const Patterns& all_patterns, int depth) {
         // Check if we're done
@@ -14383,11 +14383,11 @@ private:
                 break;
             }
         }
-        
+
         if (all_filled) {
             return true;  // Solution found
         }
-        
+
         // Get unfilled patterns
         vector<Pattern> unfilled;
         for (const Pattern& p : all_patterns) {
@@ -14397,34 +14397,34 @@ private:
                 unfilled.push_back(Pattern(p.span, current_content));
             }
         }
-        
+
         // Use adaptive selector to choose next span
         AdaptiveSlotSelector selector(grid_, lib_);
         Pattern next_pattern = selector.GetNextSpan(unfilled, depth, backtrack_count_);
-        
+
         // Get candidates for the chosen span
         vector<string> candidates = FindCandidateWords(next_pattern);
-        
+
         // Try each candidate
         for (const string& word : candidates) {
             // Place the word
             bool success = grid_.PlaceWord(next_pattern.span, word, allow_duplicates_);
-            
+
             if (success) {
                 // Recursively try to solve the rest
                 if (SolveWithAdaptiveSelection(all_patterns, depth + 1)) {
                     return true;  // Solution found
                 }
-                
+
                 // If we get here, this word didn't work
                 grid_.RemoveWord(next_pattern.span);
                 backtrack_count_++;
             }
         }
-        
+
         return false;  // No solution with any candidate
     }
-    
+
     SlotSelectionPolicy slot_policy_ = CONSTRAINT_BASED;
     int backtrack_count_ = 0;
 };
@@ -14441,7 +14441,7 @@ void BenchmarkSlotSelectionPolicies(const string& grid_file, const string& dict_
     // Load library and grid
     Library lib;
     lib.ReadFromFile(dict_file);
-    
+
     // Define policies to test
     vector<Solver::SlotSelectionPolicy> policies = {
         Solver::CONSTRAINT_BASED,
@@ -14452,7 +14452,7 @@ void BenchmarkSlotSelectionPolicies(const string& grid_file, const string& dict_
         Solver::HYBRID,
         Solver::ADAPTIVE
     };
-    
+
     vector<string> policy_names = {
         "Constraint-Based",
         "Intersection-Based",
@@ -14462,35 +14462,35 @@ void BenchmarkSlotSelectionPolicies(const string& grid_file, const string& dict_
         "Hybrid",
         "Adaptive"
     };
-    
+
     cout << "Benchmarking slot selection policies on " << grid_file << ":" << endl;
-    
+
     // Test each policy
     for (size_t i = 0; i < policies.size(); i++) {
         Solver::SlotSelectionPolicy policy = policies[i];
         string policy_name = policy_names[i];
-        
+
         // Load a fresh grid
         Grid grid("Benchmark Grid");
         grid.LoadFromFile(grid_file);
-        
+
         // Create solver with this policy
         Solver solver(grid, lib);
         solver.SetSlotSelectionPolicy(policy);
-        
+
         // Time the solution
         cout << "  Testing " << policy_name << "..." << endl;
         auto start = chrono::high_resolution_clock::now();
-        
+
         bool success = solver.Solve();
-        
+
         auto end = chrono::high_resolution_clock::now();
         auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
-        
+
         // Get solution statistics
         double solution_quality = success ? GridScorer::ScoreGrid(grid, lib) : 0.0;
         int backtrack_count = solver.GetBacktrackCount();
-        
+
         // Report results
         cout << "    Result: " << (success ? "Success" : "Failure") << endl;
         cout << "    Time: " << duration.count() << " ms" << endl;
