@@ -260,7 +260,6 @@ Remember: The C++ we'll be using is standard and should work on any platform, bu
 
 ### 3. Add 1 plus 1!
 [https://youtu.be/Wf5mfSYXdZg](https://youtu.be/Wf5mfSYXdZg)
-### 3. Add 1 plus 1!
 
 In this chapter, we'll write our first C++ program for our crossword puzzle project. We'll start with the fundamentals of C++ programming by creating a simple program that adds two numbers together. This will help us get comfortable with the development environment and basic C++ syntax before we dive into more complex code.
 
